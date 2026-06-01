@@ -1,0 +1,102 @@
+<li class="filter-item{% if type == 'swatch' or type == 'chip' %} inline{% endif %}">
+  <label
+    data-filter
+    class="filter-item__content {% if filter_value.count == 0 and filter_value.active == false %}filter-item__content--disabled{% endif %}"
+    for="filter--{{ filter_value.param_name | url_escape }}--{{ filter_value.label | url_escape }}"
+  >
+    <input
+      type="checkbox"
+      name="{{ filter_value.param_name }}"
+      data-name-escaped="{{  filter_value.param_name | url_encode }}"
+      value="{{ filter_value.value }}"
+      data-value-escaped="{{ filter_value.value | url_escape }}"
+      class="filter-item__checkbox visually-hidden"
+      id="filter--{{ filter_value.param_name | url_escape }}--{{ filter_value.label | url_escape }}"
+      {% if filter_value.active -%}
+        checked
+      {% endif %}
+      {%- if key != blank and val != blank -%}
+        data-{{ key }}="{{ val | handle }}"
+      {%- endif -%}
+      {%- if type == 'swatch' -%}
+        aria-label="{{ filter_value.label }}"
+      {%- endif -%}
+      {% if filter_value.count == 0 and filter_value.active == false %}
+        disabled
+      {% endif %}
+    >
+    {%- if type == 'checkbox' -%}
+      <div class="filter-input__input ">
+        {% render 'icon', icon: 'check' %}
+      </div>
+    {%- endif -%}
+
+    {%- if type == 'checkbox' -%}
+      <span class="filter-item__label">
+        {{ filter_value.label }}
+      </span>
+      <span class="filter-item__count">{{ filter_value.count }}</span>
+    {%- endif -%}
+    {%- if type == 'swatch' -%}
+      {%- liquid
+        capture filter_swatch_style
+          if filter_value.display
+            if filter_value.display.type == 'colors'
+              assign angle = 0
+              assign angle_increment = 360 | divided_by: filter_value.display.value.size
+
+              capture conic_gradient
+                for color in filter_value.display.value
+                  echo '[[c]] [[a]]deg' | replace: '[[c]]', color | replace: '[[a]]', angle
+                  assign angle = angle | plus: angle_increment
+                  echo ' [[a]]deg' | replace: '[[a]]', angle
+
+                  unless forloop.last
+                    echo ', '
+                  endunless
+                endfor
+              endcapture
+
+              echo 'background: conic-gradient([[cg]]);' | replace: '[[cg]]', conic_gradient
+            else
+              assign image_url = filter_value.display.value | image_url: width: 24
+              echo 'background-image: url([[csi]]);' | replace: '[[csi]]', image_url
+            endif
+          else
+            assign downcased_label = filter_value.label | downcase
+            assign file_extension = 'png'
+            assign custom_swatch_image = filter_value.label | handle | append: '.' | append: file_extension
+            assign custom_color = downcased_label | replace: ' ', ''
+
+            if custom_color_key_map contains downcased_label
+              for color_name in custom_color_key_map
+                if color_name == downcased_label
+                  assign custom_color = custom_color_value_map[forloop.index0]
+                  break
+                endif
+              endfor
+            endif
+
+            echo 'background-color: [[cc]];' | replace: '[[cc]]', custom_color
+
+            if images[custom_swatch_image] != blank
+              assign custom_swatch_image_url = custom_swatch_image | file_url
+              echo 'background-image: url([[csiu]]);' | replace: '[[csiu]]', custom_swatch_image_url
+            endif
+          endif
+        endcapture
+      -%}
+
+      <div
+        class="filter-item__swatch"
+        style="{{ filter_swatch_style }}"
+      ></div>
+    {%- endif -%}
+
+    {%- if type == 'chip' -%}
+      <div class="filter-item__chip">
+        {{ filter_value.label }}
+      </div>
+    {%- endif -%}
+  </label>
+</li>

@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_social_sharing": true
+          }
+        },
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {}
+        },
+        "content": {
+          "type": "content",
+          "settings": {
+            "blog_show_social_sharing": true,
+            "blog_show_pagination": true,
+            "content_max_width": 600
+          }
+        }
+      },
+      "block_order": ["title", "featured_image", "content"],
+      "settings": {
+        "enable_animation": true
+      }
+    },
+    "featured_collection_tdwiYK": {
+      "type": "featured-collection",
+      "disabled": true,
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "collection": "",
+        "max_products": 6,
+        "columns": 3,
+        "title": "Featured collection",
+        "subheading": "",
+        "link_text": "",
+        "text_max_width": 36,
+        "aspect_ratio": "natural",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    }
+  },
+  "order": ["main", "featured_collection_tdwiYK"]
+}

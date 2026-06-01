@@ -1,0 +1,153 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product--default",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "border": {
+          "type": "border",
+          "settings": {}
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Coming soon. Buy now and we'll notify you when it's ready to ship.</p>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_labels": true,
+            "variant_popup_option": "Size",
+            "variant_popup_text": "Size guide",
+            "variant_popup_page": "",
+            "siblings_show_product_image": true,
+            "siblings_option_name": "Color"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+            "show_labels": true
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "style": "paragraph"
+          }
+        },
+        "payment_widget": {
+          "type": "payment_widget",
+          "settings": {
+            "column": "left",
+            "style": "closed",
+            "icon": "payment",
+            "title": "Payment",
+            "show_payment_icons": true,
+            "text": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.</p>"
+          }
+        },
+        "security_widget": {
+          "type": "security_widget",
+          "settings": {
+            "column": "left",
+            "style": "closed",
+            "icon": "security",
+            "title": "Security",
+            "text": "<p>This website is encrypted. We take your security very seriously. All transactions powered by Shopify.</p>"
+          }
+        },
+        "accordion_LAHwyH": {
+          "type": "accordion",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "heading": "Materials",
+            "content": "<p>38% Hemp | 34% Silk | 28% Lyocell</p><p><em>We carefully consider the impact on the environment and select natural materials that are easily broken down, avoiding the use of synthetics where possible, only using them when the integrity of the garment requires it.</em></p>"
+          }
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "heading": "Fit Guide",
+            "content": "<p>Relaxed fit, bateau neckline, sleeveless, soft pleating at shoulders, unlined.</p>"
+          }
+        },
+        "accordion-3": {
+          "type": "accordion",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "heading": "Care Guide",
+            "content": "<p>Cold hand-wash separately, wash and dry inside-out. Do not soak, bleach, dry-clean, tumble dry, twist or wring. Dry flat in shade, cool iron on reverse side. It is recommended that this garment is folded and not hung.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "border",
+        "text",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "payment_widget",
+        "security_widget",
+        "accordion_LAHwyH",
+        "accordion-2",
+        "accordion-3"
+      ],
+      "settings": {
+        "show_breadcrumbs": false,
+        "show_navigation_buttons": false,
+        "enable_sticky_product_details": true,
+        "purchase_bar_flow": "checkout",
+        "enable_quick_purchase_bar": true,
+        "show_share_buttons": true,
+        "image_aspect_ratio": "natural",
+        "gallery_style": "thumbnails",
+        "mobile_gallery_style": "thumbnails",
+        "thumbnail_columns": "5",
+        "gallery_size": "medium",
+        "enable_product_lightbox": true,
+        "enable_video_looping": true,
+        "enable_animation": true,
+        "enable_gift_card_recipient": true
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "max_products": 6,
+        "columns": 3,
+        "title": "Recommended",
+        "subheading": "<p>You might want to take a closer look.</p>",
+        "text_max_width": 42,
+        "aspect_ratio": "portrait",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    }
+  },
+  "order": ["main", "product-recommendations"]
+}

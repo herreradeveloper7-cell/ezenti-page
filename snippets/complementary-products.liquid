@@ -1,0 +1,62 @@
+{%- liquid
+  assign max_products = block.settings.max_products | times: 1
+  assign should_render_content = false
+  assign should_render_design_mode_placeholders = false
+
+  if block.settings.product_source == 'custom-product-list'
+    if block.settings.product_list.count > 0
+      assign should_render_content = true
+    elsif request.design_mode
+      assign should_render_content = true
+      assign should_render_design_mode_placeholders = true
+    endif
+  endif
+
+  if block.settings.product_source == 'app-recommendations'
+    assign should_render_content = true
+    if request.design_mode and recommendations.products_count == 0
+      assign should_render_design_mode_placeholders = true
+    endif
+  endif
+-%}
+
+{%- if should_render_content -%}
+  <div
+    class="
+      {{ classes }}
+      complementary-products
+      {% if settings.enable_quick_add -%}
+        complementary-products--has-quick-buy
+        section--has-quick-buy
+      {%- endif %}
+      {%- if block.settings.product_source == 'app-recommendations' -%}
+        hidden
+      {%- endif -%}
+    "
+    {{ block.shopify_attributes }}
+  >
+    {%- unless block.settings.heading == blank -%}
+      <h3 class="product__block-heading ff-heading fs-heading-4-base">
+        {{ block.settings.heading }}
+      </h3>
+    {%- endunless -%}
+    <div
+      class="complementary-products__inner"
+      data-complementary-products
+      data-product-id="{{ product.id }}"
+      data-section-id="{{ section.id }}"
+      data-recommendations-type="{{ block.settings.product_source }}"
+      data-max-recommendations="{{ max_products }}"
+      data-layout="{{ block.settings.layout }}"
+    >
+      {% render 'complementary-products-list',
+        product_source: block.settings.product_source,
+        product: product,
+        block_settings: block.settings,
+        section_settings: section,
+        should_render_design_mode_placeholders: should_render_design_mode_placeholders,
+        max_products: max_products
+      %}
+    </div>
+  </div>
+{%- endif -%}
