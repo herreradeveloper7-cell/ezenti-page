@@ -26,14 +26,27 @@
       >
         <div class="announcement-bar__content-wrapper">
           <div class="announcement-bar__content">
-            {%- if block.settings.link != blank -%}
-              <span>
+            <span class="announcement-bar__message">
+              {%- if block.settings.link != blank -%}
                 <a class="announcement-bar__link color-inherit" href="{{ block.settings.link }}">
                   {{ block.settings.title | strip_html }}
                 </a>
+              {%- else -%}
+                {{ block.settings.title | strip_html }}
+              {%- endif -%}
+            </span>
+
+            {%- if block.settings.secondary_title != blank -%}
+              <span class="announcement-bar__separator" aria-hidden="true">|</span>
+              <span class="announcement-bar__message">
+                {%- if block.settings.secondary_link != blank -%}
+                  <a class="announcement-bar__link color-inherit" href="{{ block.settings.secondary_link }}">
+                    {{ block.settings.secondary_title | strip_html }}
+                  </a>
+                {%- else -%}
+                  {{ block.settings.secondary_title | strip_html }}
+                {%- endif -%}
               </span>
-            {%- else -%}
-              <span>{{ block.settings.title | strip_html }}</span>
             {%- endif -%}
           </div>
         </div>
@@ -76,6 +89,16 @@
           "id": "link",
           "label": "t:sections.announcement_bar.blocks.announcement.settings.link.label",
           "info": "t:sections.announcement_bar.blocks.announcement.settings.link.info"
+        },
+        {
+          "type": "text",
+          "id": "secondary_title",
+          "label": "Secondary text"
+        },
+        {
+          "type": "url",
+          "id": "secondary_link",
+          "label": "Secondary link"
         },
         {
           "id": "color_background",

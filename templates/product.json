@@ -118,11 +118,11 @@
         "buy_buttons",
         "description",
         "payment_widget",
-        "security_widget",
-        "shipping_widget",
         "accordion-1",
         "accordion-2",
-        "accordion-3"
+        "accordion-3",
+        "security_widget",
+        "shipping_widget"
       ],
       "settings": {
         "show_breadcrumbs": true,

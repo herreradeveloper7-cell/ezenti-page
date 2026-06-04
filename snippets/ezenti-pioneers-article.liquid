@@ -27,7 +27,7 @@
   <section class="pioneers-article__details">
     <div class="pioneers-article__details-inner">
       <div class="pioneers-article__steps pioneers-article__steps--left pioneers-reveal">
-        <div class="pioneers-step">
+        <div class="pioneers-step pioneers-step--01">
           <span class="pioneers-step__number">01</span>
           <div>
             <p>EZENTI Pioneers is limited to individuals who have already shown commitment to the brand.</p>
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div class="pioneers-step">
+        <div class="pioneers-step pioneers-step--03">
           <span class="pioneers-step__number">03</span>
           <div>
             <h2>ENTRY</h2>
@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        <div class="pioneers-step">
+        <div class="pioneers-step pioneers-step--05">
           <span class="pioneers-step__number">05</span>
           <div>
             <h2>CORE PIONEERS</h2>
@@ -67,7 +67,7 @@
       </div>
 
       <div class="pioneers-article__steps pioneers-article__steps--right pioneers-reveal">
-        <div class="pioneers-step">
+        <div class="pioneers-step pioneers-step--02">
           <span class="pioneers-step__number">02</span>
           <div>
             <h2>IDENTITY</h2>
@@ -77,7 +77,7 @@
           </div>
         </div>
 
-        <div class="pioneers-step">
+        <div class="pioneers-step pioneers-step--04">
           <span class="pioneers-step__number">04</span>
           <div>
             <h2>PIONEERS</h2>
@@ -91,7 +91,7 @@
           </div>
         </div>
 
-        <div class="pioneers-step">
+        <div class="pioneers-step pioneers-step--06">
           <span class="pioneers-step__number">06</span>
           <div>
             <h2>WITHIN THE FIRST 100</h2>
@@ -100,7 +100,7 @@
           </div>
         </div>
 
-        <div class="pioneers-step">
+        <div class="pioneers-step pioneers-step--07">
           <span class="pioneers-step__number">07</span>
           <div>
             <h2>A LIMITED CIRCLE</h2>
@@ -373,9 +373,42 @@
       grid-template-columns: 1fr;
     }
 
+    .pioneers-article__steps {
+      display: contents;
+    }
+
+    .pioneers-step--01 {
+      order: 1;
+    }
+
+    .pioneers-step--02 {
+      order: 2;
+    }
+
+    .pioneers-step--03 {
+      order: 3;
+    }
+
+    .pioneers-step--04 {
+      order: 4;
+    }
+
+    .pioneers-step--05 {
+      order: 5;
+    }
+
+    .pioneers-step--06 {
+      order: 6;
+    }
+
+    .pioneers-step--07 {
+      order: 7;
+    }
+
     .pioneers-article__form-column {
       border-left: 0;
       padding-left: 0;
+      order: 8;
     }
   }
 </style>
