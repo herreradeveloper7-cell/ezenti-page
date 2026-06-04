@@ -1,1 +1,228 @@
-{"sections":{"main":{"type":"main-product--default","blocks":{"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"border":{"type":"border","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"show_labels":false,"variant_popup_option":"Size","variant_popup_text":"Size guide","variant_popup_page":"","siblings_show_product_image":true,"siblings_option_name":"Color"}},"quantity_selector":{"type":"quantity_selector","settings":{"show_labels":false}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":false}},"description":{"type":"description","settings":{"style":"open"}},"payment_widget":{"type":"payment_widget","disabled":true,"settings":{"column":"left","style":"closed","icon":"payment","title":"Payment","show_payment_icons":true,"text":"<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.<\/p>"}},"security_widget":{"type":"security_widget","disabled":true,"settings":{"column":"left","style":"closed","icon":"security","title":"Returns","text":"<p>We want you to be completely satisfied with your online purchase. If you change your mind for any reason, we’ll gladly accept a return within 21 days of purchase.<\/p>"}},"shipping_widget":{"type":"shipping_widget","disabled":true,"settings":{"column":"left","style":"closed","icon":"shipping","title":"Shipping","text":"<p>All orders placed prior to 11am will be dispatched the same day.  Domestic and international rates are approximations. Exact rates will be provided at checkout.<\/p>","show_estimator":true}},"accordion-1":{"type":"accordion","settings":{"column":"right","style":"closed","heading":"DETAILS","content":"<ul><li>100% cotton. Mid-weight, breathable, built to hold its shape.<\/li><li>Oversized unisex silhouette.<\/li><li>Graphic artwork developed exclusively for this series.<\/li><li>Made for moments, not routines. Designed to last.<\/li><\/ul>"}},"accordion-2":{"type":"accordion","settings":{"column":"right","style":"closed","heading":"FIT NOTE","content":"<p>For a more oversized look, size up.<\/p>"}},"accordion-3":{"type":"accordion","settings":{"column":"right","style":"closed","heading":"CARE GUIDE","content":"<p>Wash inside out with similar colors and textures. Use a gentle or delicate cycle with cold water and mild detergent.<\/p><p>• Do not wring<br\/>• Do not bleach<br\/>• Do not iron<br\/>• Do not tumble dry<br\/>• Air dry only<\/p><p>Follow the care instructions carefully to preserve the quality and character of your piece.<\/p><p>Care, like intention, is what allows things to endure.<\/p>"}}},"block_order":["title","price","border","variant_picker","quantity_selector","buy_buttons","description","payment_widget","security_widget","shipping_widget","accordion-1","accordion-2","accordion-3"],"settings":{"show_breadcrumbs":true,"show_navigation_buttons":true,"enable_sticky_product_details":true,"purchase_bar_flow":"checkout","enable_quick_purchase_bar":true,"show_share_buttons":true,"image_aspect_ratio":"square","gallery_style":"list","mobile_gallery_style":"slider","thumbnail_columns":"4","gallery_size":"large","enable_product_lightbox":true,"enable_video_looping":true,"enable_animation":true,"enable_gift_card_recipient":false}},"text_columns_with_images":{"type":"text-columns-with-images","blocks":{"column-1":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/6._IDENTITY.jpg","heading":"Hierloom Pieces","subheading":"<p>Each piece is lovingly handmade by the best possible artisans and checked for durability.<\/p>","text_max_width":48,"link":"","link_text":"Read more"}},"column-2":{"type":"column","settings":{"heading":"Ethical Materials","subheading":"<p>All of our wools and cottons come from ethical sources. We guarantee the best in apparel.<\/p>","text_max_width":42,"link":"","link_text":"Read more"}},"column-3":{"type":"column","settings":{"heading":"Versatile Designs","subheading":"<p>Our effortless yet distinctive pieces are designed to be mixed & matched for any occasion or place.<\/p>","text_max_width":42,"link":"","link_text":"Read more"}},"column-4":{"type":"column","settings":{"heading":"Perfect Gifts","subheading":"<p>Get beautifully wrapped pieces for the perfect gift for someone less or even yourself.<\/p>","text_max_width":42,"link":"","link_text":"Read more"}}},"block_order":["column-1","column-2","column-3","column-4"],"disabled":true,"settings":{"columns":4,"image_shape":"round","text_alignment":"center","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"recommendations":{"type":"product-recommendations","settings":{"max_products":6,"columns":4,"title":"YOU MAY ALSO LIKE","subheading":"<p>Take a closer look.<\/p>","text_max_width":42,"aspect_ratio":"square","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}}},"order":["main","text_columns_with_images","recommendations"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product--default",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "border": {
+          "type": "border",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variant_popup_option": "Sizes"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+            "show_labels": false
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "style": "open"
+          }
+        },
+        "payment_widget": {
+          "type": "payment_widget",
+          "disabled": true,
+          "settings": {
+            "column": "left",
+            "style": "closed",
+            "icon": "payment",
+            "title": "Payment",
+            "show_payment_icons": true,
+            "text": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.</p>"
+          }
+        },
+        "security_widget": {
+          "type": "security_widget",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "icon": "security",
+            "title": "RETURNS",
+            "text": "<p>Returns are accepted within 21 days of delivery when items are unworn, unused, unwashed, and returned with their original tags and packaging. Final sale items are not eligible for return.</p>"
+          }
+        },
+        "shipping_widget": {
+          "type": "shipping_widget",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "icon": "shipping",
+            "title": "SHIPPING",
+            "text": "<p>Orders are processed after payment confirmation. Shipping rates and delivery times are calculated at checkout based on the destination and selected shipping method.</p>",
+            "show_estimator": false
+          }
+        },
+        "accordion-1": {
+          "type": "accordion",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "heading": "DETAILS",
+            "content": "<ul><li>100% cotton. Breathable, built to hold its shape.</li><li>Oversized unisex silhouette.</li></ul>"
+          }
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "heading": "FIT NOTE",
+            "content": "<p>For a more oversized look, size up.</p>"
+          }
+        },
+        "accordion-3": {
+          "type": "accordion",
+          "settings": {
+            "column": "right",
+            "style": "closed",
+            "heading": "CARE GUIDE",
+            "content": "<p>Wash inside out with similar colors and textures. Use a gentle or delicate cycle with cold water and mild detergent.</p><p>• Do not wring<br/>• Do not bleach<br/>• Do not iron<br/>• Do not tumble dry<br/>• Air dry only</p><p>Follow the care instructions carefully to preserve the quality and character of your piece.</p><p>Care, like intention, is what allows things to endure.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "border",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "payment_widget",
+        "security_widget",
+        "shipping_widget",
+        "accordion-1",
+        "accordion-2",
+        "accordion-3"
+      ],
+      "settings": {
+        "show_breadcrumbs": true,
+        "show_navigation_buttons": true,
+        "enable_sticky_product_details": true,
+        "purchase_bar_flow": "checkout",
+        "enable_quick_purchase_bar": true,
+        "show_share_buttons": true,
+        "image_aspect_ratio": "square",
+        "gallery_style": "thumbnails",
+        "mobile_gallery_style": "thumbnails",
+        "thumbnail_columns": "6",
+        "gallery_size": "large",
+        "enable_product_lightbox": true,
+        "enable_video_looping": true,
+        "enable_animation": true,
+        "enable_gift_card_recipient": false
+      }
+    },
+    "text_columns_with_images": {
+      "type": "text-columns-with-images",
+      "blocks": {
+        "column-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/6._IDENTITY.jpg",
+            "heading": "Hierloom Pieces",
+            "subheading": "<p>Each piece is lovingly handmade by the best possible artisans and checked for durability.</p>",
+            "text_max_width": 48,
+            "link": "",
+            "link_text": "Read more"
+          }
+        },
+        "column-2": {
+          "type": "column",
+          "settings": {
+            "heading": "Ethical Materials",
+            "subheading": "<p>All of our wools and cottons come from ethical sources. We guarantee the best in apparel.</p>",
+            "text_max_width": 42,
+            "link": "",
+            "link_text": "Read more"
+          }
+        },
+        "column-3": {
+          "type": "column",
+          "settings": {
+            "heading": "Versatile Designs",
+            "subheading": "<p>Our effortless yet distinctive pieces are designed to be mixed & matched for any occasion or place.</p>",
+            "text_max_width": 42,
+            "link": "",
+            "link_text": "Read more"
+          }
+        },
+        "column-4": {
+          "type": "column",
+          "settings": {
+            "heading": "Perfect Gifts",
+            "subheading": "<p>Get beautifully wrapped pieces for the perfect gift for someone less or even yourself.</p>",
+            "text_max_width": 42,
+            "link": "",
+            "link_text": "Read more"
+          }
+        }
+      },
+      "block_order": [
+        "column-1",
+        "column-2",
+        "column-3",
+        "column-4"
+      ],
+      "disabled": true,
+      "settings": {
+        "columns": 4,
+        "image_shape": "round",
+        "text_alignment": "center",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "max_products": 6,
+        "columns": 3,
+        "title": "YOU MAY ALSO LIKE",
+        "subheading": "<p>Take a closer look.</p>",
+        "text_max_width": 42,
+        "aspect_ratio": "square",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "text_columns_with_images",
+    "recommendations"
+  ]
+}

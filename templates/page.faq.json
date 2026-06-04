@@ -1,1 +1,177 @@
-{"sections":{"rich-text":{"type":"rich-text","blocks":{"heading":{"type":"heading","settings":{"title":"FAQs","text_max_width":42}},"text":{"type":"text","settings":{"subheading":"<p>Find answers to common questions. Get in touch if you'd like to know more.<\/p>","text_max_width":35}},"button":{"type":"button","settings":{"link":"shopify:\/\/pages\/contact","link_text":"Ask a question"}}},"block_order":["heading","text","button"],"settings":{"enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"questions":{"type":"questions","blocks":{"question-1":{"type":"question","settings":{"title":"1. ⁠What makes EZENTI garments different?","answer":"<p>EZENTI garments are created with a focus on intentional design, Quality materials, and meaningful simplicity. Every element from the fabric to the placement of each design, is carefully considered to create pieces that feel balanced, refined, and authentic.<\/p><p>The founders and creators of EZENTI are directly involved in overseeing the quality control of every garment, ensuring that each piece meets the standards the brand stands for before reaching our customers.<\/p><p>While EZENTI is rooted in a minimal and intentional aesthetic, our Collector Edition pieces explore more expressive designs while still carrying the same identity and philosophy of the brand. This allows EZENTI to offer variety while remaining true to its essence.<\/p><p>Rather than following trends, EZENTI focuses on identity, presence, and quiet confidence, creating garments that express essence through thoughtful detail and clean design.<\/p>","author":""}},"question-2":{"type":"question","settings":{"title":"2. ⁠What inspires EZENTI designs?","answer":"<p>EZENTI designs are inspired by ideas of identity, presence, and intention. Each piece begins with a concept rather than just a graphic, focusing on creating garments that carry meaning through balance, simplicity, and thoughtful detail.<\/p><p>Our designs reflect the belief that style does not need to be loud to be powerful—true expression can exist in clarity, restraint, and purpose.<\/p>","author":""}},"question-3":{"type":"question","settings":{"title":"3. ⁠Why are most of EZENTI designs minimal?","answer":"<p>Minimalism is part of the core philosophy of EZENTI. We believe that simplicity allows the essence of a design to speak clearly, without unnecessary elements.<\/p><p>By focusing on clean compositions, intentional placement, and thoughtful detail, EZENTI creates garments that express identity, presence, and quiet confidence. The goal is not to overwhelm with graphics, but to create pieces where every element has purpose.<\/p>","author":""}},"question-4":{"type":"question","settings":{"title":"4. ⁠Are EZENTI pieces limited?","answer":"<p>EZENTI produces garments in small, carefully controlled quantities to maintain high standards of quality and attention to detail. This approach allows us to ensure that every piece meets the level of craftsmanship the brand stands for.<\/p><p>Our Collector Edition pieces, however, are strictly limited to 100 garments per design, making them part of a more exclusive and finite release.<\/p>","author":""}},"question_xj4DAB":{"type":"question","settings":{"title":"5. ⁠Why are EZENTI collector editions limited?","answer":"<p>EZENTI Collector Edition pieces are intentionally limited to 100 garments per design to preserve their exclusivity and significance within the brand.<\/p><p>These releases are rooted in creative exploration, allowing EZENTI to express ideas that go beyond our usual minimal direction while still carrying the identity of the brand. By keeping them limited, each piece represents a unique moment of creativity within EZENTI, making every release part of a special and finite chapter in the brand’s journey.<\/p>","author":""}},"question_cUbqEt":{"type":"question","settings":{"title":"6. ⁠Do EZENTI designs change with each collection?","answer":"<p>(Aquí no podemos prometer lo que no siempre se puede cumplir porque muchos diseños en técnicas especiales pueden ser usados en diferentes colecciones)<\/p><p>Yes. Each EZENTI collection explores new ideas, concepts, and creative directions, while staying true to the identity and philosophy of the brand.<\/p><p>While certain elements of our design language may naturally appear across different collections, every release is developed with its own intention, balance, and creative perspective. This allows each collection to feel distinct while still reflecting the core essence, identity, and aesthetic of EZENTI.<\/p>","author":""}},"question_JbrBAq":{"type":"question","settings":{"title":"7. ⁠How are EZENTI garments produced?","answer":"<p>EZENTI garments are produced through a carefully controlled, small-scale process where attention to detail and quality are prioritized at every step.<\/p><p>The founders of EZENTI are directly involved in overseeing the development, detailing, and quality control of each garment, ensuring that every piece meets the standards and identity of the brand before reaching our customers.<\/p><p>This hands-on approach allows us to maintain the precision, intention, and craftsmanship that define EZENTI.<\/p>","author":""}},"question_wPphpG":{"type":"question","settings":{"title":"9. How do i choose the correct size?","answer":"<p>EZENTI garments are designed with a modern, relaxed silhouette that balances comfort and structure.<\/p><p>We recommend reviewing the Size Guide available on each product page, where you can find detailed measurements to help you select the best fit. If you prefer a more oversized look, you may consider sizing up.<\/p><p>If you still have questions about sizing, our support team will be happy to assist you before placing your order.<\/p>","author":""}},"question_iPw4ey":{"type":"question","settings":{"title":"10. Do you accept returns or exchanges?","answer":"<p>Due to the limited and carefully controlled nature of our releases, all sales are considered final.<\/p><p>Returns are only accepted if the garment arrives defective or if the order does not reach the customer as expected. In these cases, our team will review the situation and work to provide an appropriate resolution.<\/p><p>We do offer exchanges, and we recommend reviewing our Return Policy for complete details and instructions.<\/p>","author":""}}},"block_order":["question-1","question-2","question-3","question-4","question_xj4DAB","question_cUbqEt","question_JbrBAq","question_wPphpG","question_iPw4ey"],"settings":{"section_title":"Questions","subheading":"","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}}},"order":["rich-text","questions"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich-text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "FAQs",
+            "text_max_width": 42
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "subheading": "<p>Find answers to common questions. Get in touch if you'd like to know more.</p>",
+            "text_max_width": 35
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://pages/contact",
+            "link_text": "Ask a question"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    },
+    "questions": {
+      "type": "questions",
+      "blocks": {
+        "question-1": {
+          "type": "question",
+          "settings": {
+            "title": "1. What makes EZENTI garments different?",
+            "answer": "<p>EZENTI garments are created with a focus on intentional design, premium materials, and meaningful simplicity. Every element—from the fabric to the placement of each detail—is carefully considered to create pieces that feel balanced, refined, and authentic. Rather than following trends, we focus on identity, presence, and quiet confidence. The founders are directly involved in overseeing the quality control of every garment, ensuring it meets our absolute standard before reaching you.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question-2": {
+          "type": "question",
+          "settings": {
+            "title": "2. What inspires the minimal aesthetic of EZENTI?",
+            "answer": "<p>Minimalism is a core philosophy of our brand. We believe that simplicity allows the true essence of a design to speak clearly without unnecessary noise. By focusing on clean compositions and intentional placement, we create garments that carry meaning through balance and restraint. True expression can exist in clarity and purpose<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question-3": {
+          "type": "question",
+          "settings": {
+            "title": "3. Are EZENTI garments and Collector Editions limited?",
+            "answer": "<p>Yes. EZENTI produces all garments in small, carefully controlled quantities to maintain our high standards of quality and craftsmanship. Furthermore, our Collector Edition pieces—which explore more expressive designs while retaining our core identity—are strictly limited to 100 garments per design, making every release a finite chapter in the brand’s journey.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question-4": {
+          "type": "question",
+          "settings": {
+            "title": "4. Do EZENTI designs change with each collection?",
+            "answer": "<p>Yes. Each EZENTI collection explores new ideas, concepts, and creative directions while staying true to the identity and philosophy of the brand. While certain elements of our design language naturally carry over, every release is developed with its own distinct intention, balance, and creative perspective.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_xj4DAB": {
+          "type": "question",
+          "settings": {
+            "title": "5. How are EZENTI garments produced?",
+            "answer": "<p>EZENTI garments are produced through a carefully controlled, small-scale process where attention to detail is prioritized at every step. This hands-on approach allows us to maintain the precision, intention, and structural integrity that define the brand.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_cUbqEt": {
+          "type": "question",
+          "settings": {
+            "title": "6. How should I care for my EZENTI garments?",
+            "answer": "<p>To preserve the quality of the fabric and design, please wash your garment inside out in cold water with similar colors. Avoid bleach and do not iron directly on printed areas. Air drying is strongly recommended, as high heat from dryers may affect the heavy cotton and printed details.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_JbrBAq": {
+          "type": "question",
+          "settings": {
+            "title": "7. How do I choose the correct size?",
+            "answer": "<p>EZENTI garments are engineered with a modern, relaxed silhouette that balances comfort and structure. We recommend reviewing the Size Guide on each product page for detailed measurements. If you prefer a more oversized drape, consider sizing up. For further assistance, our support team is available before you place your order.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_6CVjKw": {
+          "type": "question",
+          "settings": {
+            "title": "8. How long does shipping take?",
+            "answer": "<p>Orders are processed and dispatched daily from our Miami logistics center. Standard domestic transit via UPS requires between 3 to 5 business days, depending on your exact location within the United States.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_wPphpG": {
+          "type": "question",
+          "settings": {
+            "title": "9. What payment methods do you accept?",
+            "answer": "<p>Our infrastructure processes secure transactions across all major global networks. We accept Visa, Mastercard, American Express, Discover, and Diners Club. For a streamlined digital checkout, we also support Apple Pay, Google Pay, PayPal, and Shop Pay.<br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_iPw4ey": {
+          "type": "question",
+          "settings": {
+            "title": "10. Can I cancel or modify my order?",
+            "answer": "<p>Orders begin processing shortly after they are placed. Because of this, we cannot guarantee cancellations or modifications once a transaction has been confirmed. If you require assistance, please contact our support team immediately, and we will attempt to intercept the request before the order enters the shipping queue.<br/><br/> <br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_9PYYcq": {
+          "type": "question",
+          "settings": {
+            "title": "11. Do you accept returns or exchanges?",
+            "answer": "<p>Due to the limited and carefully controlled nature of our releases, all sales are considered final. Returns are only accepted if the garment arrives defective or if the order logistics fail to deliver the expected standard. We do offer exchanges; please review our Return Policy for complete operational details.<br/><br/><br/><br/></p>",
+            "author": ""
+          }
+        },
+        "question_AAbMpF": {
+          "type": "question",
+          "settings": {
+            "title": "12. What if my order is lost, damaged, or defective?",
+            "answer": "<p>If your package is confirmed lost in transit, or if a garment arrives damaged or with a manufacturing defect, please contact our support team within 48 hours of delivery (include clear photos if applicable). Once verified, we will take full accountability and provide an immediate resolution, which may include a replacement, an exchange, or a refund.<br/><br/></p>",
+            "author": ""
+          }
+        }
+      },
+      "block_order": [
+        "question-1",
+        "question-2",
+        "question-3",
+        "question-4",
+        "question_xj4DAB",
+        "question_cUbqEt",
+        "question_JbrBAq",
+        "question_6CVjKw",
+        "question_wPphpG",
+        "question_iPw4ey",
+        "question_9PYYcq",
+        "question_AAbMpF"
+      ],
+      "settings": {
+        "section_title": "",
+        "subheading": "",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    }
+  },
+  "order": [
+    "rich-text",
+    "questions"
+  ]
+}

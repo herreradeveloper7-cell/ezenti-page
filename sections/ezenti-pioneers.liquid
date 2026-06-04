@@ -1,0 +1,305 @@
+{%- liquid
+  assign section_id = 'ezenti-pioneers-' | append: section.id
+-%}
+
+<section
+  id="{{ section_id }}"
+  class="ezenti-pioneers section section--vertical-padding-top-bottom"
+  style="
+    --pioneers-bg: {{ section.settings.background_color }};
+    --pioneers-text: {{ section.settings.text_color }};
+    --pioneers-accent: {{ section.settings.accent_color }};
+  "
+>
+  <div class="ezenti-pioneers__inner">
+    <div class="ezenti-pioneers__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ezenti-pioneers__eyebrow ff-body fs-body-x-small">
+          {{ section.settings.eyebrow }}
+        </p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="ezenti-pioneers__heading ff-heading fs-heading-1-base">
+          {{ section.settings.heading }}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="ezenti-pioneers__description ff-body rte">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="ezenti-pioneers__benefits" aria-label="Pioneer benefits">
+          {%- for block in section.blocks -%}
+            <div class="ezenti-pioneers__benefit" {{ block.shopify_attributes }}>
+              {%- if block.settings.title != blank -%}
+                <h2 class="ezenti-pioneers__benefit-title ff-heading fs-heading-5-base">
+                  {{ block.settings.title }}
+                </h2>
+              {%- endif -%}
+
+              {%- if block.settings.text != blank -%}
+                <div class="ezenti-pioneers__benefit-text ff-body fs-body-small rte">
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="ezenti-pioneers__form-shell">
+      {%- if section.settings.image != blank -%}
+        <div class="ezenti-pioneers__image">
+          {%- render 'image',
+            image: section.settings.image,
+            sizes: '(min-width: 960px) 420px, 100vw',
+            aspect_ratio: 'portrait'
+          -%}
+        </div>
+      {%- endif -%}
+
+      <div class="ezenti-pioneers__form">
+        {%- if section.settings.form_heading != blank -%}
+          <h2 class="ezenti-pioneers__form-heading ff-heading fs-heading-3-base">
+            {{ section.settings.form_heading }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.form_text != blank -%}
+          <div class="ezenti-pioneers__form-text ff-body rte">
+            {{ section.settings.form_text }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.klaviyo_form_id != blank -%}
+          <div class="klaviyo-form-{{ section.settings.klaviyo_form_id | strip }}"></div>
+        {%- else -%}
+          <div class="ezenti-pioneers__form-placeholder ff-body fs-body-small">
+            Add the Klaviyo embedded form ID in this section settings.
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #{{ section_id }} {
+    background: var(--pioneers-bg);
+    color: var(--pioneers-text);
+  }
+
+  #{{ section_id }} .ezenti-pioneers__inner {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+    gap: clamp(32px, 6vw, 84px);
+    align-items: start;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__eyebrow {
+    margin: 0 0 14px;
+    color: var(--pioneers-accent);
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__heading {
+    max-width: 760px;
+    margin: 0;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__description {
+    max-width: 640px;
+    margin-top: 18px;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__benefits {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__benefit {
+    border: 1px solid color-mix(in srgb, var(--pioneers-text) 18%, transparent);
+    border-radius: 6px;
+    padding: 18px;
+    min-height: 148px;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__benefit-title {
+    margin: 0 0 8px;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__benefit-text {
+    color: color-mix(in srgb, var(--pioneers-text) 78%, transparent);
+  }
+
+  #{{ section_id }} .ezenti-pioneers__form-shell {
+    display: grid;
+    gap: 18px;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__image {
+    overflow: hidden;
+    border-radius: 6px;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__form {
+    border: 1px solid color-mix(in srgb, var(--pioneers-text) 18%, transparent);
+    border-radius: 6px;
+    padding: clamp(22px, 3vw, 32px);
+    background: color-mix(in srgb, var(--pioneers-bg) 92%, var(--pioneers-text));
+  }
+
+  #{{ section_id }} .ezenti-pioneers__form-heading {
+    margin: 0 0 10px;
+  }
+
+  #{{ section_id }} .ezenti-pioneers__form-text {
+    margin-bottom: 22px;
+    color: color-mix(in srgb, var(--pioneers-text) 78%, transparent);
+  }
+
+  #{{ section_id }} .ezenti-pioneers__form-placeholder {
+    border: 1px dashed color-mix(in srgb, var(--pioneers-text) 28%, transparent);
+    border-radius: 6px;
+    padding: 18px;
+    color: color-mix(in srgb, var(--pioneers-text) 65%, transparent);
+  }
+
+  @media (max-width: 959px) {
+    #{{ section_id }} .ezenti-pioneers__inner,
+    #{{ section_id }} .ezenti-pioneers__benefits {
+      grid-template-columns: 1fr;
+    }
+
+    #{{ section_id }} .ezenti-pioneers__inner {
+      width: min(100% - 28px, 680px);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ezenti Pioneers",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Ezenti Pioneers"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the first circle of Ezenti."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Become part of the Ezenti Pioneers plan and receive early access to limited drops, private releases, and members-only updates.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Register for early access"
+    },
+    {
+      "type": "richtext",
+      "id": "form_text",
+      "label": "Form text",
+      "default": "<p>Leave your details and we will keep you close to the next Ezenti release.</p>"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_form_id",
+      "label": "Klaviyo embedded form ID",
+      "info": "Use only the ID from the Klaviyo embed class. Example: if Klaviyo gives klaviyo-form-ABC123, enter ABC123."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1d1d1d"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#7a7a7a"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Early access"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Be first to discover limited drops before they open to everyone.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ezenti Pioneers",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Early access",
+            "text": "<p>Be first to discover limited drops before they open to everyone.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Private releases",
+            "text": "<p>Receive invitations to members-only capsule releases and previews.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Closer updates",
+            "text": "<p>Get direct news about restocks, launches, and the next Ezenti chapter.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

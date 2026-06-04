@@ -1,1 +1,321 @@
-{"sections":{"video-hero":{"type":"video-hero","blocks":{"heading":{"type":"heading","settings":{"title":"UNIQUENESS BY CHOICE","heading_text_size":64,"text_max_width":42}},"button":{"type":"button","settings":{"link_text":"ENTER THE DROP","link":"shopify:\/\/collections\/collector-edition"}}},"block_order":["heading","button"],"settings":{"video_aspect":"custom","desktop_height":100,"mobile_height":80,"video_url":"","image":"shopify:\/\/shop_images\/1._1er_Banner_Header_Home.png","alignment":"center_center","overlay_shadow":10,"color_text":"#ffffff","color_background_button":"#000000","color_text_button":"#ffffff","color_overlay":"#000000","color_overlay_gradient":"","overlay_opacity":16,"enable_animation":true}},"image_with_text_UeqNWa":{"type":"image-with-text","blocks":{"heading_an3LTG":{"type":"heading","settings":{"title":"Image with text","text_max_width":32}},"subheading_HaLzCY":{"type":"subheading","settings":{"subheading":"<p>Use these sections to promote a particular feature with editorial photography.<\/p>","text_max_width":32}},"button_7YHikd":{"type":"button","settings":{"link":"shopify:\/\/collections","link_text":"Read more"}}},"block_order":["heading_an3LTG","subheading_HaLzCY","button_7YHikd"],"disabled":true,"name":"t:sections.image_with_text.presets.name","settings":{"image_1":"shopify:\/\/shop_images\/COLLECTOR_S_EDITION_-_ELEVATION_-_Black_Oversized_T-Shirt_-_FEMALE_FRONT.jpg","image_position":"right","image_width":"half","aspect_ratio":"natural","text_alignment":"left","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"countdown-banner":{"type":"countdown-banner","disabled":true,"settings":{"min_height":200,"min_height_mobile":300,"year":2030,"month":"july","day":"10","hour":"23","minute":"0","time_zone_selection":"shop","hide_timer_on_complete":false,"timer_complete_message":"","heading":"Signature Gala","subheading":"<p>Celebrate in style at our in-store launch for our newest collection.<br\/><\/p>","text":"","link":"","link_text":"Learn more","focal_point":"center_center","mobile_focal_point":"center_center","text_color":"#1d1d1d","button_background_color":"#000000","button_text_color":"#ffffff","background_color":"#f4f4f4","color_overlay":"rgba(0,0,0,0)","color_overlay_gradient":"","overlay_opacity":0,"enable_animation":true,"enable_full_width":true,"section_padding":"section--vertical-padding-none","padding_amount":"0.075"}},"featured-collection":{"type":"featured-collection","disabled":true,"settings":{"collection":"frontpage","max_products":6,"columns":3,"title":"UNIQUENESS BY CHOICE","subheading":"<p>The latest from our studio and workshop.<\/p>","link_text":"","text_max_width":36,"aspect_ratio":"portrait","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"featured_collection_aAWgqk":{"type":"featured-collection","name":"t:sections.featured_collection.presets.name","settings":{"collection":"collector-edition","max_products":5,"columns":3,"title":"COLLECTOR EDITION","subheading":"<p>Each piece exists once. When it's gone, it's gone.<\/p>","link_text":"","text_max_width":24,"aspect_ratio":"portrait","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-only","padding_amount":"0.5"}},"quote":{"type":"quote","blocks":{"quote":{"type":"quote","settings":{"quote":"<p>We design for those who choose to stand out without asking for attention.<br\/>Every piece begins where conformity ends.<\/p>","author":"EZENTI","text_max_width":48}}},"block_order":["quote"],"settings":{"timer":7,"image_shape":"round","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"video_hero_LRm8AU":{"type":"video-hero","blocks":{"heading_Y7fNyV":{"type":"heading","settings":{"title":"DEFINED BY ESSENZ","heading_text_size":64,"text_max_width":40}},"subheading_Yja84N":{"type":"subheading","settings":{"subheading":"<p>Built for those who understand that restraint is a decision.<\/p>","text_max_width":40}}},"block_order":["heading_Y7fNyV","subheading_Yja84N"],"name":"t:sections.video_hero.presets.name","settings":{"video_aspect":"custom","desktop_height":80,"mobile_height":55,"video_url":"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/19cdd3b4b9364ef2b7ccb8ac156f5644.mp4","image":"shopify:\/\/shop_images\/24._Banner_Header_Seccion_VIEW_THE_LOOK_BOOK.jpg","alignment":"left_center","overlay_shadow":20,"color_text":"#ffffff","color_background_button":"#ffffff","color_text_button":"#181818","color_overlay":"#000000","color_overlay_gradient":"","overlay_opacity":30,"enable_animation":true}},"featured_collection_XM3gYe":{"type":"featured-collection","name":"t:sections.featured_collection.presets.name","settings":{"collection":"frontpage","max_products":12,"columns":3,"title":"","subheading":"","link_text":"","text_max_width":32,"aspect_ratio":"natural","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"0.5"}},"collection_list_RdeH9W":{"type":"collection-list","blocks":{"collection_QeCgf4":{"type":"collection","settings":{"collection":"frontpage","subheading":"","text_max_width":42}},"collection_fgX6hR":{"type":"collection","settings":{"collection":"crewnecks","subheading":"","text_max_width":42}},"collection_MR8mKp":{"type":"collection","settings":{"collection":"hoodies","subheading":"","text_max_width":42}}},"block_order":["collection_QeCgf4","collection_fgX6hR","collection_MR8mKp"],"disabled":true,"name":"t:sections.collection_list.presets.name","settings":{"columns":3,"title":"","subheading":"","text_max_width":42,"aspect_ratio":"portrait","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"text-columns-with-images":{"type":"text-columns-with-images","blocks":{"column-1":{"type":"column","settings":{"heading":"Hierloom Pieces","subheading":"<p>Each piece is lovingly handmade by the best possible artisans and checked for durability.<\/p>","text_max_width":48,"link":"","link_text":"Read more"}},"column-2":{"type":"column","settings":{"heading":"Ethical Materials","subheading":"<p>All of our wools and cottons come from ethical sources. We guarantee the best in apparel.<\/p>","text_max_width":42,"link":"","link_text":"Read more"}},"column-3":{"type":"column","settings":{"heading":"Versatile Designs","subheading":"<p>Our effortless yet distinctive pieces are designed to be mixed & matched for any occasion or place.<\/p>","text_max_width":42,"link":"","link_text":"Read more"}},"column-4":{"type":"column","settings":{"heading":"Perfect Gifts","subheading":"<p>Get beautifully wrapped pieces for the perfect gift for someone less or even yourself.<\/p>","text_max_width":42,"link":"","link_text":"Read more"}}},"block_order":["column-1","column-2","column-3","column-4"],"disabled":true,"settings":{"columns":4,"image_shape":"round","text_alignment":"center","enable_animation":true,"section_contrast":true,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"shoppable-feature":{"type":"shoppable-feature","blocks":{"hotspot_fGLdjD":{"type":"hotspot","settings":{"product_item":"essence-rising-oversized-crewneck-black","horizontal_position":35,"vertical_position":77}},"hotspot_eWwjrx":{"type":"hotspot","settings":{"product_item":"defined-by-essenz-oversized-t-shirt-white","horizontal_position":49,"vertical_position":57}},"hotspot_zeKP7R":{"type":"hotspot","settings":{"product_item":"defined-by-essenz-oversized-hoodie-black","horizontal_position":29,"vertical_position":36}}},"block_order":["hotspot_fGLdjD","hotspot_eWwjrx","hotspot_zeKP7R"],"settings":{"image":"shopify:\/\/shop_images\/3._Portada_SHOP_THE_COLLECTION_Home.jpg","image_position":"right","image_width":"two-thirds","aspect_ratio":"portrait","overlay_color":"#000000","color_overlay_gradient":"","overlay_opacity":0,"heading":"COLLECTIONS","subheading":"<p>Two lines. One permanent, one limited. Both built with the same intention.<\/p>","heading_max_width":40,"text_max_width":36,"text_alignment":"center","link_text":"Shop all →","link":"shopify:\/\/collections","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"slideshow_bienV4":{"type":"slideshow","blocks":{"slide_kzFwQ8":{"type":"slide","settings":{"desktop_image":"shopify:\/\/shop_images\/4._APPROACH_-_COLLECTOR_S_EDITION_-_PRESENCE_-_White_Oversized_T-Shirt.jpg","mobile_image":"shopify:\/\/shop_images\/4._APPROACH_-_COLLECTOR_S_EDITION_-_PRESENCE_-_White_Oversized_T-Shirt.jpg","focal_point":"center_center","mobile_focal_point":"center_center","title":"The detail is not decoration","subheading":"<p><em>Every print is applied with precision. Every texture is intentional.What you feel when you hold it is the point.<\/em><\/p>","heading_text_size":48,"overlay_shadow":10,"max_width_subheading":40,"link_text":"","link":"shopify:\/\/collections\/all","alignment":"center_center","color_text":"#ffffff","color_text_button":"#ffffff","color_background_button":"#000000","color_overlay":"#000000","color_overlay_gradient":"","overlay_opacity":15}}},"block_order":["slide_kzFwQ8"],"settings":{"image_aspect":"custom","desktop_height":85,"mobile_height":50,"duration_autoplay":6,"color_dot":"#ffffff","enable_animation":true}},"slideshow-1":{"type":"slideshow","blocks":{"slide-2":{"type":"slide","settings":{"desktop_image":"shopify:\/\/shop_images\/EZENTI_CORE_-_Black_Oversized_T-Shirt_-_FEMALE_BACK.jpg","focal_point":"center_top","mobile_focal_point":"center_center","title":"Collector Edition — Series","subheading":"<p><br\/>Numbered. Limited. Unrepeatable.<br\/><br\/><\/p>","heading_text_size":64,"overlay_shadow":10,"max_width_subheading":40,"link_text":"View the Series →","link":"shopify:\/\/collections\/collector-edition","alignment":"center_center","color_text":"#ffffff","color_text_button":"#000000","color_background_button":"#ffffff","color_overlay":"#000000","color_overlay_gradient":"","overlay_opacity":10}}},"block_order":["slide-2"],"disabled":true,"settings":{"image_aspect":"custom","desktop_height":100,"mobile_height":100,"duration_autoplay":10,"color_dot":"#ffffff","enable_animation":true}},"image-with-features":{"type":"image-with-features","blocks":{"heading":{"type":"heading","settings":{"title":"Explore the Drop","text_max_width":32}},"feature-1":{"type":"feature","settings":{"image_shape":"round","heading":"The First Drop","subheading":"<p>A permanent collection built on identity,<br\/>restraint, and the quiet confidence<br\/>of wearing what you mean.<\/p>","text_max_width":32}},"feature-2":{"type":"feature","settings":{"image_shape":"round","heading":"Hierloom Pieces","subheading":"<p>Everything is made to the highest possible standard and<br\/>designed to remain in your wardrobe for as long as you choose<\/p>","text_max_width":32}}},"block_order":["heading","feature-1","feature-2"],"disabled":true,"settings":{"image":"shopify:\/\/shop_images\/EZENTI_CORE_-_Black_Oversized_Crewneck_-_MALE_FRONT.jpg","image_width":"half","aspect_ratio":"portrait","text_position":"left","text_alignment":"left","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"testimonials":{"type":"testimonials","blocks":{"testimonial-1":{"type":"testimonial","settings":{"heading":"Amazing top!","testimonial":"<p>Just picked up all black merino wool top from Falconette and I am absolutely floored by the quality. Going to pick up a few more. 🥰<\/p>","author":"Melissa, Los Angeles","text_max_width":42}},"testimonial-2":{"type":"testimonial","settings":{"heading":"Knock-out sweater","testimonial":"<p>I've just received my first piece from Falconette and it's easily become my favourite garment. How is it possible to get this level of quality?<\/p>","author":"Charlotte, San Francisco","text_max_width":42}},"testimonial-3":{"type":"testimonial","settings":{"heading":"New favourite","testimonial":"<p>I wore all black before it was cool. True fans of the all black aesthetic know that it's about texture and quality of the dye. Falconette is my new favourite.<\/p>","author":"Rebecca, Victoria","text_max_width":42}}},"block_order":["testimonial-1","testimonial-2","testimonial-3"],"disabled":true,"settings":{"columns":3,"title":"","subheading":"","text_alignment":"left","enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}},"mosaic-grid":{"type":"mosaic-grid","blocks":{"medium_square":{"type":"medium_square","settings":{"image":"shopify:\/\/shop_images\/4._Portada_Cuadrada_OUR_STORY_Home.jpg","video_url":"","media_fit":"cover","focal_point":"left_top","title":"behind every piece","subheading":"<p>Your favorite piece is the garment<br\/>closest to becoming fashion history.<\/p>","text_max_width":21,"link_text":"Read our story →","link":"shopify:\/\/pages\/about","text_position":"left_bottom","background_color":"rgba(0,0,0,0)","color_text":"#000000","color_text_button":"#ffffff","color_background_button":"#000000","color_text_container":"#ffffff","overlay_color":"#000000","color_overlay_gradient":"","overlay_opacity":0}},"medium_vertical_rect":{"type":"medium_vertical_rect","settings":{"image":"shopify:\/\/shop_images\/5._Portada_LOOK_BOOK_Home.png","video_url":"","media_fit":"cover","focal_point":"center_center","title":"The Photobook","subheading":"<p>The silence between fashion and identity. Look without noise.<\/p>","text_max_width":21,"link_text":"View Photobook","link":"shopify:\/\/pages\/lookbook","text_position":"left_bottom","background_color":"#c7b193","color_text":"#000000","color_text_button":"#ffffff","color_background_button":"#000000","color_text_container":"#ffffff","overlay_color":"#c7b193","color_overlay_gradient":"","overlay_opacity":0}}},"block_order":["medium_square","medium_vertical_rect"],"settings":{"title":"","subheading":"","text_max_width":42,"enable_animation":true,"section_contrast":false,"section_padding":"section--vertical-padding-top-bottom","padding_amount":"1.0"}}},"order":["video-hero","image_with_text_UeqNWa","countdown-banner","featured-collection","featured_collection_aAWgqk","quote","video_hero_LRm8AU","featured_collection_XM3gYe","collection_list_RdeH9W","text-columns-with-images","shoppable-feature","slideshow_bienV4","slideshow-1","image-with-features","testimonials","mosaic-grid"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video-hero": {
+      "type": "video-hero",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "title": "UNIQUENESS BY CHOICE",
+            "heading_text_size": 64,
+            "text_max_width": 42
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "link_text": "ENTER THE DROP",
+            "link": "shopify://collections/collector-edition"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "button"
+      ],
+      "settings": {
+        "video_aspect": "custom",
+        "desktop_height": 100,
+        "mobile_height": 80,
+        "video_url": "",
+        "image": "shopify://shop_images/1._1er_Banner_Header_Home.png",
+        "alignment": "center_center",
+        "overlay_shadow": 10,
+        "color_text": "#ffffff",
+        "color_background_button": "#000000",
+        "color_text_button": "#ffffff",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 16,
+        "enable_animation": true
+      }
+    },
+    "featured_collection_aAWgqk": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "collection": "collector-edition",
+        "max_products": 5,
+        "columns": 3,
+        "title": "COLLECTOR EDITION",
+        "subheading": "<p>Each piece exists once. When it's gone, it's gone.</p>",
+        "link_text": "",
+        "text_max_width": 24,
+        "aspect_ratio": "portrait",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-only",
+        "padding_amount": "0.5"
+      }
+    },
+    "quote": {
+      "type": "quote",
+      "blocks": {
+        "quote": {
+          "type": "quote",
+          "settings": {
+            "quote": "<p>We design for those who choose to stand out without asking for attention.<br/>Every piece begins where conformity ends.</p>",
+            "author": "EZENTI",
+            "text_max_width": 48
+          }
+        }
+      },
+      "block_order": [
+        "quote"
+      ],
+      "settings": {
+        "timer": 7,
+        "image_shape": "round",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    },
+    "video_hero_LRm8AU": {
+      "type": "video-hero",
+      "blocks": {
+        "heading_Y7fNyV": {
+          "type": "heading",
+          "settings": {
+            "title": "DEFINED BY ESSENZ",
+            "heading_text_size": 64,
+            "text_max_width": 40
+          }
+        },
+        "subheading_Yja84N": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "<p>Built for those who understand that restraint is a decision.</p>",
+            "text_max_width": 40
+          }
+        }
+      },
+      "block_order": [
+        "heading_Y7fNyV",
+        "subheading_Yja84N"
+      ],
+      "name": "t:sections.video_hero.presets.name",
+      "settings": {
+        "video_aspect": "custom",
+        "desktop_height": 80,
+        "mobile_height": 55,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/19cdd3b4b9364ef2b7ccb8ac156f5644.mp4",
+        "image": "shopify://shop_images/24._Banner_Header_Seccion_VIEW_THE_LOOK_BOOK.jpg",
+        "alignment": "left_center",
+        "overlay_shadow": 20,
+        "color_text": "#ffffff",
+        "color_background_button": "#ffffff",
+        "color_text_button": "#181818",
+        "color_overlay": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 30,
+        "enable_animation": true
+      }
+    },
+    "featured_collection_XM3gYe": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "collection": "frontpage",
+        "max_products": 12,
+        "columns": 3,
+        "title": "",
+        "subheading": "",
+        "link_text": "",
+        "text_max_width": 32,
+        "aspect_ratio": "natural",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "0.5"
+      }
+    },
+    "shoppable-feature": {
+      "type": "shoppable-feature",
+      "blocks": {
+        "hotspot_fGLdjD": {
+          "type": "hotspot",
+          "settings": {
+            "product_item": "essence-rising-oversized-crewneck-black",
+            "horizontal_position": 35,
+            "vertical_position": 77
+          }
+        },
+        "hotspot_eWwjrx": {
+          "type": "hotspot",
+          "settings": {
+            "product_item": "defined-by-essenz-oversized-t-shirt-white",
+            "horizontal_position": 49,
+            "vertical_position": 57
+          }
+        },
+        "hotspot_zeKP7R": {
+          "type": "hotspot",
+          "settings": {
+            "product_item": "defined-by-essenz-oversized-hoodie-black",
+            "horizontal_position": 29,
+            "vertical_position": 36
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_fGLdjD",
+        "hotspot_eWwjrx",
+        "hotspot_zeKP7R"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/3._Portada_SHOP_THE_COLLECTION_Home.jpg",
+        "image_position": "right",
+        "image_width": "two-thirds",
+        "aspect_ratio": "portrait",
+        "overlay_color": "#000000",
+        "color_overlay_gradient": "",
+        "overlay_opacity": 0,
+        "heading": "COLLECTIONS",
+        "subheading": "<p>Two lines. One permanent, one limited. Both built with the same intention.</p>",
+        "heading_max_width": 40,
+        "text_max_width": 36,
+        "text_alignment": "center",
+        "link_text": "Shop all →",
+        "link": "shopify://collections",
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    },
+    "slideshow_bienV4": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_kzFwQ8": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/4._APPROACH_-_COLLECTOR_S_EDITION_-_PRESENCE_-_White_Oversized_T-Shirt.jpg",
+            "mobile_image": "shopify://shop_images/4._APPROACH_-_COLLECTOR_S_EDITION_-_PRESENCE_-_White_Oversized_T-Shirt.jpg",
+            "focal_point": "center_center",
+            "mobile_focal_point": "center_center",
+            "title": "The detail is not decoration",
+            "subheading": "<p><em>Every print is applied with precision. Every texture is intentional.What you feel when you hold it is the point.</em></p>",
+            "heading_text_size": 48,
+            "overlay_shadow": 10,
+            "max_width_subheading": 40,
+            "link_text": "",
+            "link": "shopify://collections/all",
+            "alignment": "center_center",
+            "color_text": "#ffffff",
+            "color_text_button": "#ffffff",
+            "color_background_button": "#000000",
+            "color_overlay": "#000000",
+            "color_overlay_gradient": "",
+            "overlay_opacity": 15
+          }
+        }
+      },
+      "block_order": [
+        "slide_kzFwQ8"
+      ],
+      "settings": {
+        "image_aspect": "custom",
+        "desktop_height": 85,
+        "mobile_height": 50,
+        "duration_autoplay": 6,
+        "color_dot": "#ffffff",
+        "enable_animation": true
+      }
+    },
+    "mosaic-grid": {
+      "type": "mosaic-grid",
+      "blocks": {
+        "medium_square": {
+          "type": "medium_square",
+          "settings": {
+            "image": "shopify://shop_images/4._Portada_Cuadrada_OUR_STORY_Home.jpg",
+            "video_url": "",
+            "media_fit": "cover",
+            "focal_point": "left_top",
+            "title": "behind every piece",
+            "subheading": "<p>Your favorite piece is the garment<br/>closest to becoming fashion history.</p>",
+            "text_max_width": 21,
+            "link_text": "Read our story →",
+            "link": "shopify://pages/about",
+            "text_position": "left_bottom",
+            "background_color": "rgba(0,0,0,0)",
+            "color_text": "#000000",
+            "color_text_button": "#ffffff",
+            "color_background_button": "#000000",
+            "color_text_container": "#ffffff",
+            "overlay_color": "#000000",
+            "color_overlay_gradient": "",
+            "overlay_opacity": 0
+          }
+        },
+        "medium_vertical_rect": {
+          "type": "medium_vertical_rect",
+          "settings": {
+            "image": "shopify://shop_images/5._Portada_LOOK_BOOK_Home.png",
+            "video_url": "",
+            "media_fit": "cover",
+            "focal_point": "center_center",
+            "title": "The Photobook",
+            "subheading": "<p>The silence between fashion and identity. Look without noise.</p>",
+            "text_max_width": 21,
+            "link_text": "View Photobook",
+            "link": "shopify://pages/lookbook",
+            "text_position": "left_bottom",
+            "background_color": "#c7b193",
+            "color_text": "#000000",
+            "color_text_button": "#ffffff",
+            "color_background_button": "#000000",
+            "color_text_container": "#ffffff",
+            "overlay_color": "#c7b193",
+            "color_overlay_gradient": "",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "medium_square",
+        "medium_vertical_rect"
+      ],
+      "settings": {
+        "title": "",
+        "subheading": "",
+        "text_max_width": 42,
+        "enable_animation": true,
+        "section_contrast": false,
+        "section_padding": "section--vertical-padding-top-bottom",
+        "padding_amount": "1.0"
+      }
+    }
+  },
+  "order": [
+    "video-hero",
+    "featured_collection_aAWgqk",
+    "quote",
+    "video_hero_LRm8AU",
+    "featured_collection_XM3gYe",
+    "shoppable-feature",
+    "slideshow_bienV4",
+    "mosaic-grid"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "ezenti-pioneers",
+      "blocks": {
+        "benefit_early_access": {
+          "type": "benefit",
+          "settings": {
+            "title": "Early access",
+            "text": "<p>Be first to discover limited drops before they open to everyone.</p>"
+          }
+        },
+        "benefit_private_releases": {
+          "type": "benefit",
+          "settings": {
+            "title": "Private releases",
+            "text": "<p>Receive invitations to members-only capsule releases and previews.</p>"
+          }
+        },
+        "benefit_closer_updates": {
+          "type": "benefit",
+          "settings": {
+            "title": "Closer updates",
+            "text": "<p>Get direct news about restocks, launches, and the next Ezenti chapter.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_early_access",
+        "benefit_private_releases",
+        "benefit_closer_updates"
+      ],
+      "settings": {
+        "eyebrow": "Ezenti Pioneers",
+        "heading": "Join the first circle of Ezenti.",
+        "description": "<p>Become part of the Ezenti Pioneers plan and receive early access to limited drops, private releases, and members-only updates.</p>",
+        "image": "",
+        "form_heading": "Register for early access",
+        "form_text": "<p>Leave your details and we will keep you close to the next Ezenti release.</p>",
+        "klaviyo_form_id": "",
+        "background_color": "#f4f4f4",
+        "text_color": "#1d1d1d",
+        "accent_color": "#7a7a7a"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

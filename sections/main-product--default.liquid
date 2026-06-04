@@ -314,6 +314,16 @@
                 </s>
                 {% render 'unit-price', item: current_variant %}
               </div>
+              {%- if product.metafields.custom.size_chart != blank -%}
+                <div class="product_block animation-fade-up-reveal product_block--small">
+                  <button
+                    type="button"
+                    onclick="document.getElementById('size-chart-modal').style.display='flex'"
+                    style="background:none; border:1px solid currentColor; padding:6px 14px; cursor:pointer; font-size:13px; letter-spacing:0.08em;">
+                    Size Chart
+                  </button>
+                </div>
+              {%- endif -%}
             {%- when 'sku' -%}
               <div class="product__sku product__block animation-fade-up-reveal product__block--small" data-product-sku>
                 {% if current_variant.sku != blank %}
@@ -863,8 +873,21 @@
   {%- endif -%}
 </div>
 
-{%- assign models = product.media | where: 'media_type', 'model' | json -%}
-
+{%- if product.metafields.custom.size_chart != blank -%}
+  <div id="size-chart-modal"
+       onclick="if(event.target===this)this.style.display='none'"
+       style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); z-index:999999; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:24px; max-width:90%; max-height:90vh; overflow:auto; position:relative; border-radius:4px;">
+      <button
+        type="button"
+        onclick="document.getElementById('size-chart-modal').style.display='none'"
+        style="position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; line-height:1;">
+        ✕
+      </button>
+      <img src="{{ product.metafields.custom.size_chart | image_url: width: 1000 }}" alt="Size Chart" style="max-width:100%; height:auto; display:block; margin-top:10px;">
+    </div>
+  </div>
+{%- endif -%}
 <script>
   window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)}
   ShopifyXR('addModels', {{ models }});
