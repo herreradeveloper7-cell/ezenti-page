@@ -1,0 +1,420 @@
+{% liquid
+  assign hero_image = 'images/2._2do_Banner_Home_1296x.webp' | asset_url
+  assign klaviyo_form_id = 'VNXeGV'
+%}
+
+<script>
+  document.documentElement.classList.add('pioneers-motion-enabled');
+</script>
+
+<article class="pioneers-article" itemscope itemtype="http://schema.org/BlogPosting">
+  <section
+    class="pioneers-article__hero"
+    style="background-image: linear-gradient(90deg, rgba(0,0,0,.86) 0%, rgba(0,0,0,.66) 36%, rgba(0,0,0,.2) 70%), url('{{ hero_image }}');"
+  >
+    <div class="pioneers-article__hero-inner">
+      <div class="pioneers-article__hero-copy">
+        <h1 class="pioneers-article__title ff-heading">THE FIRST 100.</h1>
+        <div class="pioneers-article__intro ff-body">
+          <p>Not a membership.</p>
+          <p>Not a loyalty program.</p>
+          <p>A small group that enters the brand before it becomes widely known.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pioneers-article__details">
+    <div class="pioneers-article__details-inner">
+      <div class="pioneers-article__steps pioneers-article__steps--left pioneers-reveal">
+        <div class="pioneers-step">
+          <span class="pioneers-step__number">01</span>
+          <div>
+            <p>EZENTI Pioneers is limited to individuals who have already shown commitment to the brand.</p>
+            <p>Entry is not open to everyone and access is intentionally restricted.</p>
+          </div>
+        </div>
+
+        <div class="pioneers-step">
+          <span class="pioneers-step__number">03</span>
+          <div>
+            <h2>ENTRY</h2>
+            <p>To be considered for EZENTI Pioneers:</p>
+            <ul>
+              <li>A customer must have completed a minimum of three purchases.</li>
+              <li>Access is limited to the first 100 individuals who meet this requirement.</li>
+              <li>Admission is reviewed and approved manually.</li>
+            </ul>
+            <p>Once accepted, each individual becomes part of the first circle around the brand.</p>
+          </div>
+        </div>
+
+        <div class="pioneers-step">
+          <span class="pioneers-step__number">05</span>
+          <div>
+            <h2>CORE PIONEERS</h2>
+            <p>#001 - #050</p>
+            <p>The first half of the circle receives the highest level of access within the program.</p>
+            <p>Benefits include:</p>
+            <ul>
+              <li>Early access to EZENTI drops.</li>
+              <li>Priority access to limited pieces before public availability.</li>
+              <li>Private product previews and internal surveys.</li>
+              <li>Additional brand updates and selected privileges.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="pioneers-article__steps pioneers-article__steps--right pioneers-reveal">
+        <div class="pioneers-step">
+          <span class="pioneers-step__number">02</span>
+          <div>
+            <h2>IDENTITY</h2>
+            <p>Every Pioneer receives a unique identifier, assigned sequentially.</p>
+            <p class="pioneers-step__identity">#001 - #100</p>
+            <p>This number is permanent and defines the Pioneer's position within the group.</p>
+          </div>
+        </div>
+
+        <div class="pioneers-step">
+          <span class="pioneers-step__number">04</span>
+          <div>
+            <h2>PIONEERS</h2>
+            <p>#051 - #100</p>
+            <p>The second half of the circle receives priority access and remains part of the brand's early community.</p>
+            <p>Benefits include:</p>
+            <ul>
+              <li>Early access to Core Collection releases.</li>
+              <li>Priority during launch windows.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pioneers-step">
+          <span class="pioneers-step__number">06</span>
+          <div>
+            <h2>WITHIN THE FIRST 100</h2>
+            <p>Among the first 100 Pioneers, a smaller group may unlock additional access based on continued proximity to the brand.</p>
+            <p>Access is not guaranteed. Selection is determined by continued engagement with the brand.</p>
+          </div>
+        </div>
+
+        <div class="pioneers-step">
+          <span class="pioneers-step__number">07</span>
+          <div>
+            <h2>A LIMITED CIRCLE</h2>
+            <p>EZENTI Pioneers will never exceed 100 individuals.</p>
+            <p>Once the circle is complete, it closes.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="pioneers-article__form-column pioneers-reveal">
+        <div class="pioneers-article__form-panel">
+          <h2>JOIN THE PIONEER LIST</h2>
+          <p>Be the first to know when access becomes available.</p>
+          <div class="klaviyo-form-{{ klaviyo_form_id }}"></div>
+        </div>
+
+        <div class="pioneers-article__cta-panel">
+          <div class="pioneers-article__divider">
+            <span></span>
+            <p>OR</p>
+            <span></span>
+          </div>
+
+          <h2>SHOP NOW</h2>
+          <p>Explore the collection.</p>
+          <a href="{{ routes.collections_url }}" class="pioneers-article__button">SHOP NOW</a>
+        </div>
+
+        <div class="pioneers-article__note">
+          <h2>PIONEER PROGRAM</h2>
+          <p>Only 100 positions will exist.</p>
+          <p>Built for the early ones.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</article>
+
+<style>
+  .pioneers-article {
+    background: #0b0b0b;
+    color: #f2f2f2;
+  }
+
+  .pioneers-article__hero {
+    min-height: clamp(320px, 48vw, 560px);
+    background-size: cover;
+    background-position: center right;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+
+  .pioneers-article__hero-inner,
+  .pioneers-article__details-inner {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .pioneers-article__hero-inner {
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+  }
+
+  .pioneers-article__hero-copy {
+    max-width: 430px;
+  }
+
+  .pioneers-motion-enabled .pioneers-article__hero-copy {
+    animation: pioneersHeroIn 1050ms cubic-bezier(.16, 1, .3, 1) both;
+  }
+
+  .pioneers-article__title {
+    margin: 0 0 28px;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: .9;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .pioneers-article__intro {
+    max-width: 310px;
+    color: rgba(255,255,255,.86);
+  }
+
+  .pioneers-article__intro p {
+    margin: 0 0 10px;
+  }
+
+  .pioneers-article__details {
+    padding: clamp(28px, 5vw, 56px) 0 clamp(44px, 7vw, 80px);
+  }
+
+  .pioneers-article__details-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(280px, 360px);
+    gap: clamp(28px, 5vw, 58px);
+    align-items: start;
+  }
+
+  .pioneers-article__steps {
+    display: grid;
+    gap: 34px;
+  }
+
+  .pioneers-motion-enabled .pioneers-reveal {
+    opacity: 0;
+    transform: translateY(58px);
+    transition:
+      opacity 900ms cubic-bezier(.16, 1, .3, 1),
+      transform 900ms cubic-bezier(.16, 1, .3, 1);
+  }
+
+  .pioneers-motion-enabled .pioneers-article__steps--left {
+    transition-delay: 90ms;
+  }
+
+  .pioneers-motion-enabled .pioneers-article__steps--right {
+    transition-delay: 260ms;
+  }
+
+  .pioneers-step {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 18px;
+    color: rgba(255,255,255,.72);
+  }
+
+  .pioneers-step__number {
+    color: rgba(255,255,255,.72);
+    font-size: 13px;
+    line-height: 1;
+    border-bottom: 1px solid rgba(255,255,255,.26);
+    padding-bottom: 5px;
+    height: max-content;
+  }
+
+  .pioneers-step h2,
+  .pioneers-article__form-panel h2,
+  .pioneers-article__cta-panel h2,
+  .pioneers-article__note h2 {
+    margin: 0 0 8px;
+    color: #f5f5f5;
+    font-size: 18px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .pioneers-step p,
+  .pioneers-step li,
+  .pioneers-article__form-panel p,
+  .pioneers-article__cta-panel p,
+  .pioneers-article__note p {
+    margin: 0 0 9px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .pioneers-step ul {
+    margin: 8px 0 12px;
+    padding-left: 18px;
+  }
+
+  .pioneers-step__identity {
+    color: #ffffff;
+    font-size: clamp(28px, 4vw, 42px) !important;
+    line-height: 1 !important;
+    letter-spacing: 0;
+    margin: 12px 0 14px !important;
+  }
+
+  .pioneers-article__form-column {
+    display: grid;
+    gap: 20px;
+    border-left: 1px solid rgba(255,255,255,.12);
+    padding-left: clamp(24px, 4vw, 44px);
+  }
+
+  .pioneers-motion-enabled .pioneers-article__form-column {
+    transition-delay: 430ms;
+  }
+
+  .pioneers-article__form-panel,
+  .pioneers-article__cta-panel,
+  .pioneers-article__note {
+    border: 1px solid rgba(255,255,255,.16);
+    padding: 26px;
+  }
+
+  .pioneers-article__form-panel {
+    background: #101010;
+  }
+
+  .pioneers-article__divider {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 22px;
+    color: rgba(255,255,255,.58);
+  }
+
+  .pioneers-article__divider span {
+    height: 1px;
+    background: rgba(255,255,255,.16);
+  }
+
+  .pioneers-article__divider p {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .pioneers-article__button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px;
+    width: 100%;
+    margin-top: 12px;
+    border: 1px solid rgba(255,255,255,.45);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .pioneers-article__note {
+    text-align: center;
+    background: #111111;
+  }
+
+  @keyframes pioneersHeroIn {
+    from {
+      opacity: 0;
+      transform: translateX(-72px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .pioneers-motion-enabled .pioneers-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pioneers-article__hero-copy,
+    .pioneers-article__steps,
+    .pioneers-article__form-column {
+      opacity: 1;
+      transform: none;
+      animation: none;
+      transition: none;
+    }
+  }
+
+  @media (max-width: 959px) {
+    .pioneers-article__hero-inner,
+    .pioneers-article__details-inner {
+      width: min(100% - 28px, 680px);
+    }
+
+    .pioneers-article__hero {
+      background-position: center;
+    }
+
+    .pioneers-article__details-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .pioneers-article__form-column {
+      border-left: 0;
+      padding-left: 0;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    function initPioneersReveal() {
+      var reveals = document.querySelectorAll('.pioneers-reveal');
+
+      if (!reveals.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        reveals.forEach(function (element) {
+          element.classList.add('is-visible');
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -12% 0px'
+      });
+
+      reveals.forEach(function (element) {
+        observer.observe(element);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPioneersReveal);
+    } else {
+      window.requestAnimationFrame(initPioneersReveal);
+    }
+  })();
+</script>
