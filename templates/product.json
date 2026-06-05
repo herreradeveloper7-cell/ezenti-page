@@ -67,7 +67,7 @@
             "style": "closed",
             "icon": "security",
             "title": "RETURNS",
-            "text": "<p>Returns are accepted within 21 days of delivery when items are unworn, unused, unwashed, and returned with their original tags and packaging. Final sale items are not eligible for return.</p>"
+            "text": "<p>For exchanges or return requests, contact us within 7 days of delivery and our team will help determine the best solution. Items must be unworn, unwashed, and returned with their original tags and packaging.</p>"
           }
         },
         "shipping_widget": {
@@ -77,7 +77,7 @@
             "style": "closed",
             "icon": "shipping",
             "title": "SHIPPING",
-            "text": "<p>Orders are processed after payment confirmation. Shipping rates and delivery times are calculated at checkout based on the destination and selected shipping method.</p>",
+            "text": "<p>Orders placed before 12 PM EST are processed the same business day. Once shipped, delivery typically takes 1–5 business days within the U.S., and tracking information is provided by email.</p>",
             "show_estimator": false
           }
         },
