@@ -21,6 +21,13 @@
   --------------------------------------------------------------------
 -->
 
+{%- liquid
+  assign news_access_required = false
+  if request.page_type == 'blog' and blog.handle == 'news'
+    assign news_access_required = true
+  endif
+-%}
+
 <html class="no-js" lang="{{ request.locale.iso_code }}" style="--announcement-height: 1px;">
   <head>
     <!-- Google Tag Manager -->
@@ -74,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <body
     
-    class="template-{{ request.page_type | handle }}{% if settings.enable_sticky_header %} header-sticky{% endif %}"
+    class="template-{{ request.page_type | handle }}{% if settings.enable_sticky_header %} header-sticky{% endif %}{% if news_access_required %} news-access-protected{% endif %}"
     {% if settings.cart_type == 'flyout' %}
       data-enable-quick-cart="true"
     {% endif %}
@@ -88,6 +95,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLTDG6TT"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+    {%- if news_access_required -%}
+      {% render 'news-access-gate' %}
+    {%- endif -%}
     <div class="page">
       {% if settings.enable_page_transitions %}
         {% render 'page-transition-overlay' %}

@@ -1,0 +1,36 @@
+<section class="news-access-gate" data-news-access-gate aria-labelledby="news-access-title">
+  <div class="news-access-gate__inner">
+    <p class="news-access-gate__brand ff-heading">EZENTI</p>
+    <p class="news-access-gate__eyebrow ff-heading">PRIVATE ACCESS</p>
+    <h1 id="news-access-title" class="news-access-gate__title ff-heading">Protected content</h1>
+    <p class="news-access-gate__message fs-body-base">
+      This content is reserved for private access. Enter the password to continue.
+    </p>
+
+    <form
+      class="news-access-gate__form"
+      data-news-access-form
+      data-access-hash="eb4806c5505b0431028265e335db1c12cb3d05c4a85c345f611f98627cf1ad77"
+      novalidate
+    >
+      <label class="visually-hidden" for="news-access-password">Password</label>
+      <input
+        id="news-access-password"
+        class="input news-access-gate__input"
+        type="password"
+        name="password"
+        placeholder="Password"
+        autocomplete="current-password"
+        required
+        data-news-access-input
+      >
+      <button class="btn btn--primary btn--full news-access-gate__submit" type="submit">
+        Access content
+      </button>
+      <a class="btn btn--text-link news-access-gate__home-link" href="{{ routes.root_url }}">Back to home</a>
+      <p class="news-access-gate__error fs-body-small" data-news-access-error role="alert" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script src="{{ 'news-access-gate.js' | asset_url }}" defer></script>

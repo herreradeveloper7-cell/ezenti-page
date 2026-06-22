@@ -5,6 +5,7 @@
   custom_text_input_title: [String](required if custom_text_input block is present)
   show_dynamic_checkout: [Boolean](shows dynamic checkout button)
   hide_shop_pay: [Boolean](hides Shop pay banner)
+  show_complimentary_shipping: [Boolean](shows the free shipping message below the add button)
   * hidden: boolean (optional, used to not trip up javascript if buy button is removed)
 {% endcomment %}
 {%- liquid
@@ -138,6 +139,12 @@
         </div>
         {% render 'icon', icon: 'check' %}
       </button>
+
+      {%- if show_complimentary_shipping -%}
+        <p class="product__complimentary-shipping fs-body-small">
+          COMPLIMENTARY SHIPPING ON ORDERS OVER $100
+        </p>
+      {%- endif -%}
 
       {%- if show_dynamic_checkout -%}
         <div class="product-form__dynamic-checkout">

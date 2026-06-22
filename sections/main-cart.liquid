@@ -1,3 +1,9 @@
+{% liquid
+  assign complimentary_shipping_threshold = 10000
+  assign complimentary_shipping_remaining = complimentary_shipping_threshold | minus: cart.total_price
+  assign complimentary_shipping_progress = cart.total_price | times: 100.0 | divided_by: complimentary_shipping_threshold | at_most: 100
+%}
+
 <div
   class="cart page"
   data-section-id="{{ section.id }}"
@@ -5,186 +11,248 @@
   data-enable-cart-ajax="{{ section.settings.cart_ajax_enable }}"
 >
   <div class="cart__container page__inner">
-    <header class="cart__header page__header">
-      <h1 class="cart__title ff-heading fs-heading-1-base ta-c">{{ 'cart.general.title' | t }}</h1>
-    </header>
-
     {%- if cart.item_count >= 1 -%}
-      <form action="{{ routes.cart_url }}" method="post" data-form novalidate>
-        <div class="cart__form-header ff-meta fs-meta">
-          <div class="cart__form-header-product">{{ 'cart.label.product' | t }}</div>
-          <div class="cart__form-header-quantity">{{ 'cart.label.quantity' | t }}</div>
-          <div class="cart__form-header-total">{{ 'cart.label.total' | t }}</div>
+      <div class="cart-page__shipping-progress">
+        <div class="cart-page__shipping-icon">
+          {% render 'icon', icon: 'shipping' %}
         </div>
-        {%- for item in cart.items -%}
-          <div class="cart__item">
-            {% comment %} Image {% endcomment %}
-            <div class="cart__item-image-wrapper">
-              {%- if item.image -%}
-                {% render 'image', image: item.image, disable_style: true, wrapper_class: 'cart__item-image' %}
-              {%- else -%}
-                <div class="cart__item-image placeholder-image">
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                </div>
-              {%- endif -%}
-            </div>
 
-            {% comment %} Details {% endcomment %}
-            <div class="cart__item-main">
-              <div class="cart__item-details">
-                <a href="{{ item.url }}" class="cart__item-title ff-heading fs-heading-4-base">
-                  {{ item.product.title }}
-                </a>
+        <div class="cart-page__shipping-copy">
+          <p class="fs-body-small">COMPLIMENTARY SHIPPING</p>
+          <span class="fs-body-small">
+            {%- if complimentary_shipping_remaining > 0 -%}
+              You're {{ complimentary_shipping_remaining | money_without_trailing_zeros }} away from unlocking complimentary shipping.
+            {%- else -%}
+              You've unlocked complimentary shipping.
+            {%- endif -%}
+          </span>
+        </div>
 
-                {% unless item.product.has_only_default_variant %}
-                  <p class="fs-body-base">{{ item.variant.title }}</p>
-                {% endunless %}
+        <div class="cart-page__shipping-meter">
+          <div
+            class="cart-page__shipping-track"
+            role="progressbar"
+            aria-label="Progress toward complimentary shipping"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="{{ complimentary_shipping_progress | round }}"
+          >
+            <span class="cart-page__shipping-fill" style="width: {{ complimentary_shipping_progress }}%;"></span>
+          </div>
+          <div class="cart-page__shipping-values fs-body-x-small">
+            <span>{{ cart.total_price | money_without_trailing_zeros }}</span>
+            <span>{{ complimentary_shipping_threshold | money_without_trailing_zeros }}</span>
+          </div>
+        </div>
 
-                <div class="cart__item-price fs-body-base">
-                  {% if item.original_price > item.final_price %}
-                    <s>
-                      {{- item.original_price | money -}}
-                      {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif -%}
-                    </s>
-                  {% endif %}
-                  {{ item.final_price | money -}}
-                  {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
-                </div>
+        <p class="cart-page__shipping-goal fs-body-x-small">
+          {%- if complimentary_shipping_remaining > 0 -%}
+            UNLOCKED AT {{ complimentary_shipping_threshold | money_without_trailing_zeros }}
+          {%- else -%}
+            UNLOCKED
+          {%- endif -%}
+        </p>
+      </div>
 
-                {% render 'unit-price', item: item %}
+      <form action="{{ routes.cart_url }}" method="post" data-form novalidate>
+        <div class="cart-page__layout">
+          <section class="cart-page__items-column">
+            <header class="cart__header cart-page__header">
+              <h1 class="cart__title ff-heading fs-heading-1-base">
+                {{ 'cart.general.title' | t }} ({{ cart.item_count }})
+              </h1>
+              <a class="link" href="{{ section.settings.continue_shopping_link }}">
+                {{- 'cart.general.continue_shopping' | t -}}
+              </a>
+            </header>
 
-                {%- assign property_size = item.properties | size -%}
-
-                {% if property_size > 0 %}
-                  <div class="cart__item-properties fs-body-base">
-                    {% for p in item.properties %}
-                      {% liquid
-                        assign hidden_property = false
-                        assign first_property_char = p.first | slice: 0
-
-                        if first_property_char == '_'
-                          assign hidden_property = true
-                        endif
-                      -%}
-
-                      {% unless p.last == blank or hidden_property %}
-                        {% capture property_content -%}
-                          {% if p.last contains '/uploads/' -%}
-                            <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-                          {%- else -%}
-                            {{ p.last }}
-                          {%- endif %}
-                        {%- endcapture %}
-
-                        <div class="cart-item_property">{{ p.first }}: {{ property_content }}</div>
-                      {% endunless %}
-                    {% endfor %}
+            <div class="cart-page__items">
+              {%- for item in cart.items -%}
+                <div class="cart__item">
+                  <div class="cart__item-image-wrapper">
+                    <a href="{{ item.url }}" aria-label="{{ item.product.title | escape }}">
+                      {%- if item.image -%}
+                        {% render 'image', image: item.image, disable_style: true, wrapper_class: 'cart__item-image' %}
+                      {%- else -%}
+                        <div class="cart__item-image placeholder-image">
+                          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                      {%- endif -%}
+                    </a>
                   </div>
-                {% endif %}
 
-                {% if item.line_level_discount_allocations.size > 0 %}
-                  <ul class="cart__line-item-discounts fs-body-small t-subdued">
-                    {% for discount_allocation in item.line_level_discount_allocations %}
-                      <li>
-                        {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money -}}
-                        {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %})
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
+                  <div class="cart__item-main">
+                    <div class="cart__item-details">
+                      <a href="{{ item.url }}" class="cart__item-title ff-heading fs-heading-4-base">
+                        {{ item.product.title }}
+                      </a>
 
-                {% if item.selling_plan_allocation %}
-                  <p class="fs-body-small t-subdued">
-                    {{ item.selling_plan_allocation.selling_plan.name }}
-                    <p>
-                {% endif %}
-              </div>
+                      {% unless item.product.has_only_default_variant %}
+                        <p class="fs-body-base">{{ item.variant.title }}</p>
+                      {% endunless %}
 
-              <div class="cart__item-quantity">
-                <div class="cart__item-qty-selector">
-                  <button
-                    type="button"
-                    class="cart__item-button cart__item-button--minus"
-                    data-change="decrement"
-                    aria-label="{{ 'general.accessibility.quantity_subtract' | t }}"
+                      <div class="cart__item-price fs-body-base">
+                        {% if item.original_price > item.final_price %}
+                          <s>
+                            {{- item.original_price | money -}}
+                            {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif -%}
+                          </s>
+                        {% endif %}
+                        {{ item.final_price | money -}}
+                        {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
+                      </div>
+
+                      {% render 'unit-price', item: item %}
+
+                      {%- assign property_size = item.properties | size -%}
+                      {% if property_size > 0 %}
+                        <div class="cart__item-properties fs-body-base">
+                          {% for property in item.properties %}
+                            {% liquid
+                              assign hidden_property = false
+                              assign first_property_char = property.first | slice: 0
+                              if first_property_char == '_'
+                                assign hidden_property = true
+                              endif
+                            %}
+
+                            {% unless property.last == blank or hidden_property %}
+                              {% capture property_content %}
+                                {% if property.last contains '/uploads/' %}
+                                  <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                                {% else %}
+                                  {{ property.last }}
+                                {% endif %}
+                              {% endcapture %}
+                              <div class="cart-item_property">{{ property.first }}: {{ property_content }}</div>
+                            {% endunless %}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+
+                      {% if item.line_level_discount_allocations.size > 0 %}
+                        <ul class="cart__line-item-discounts fs-body-small t-subdued">
+                          {% for discount_allocation in item.line_level_discount_allocations %}
+                            <li>
+                              {{ discount_allocation.discount_application.title }}
+                              (-{{ discount_allocation.amount | money -}}
+                              {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %})
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+
+                      {% if item.selling_plan_allocation %}
+                        <p class="fs-body-small t-subdued">
+                          {{ item.selling_plan_allocation.selling_plan.name }}
+                        </p>
+                      {% endif %}
+                    </div>
+
+                    <div class="cart__item-quantity">
+                      <div class="cart__item-qty-selector">
+                        <button
+                          type="button"
+                          class="cart__item-button cart__item-button--minus"
+                          data-change="decrement"
+                          aria-label="{{ 'general.accessibility.quantity_subtract' | t }}"
+                        >
+                          {% render 'icon', icon: 'minus' %}
+                        </button>
+                        <input
+                          type="number"
+                          name="updates[]"
+                          id="updates_{{ item.key }}"
+                          value="{{ item.quantity }}"
+                          min="0"
+                          aria-label="{{ 'cart.general.quantity' | t }}"
+                          data-quantity-input
+                        >
+                        <button
+                          type="button"
+                          class="cart__item-button cart__item-button--plus"
+                          data-change="increment"
+                          aria-label="{{ 'general.accessibility.quantity_add' | t }}"
+                        >
+                          {% render 'icon', icon: 'plus' %}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="cart__item-total fs-body-base">
+                    {% if item.original_line_price > item.final_line_price %}
+                      <s>
+                        {{- item.original_line_price | money -}}
+                        {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif -%}
+                      </s>
+                      <br>
+                    {% endif %}
+                    {{ item.final_line_price | money -}}
+                    {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
+                  </div>
+
+                  <a
+                    class="cart-item__remove"
+                    href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0"
+                    aria-label="{{ 'cart.general.remove' | t }}: {{ item.product.title | escape }}"
                   >
-                    {% render 'icon', icon: 'minus' %}
-                  </button>
-                  <input
-                    type="number"
-                    name="updates[]"
-                    id="updates_{{ item.key }}"
-                    value="{{ item.quantity }}"
-                    min="0"
-                    aria-label="{{ 'cart.general.quantity' | t }}"
-                    data-quantity-input
-                  >
-                  <button
-                    type="button"
-                    class="cart__item-button cart__item-button--plus"
-                    data-change="increment"
-                    aria-label="{{ 'general.accessibility.quantity_add' | t }}"
-                  >
-                    {% render 'icon', icon: 'plus' %}
-                  </button>
+                    {% render 'icon', icon: 'remove' %}
+                    <span class="visually-hidden">{{ 'cart.general.remove' | t }}</span>
+                  </a>
                 </div>
-                <a
-                  class="cart-item__remove btn btn--text-link"
-                  href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0"
-                >
-                  {{- 'cart.general.remove' | t -}}
-                </a>
-              </div>
+              {%- endfor -%}
             </div>
 
-            <div class="cart__item-total fs-body-base">
-              {% if item.original_line_price > item.final_line_price %}
-                <s>
-                  {{- item.original_line_price | money -}}
-                  {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif -%}</s
-                ><br>
-              {% endif %}
-              {{ item.final_line_price | money -}}
-              {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
-            </div>
-          </div>
-        {%- endfor -%}
+            {% render 'cart-assurances', class: 'cart-page__assurances' %}
 
-        <div class="cart__footer">
-          <div class="cart__footer-left">
             {% if settings.cart_show_notes %}
-              <label for="CartSpecialInstructions" class="fs-body-base">{{ 'cart.general.note' | t }}</label>
-              <textarea name="note" id="CartSpecialInstructions" class="input">{{ cart.note }}</textarea>
+              <div class="cart-page__notes">
+                <label for="CartSpecialInstructions" class="fs-body-base">{{ 'cart.general.note' | t }}</label>
+                <textarea name="note" id="CartSpecialInstructions" class="input">{{ cart.note }}</textarea>
+              </div>
             {% endif %}
-            <a class="link" href="{{ section.settings.continue_shopping_link }}">
-              {{- 'cart.general.continue_shopping' | t -}}
-            </a>
-          </div>
+          </section>
 
-          <div class="cart__footer-right">
-            {% comment %} Cart level discounts {% endcomment %}
-            {%- if cart.cart_level_discount_applications != blank -%}
-              <p class="cart__original-total fs-body-base">
-                {{ 'cart.general.subtotal' | t }}: {{ cart.original_total_price | money -}}
+          <aside class="cart-page__summary">
+            <h2 class="ff-heading fs-heading-4-base">ORDER SUMMARY</h2>
+
+            <div class="cart-page__summary-row">
+              <span>SUBTOTAL</span>
+              <span>
+                {{- cart.items_subtotal_price | money -}}
                 {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
-              </p>
+              </span>
+            </div>
+
+            {%- if cart.cart_level_discount_applications != blank -%}
               <ul class="cart__discounts fs-body-base">
                 {%- for discount_application in cart.cart_level_discount_applications -%}
                   <li>
-                    {{ discount_application.title }} (-{{ discount_application.total_allocated_amount | money -}}
-                    {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %})
+                    <span>{{ discount_application.title }}</span>
+                    <span>
+                      -{{ discount_application.total_allocated_amount | money -}}
+                      {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
+                    </span>
                   </li>
                 {%- endfor -%}
               </ul>
             {%- endif -%}
 
-            {% comment %} Final cart total {% endcomment %}
-            <p class="ff-heading fs-heading-4-base">
-              {{ cart.total_price | money -}}
-              {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
-            </p>
+            <div class="cart-page__summary-row">
+              <span>SHIPPING</span>
+              <span>Calculated at checkout</span>
+            </div>
 
-            <p class="cart__footer-tax-note">
+            <div class="cart-page__summary-total">
+              <span>TOTAL</span>
+              <span class="ff-heading fs-heading-4-base">
+                {{- cart.total_price | money -}}
+                {%- if settings.currency_code_enabled %} {{ cart.currency.iso_code }}{% endif %}
+              </span>
+            </div>
+
+            <p class="cart__footer-tax-note fs-body-small">
               {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
                 {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
               {%- elsif cart.taxes_included -%}
@@ -200,38 +268,44 @@
               <input
                 type="submit"
                 name="update"
-                class="
-                  cart__update-btn
-                  {% if section.settings.cart_ajax_enable %}hidden{% endif %}
-                  btn
-                  btn--secondary
-                  btn--small
-                  btn--medium-ns
-                "
+                class="cart__update-btn {% if section.settings.cart_ajax_enable %}hidden{% endif %} btn btn--secondary btn--medium btn--full"
                 value="{{ 'cart.general.update' | t }}"
               >
-
               <input
                 type="submit"
                 name="checkout"
-                class="btn btn--primary btn--small btn--medium-ns"
+                class="btn btn--primary btn--medium btn--full"
                 value="{{ 'cart.general.checkout' | t }}"
               >
             </div>
 
             {%- if additional_checkout_buttons -%}
-              <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+              <div
+                id="CartPaymentOptions-{{ section.id }}"
+                class="cart__dynamic-checkout-buttons cart-page__payment-options additional-checkout-buttons"
+                aria-hidden="true"
+              >
                 {{ content_for_additional_checkout_buttons }}
               </div>
+              <button
+                type="button"
+                class="cart-page__more-payment-options"
+                data-payment-options-toggle
+                aria-expanded="false"
+                aria-controls="CartPaymentOptions-{{ section.id }}"
+              >
+                More payment options
+              </button>
             {%- endif -%}
-          </div>
+          </aside>
         </div>
       </form>
     {%- else -%}
+      <header class="cart__header page__header">
+        <h1 class="cart__title ff-heading fs-heading-1-base ta-c">{{ 'cart.general.title' | t }}</h1>
+      </header>
+
       <div class="cart__empty fs-body-large">
-        {% comment %}
-          Cart empty state
-        {% endcomment %}
         <div class="supports-cookies">
           <p>{{ 'cart.general.empty' | t }}</p>
           <p>
@@ -240,13 +314,6 @@
             </a>
           </p>
         </div>
-
-        {% comment %}
-          Cart no cookies state
-          ---------------------
-          Browser cookies are required to use the cart. If cookies aren't enabled in the
-          browser a message is displayed prompting the user to enable them.
-        {% endcomment %}
         <div class="supports-no-cookies">
           <p>{{ 'cart.general.cookies_required' | t }}</p>
         </div>

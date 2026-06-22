@@ -610,7 +610,8 @@
                 current_variant: current_variant,
                 show_dynamic_checkout: block.settings.show_dynamic_checkout,
                 show_gift_card_recipient_form: section.settings.enable_gift_card_recipient,
-                custom_text_input_title: custom_text_title
+                custom_text_input_title: custom_text_title,
+                show_complimentary_shipping: true
               %}
 
               {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}

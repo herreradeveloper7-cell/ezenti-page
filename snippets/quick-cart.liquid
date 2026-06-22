@@ -16,13 +16,62 @@
       <div class="quick_cart__empty ff-body fs-body-base" data-empty>{{ 'quick_cart.empty' | t }}</div>
       <div class="quick-cart__footer ff-body fs-body-base ta-c" data-footer>
         <div class="quick-cart__discounts c-subdued" data-discounts></div>
-        <div class="quick-cart__total">
-          <span>{{ 'quick_cart.subtotal' | t }}</span>
-          <span class="fs-body-bold" data-subtotal></span>
+
+        {%- assign complimentary_shipping_threshold = 10000 -%}
+        {%- assign complimentary_shipping_remaining = complimentary_shipping_threshold | minus: cart.total_price -%}
+        {%- assign complimentary_shipping_progress = cart.total_price
+          | times: 100.0
+          | divided_by: complimentary_shipping_threshold
+          | at_most: 100
+        -%}
+        <div
+          class="quick-cart__shipping-progress"
+          data-free-shipping-progress
+          data-threshold="{{ complimentary_shipping_threshold }}"
+        >
+          <p class="quick-cart__shipping-heading fs-body-x-small">COMPLIMENTARY SHIPPING</p>
+          <p class="quick-cart__shipping-message fs-body-small" data-free-shipping-message aria-live="polite">
+            {%- if complimentary_shipping_remaining > 0 -%}
+              You're {{ complimentary_shipping_remaining | money_without_trailing_zeros }} away from complimentary shipping.
+            {%- else -%}
+              You've unlocked complimentary shipping.
+            {%- endif -%}
+          </p>
+          <div
+            class="quick-cart__shipping-track"
+            role="progressbar"
+            aria-label="Progress toward complimentary shipping"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="{{ complimentary_shipping_progress | round }}"
+          >
+            <span
+              class="quick-cart__shipping-fill"
+              data-free-shipping-fill
+              style="width: {{ complimentary_shipping_progress }}%;"
+            ></span>
+          </div>
+          <div class="quick-cart__shipping-values fs-body-x-small">
+            <span data-free-shipping-current>{{ cart.total_price | money_without_trailing_zeros }}</span>
+            <span>{{ complimentary_shipping_threshold | money_without_trailing_zeros }}</span>
+          </div>
         </div>
-        <a href="{{ routes.cart_url }}" class="btn btn--secondary btn--medium btn--full visible">
-          {{- 'quick_cart.go_to_cart' | t -}}
-        </a>
+
+        <div class="quick-cart__summary">
+          <div class="quick-cart__total">
+            <span>{{ 'quick_cart.subtotal' | t }}</span>
+            <span class="fs-body-bold" data-subtotal></span>
+          </div>
+          <div class="quick-cart__shipping-row">
+            <span>SHIPPING</span>
+            <span>Calculated at checkout</span>
+          </div>
+          <div class="quick-cart__grand-total">
+            <span>TOTAL</span>
+            <span class="fs-body-bold" data-cart-total>{{ cart.total_price | money }}</span>
+          </div>
+        </div>
+
         <form action="{{ routes.cart_url }}" method="post" novalidate>
           <button
             type="submit"
@@ -33,6 +82,11 @@
             {{ 'quick_cart.checkout' | t }}
           </button>
         </form>
+        <a href="{{ routes.cart_url }}" class="quick-cart__view-cart visible">
+          {{- 'quick_cart.go_to_cart' | t -}}
+        </a>
+
+        {% render 'cart-assurances', class: 'quick-cart__assurances' %}
       </div>
     </div>
   </div>
