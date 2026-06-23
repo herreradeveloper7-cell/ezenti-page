@@ -229,6 +229,22 @@
 }
 
 @media (max-width: 44.99em) {
+  .quick-cart__close {
+    position: fixed;
+    top: calc(var(--spacing-medium) + env(safe-area-inset-top));
+    right: var(--spacing-medium);
+    z-index: calc(var(--z-index-popup) + 1);
+  }
+
+  .quick-cart__close .icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .quick-cart__cart.visible {
+    padding-top: calc(var(--spacing-large) + 34px);
+  }
+
   .quick-cart__assurances {
     gap: var(--spacing-small);
   }
@@ -815,6 +831,11 @@
 }
 
 @media screen and (max-width: 60em) {
+  .product-size-chart {
+    padding-right: var(--space-outer);
+    padding-left: var(--space-outer);
+  }
+
   .product-size-chart .accordion__text {
     padding-right: 0;
     padding-left: 0;
