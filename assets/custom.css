@@ -832,8 +832,11 @@
 
 @media screen and (max-width: 60em) {
   .product-size-chart {
-    padding-right: var(--space-outer);
-    padding-left: var(--space-outer);
+    margin-left: 0;
+  }
+
+  .product-size-chart.rte--product.accordion .accordion__label {
+    margin-left: 14px;
   }
 
   .product-size-chart .accordion__text {
