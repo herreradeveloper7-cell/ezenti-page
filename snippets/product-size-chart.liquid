@@ -1,0 +1,112 @@
+{%- liquid
+  assign chart_context = product.title | append: ' ' | append: product.type | downcase
+
+  for tag in product.tags
+    assign tag_value = tag | downcase
+    assign chart_context = chart_context | append: ' ' | append: tag_value
+  endfor
+
+  for collection in product.collections
+    assign collection_handle = collection.handle | downcase
+    assign collection_title = collection.title | downcase
+    assign chart_context = chart_context | append: ' ' | append: collection_handle | append: ' ' | append: collection_title
+  endfor
+
+  assign chart_type = 'shirt'
+  assign chart_image = 'size-chart-shirt.webp'
+  assign chart_label = 'T-shirt'
+
+  if chart_context contains 'hoodie'
+    assign chart_type = 'hoodie'
+    assign chart_image = 'size-chart-hoodie.webp'
+    assign chart_label = 'Hoodie'
+  elsif chart_context contains 'crewneck'
+    assign chart_type = 'crewneck'
+    assign chart_image = 'size-chart-crewneck.webp'
+    assign chart_label = 'Crewneck'
+  elsif chart_context contains 'collector'
+    assign chart_type = 'collector-shirt'
+    assign chart_image = 'size-chart-shirt.webp'
+    assign chart_label = 'Collector Edition T-shirt'
+  endif
+-%}
+
+<div class="product-size-chart rte--product accordion accordion--product product__block product__block--small animation-fade-up-reveal">
+  <div class="accordion__group">
+    <a class="accordion__label" href="#">
+      <span>Size Chart</span>
+    </a>
+
+    <div class="accordion__text">
+      <div class="product-size-chart__content">
+        <div class="product-size-chart__media">
+          <img
+            src="{{ chart_image | asset_url }}"
+            alt="{{ chart_label }} size chart"
+            loading="lazy"
+            width="900"
+            height="720"
+          >
+        </div>
+
+        <div class="product-size-chart__table-wrap">
+          <table class="product-size-chart__table">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>
+                  Shoulder (A)
+                  <span>shoulder to shoulder</span>
+                </th>
+                <th>
+                  Chest (B)
+                  <span>armpit to armpit</span>
+                </th>
+                <th>
+                  Front Length (C)
+                  <span>HPS to hem</span>
+                </th>
+                <th>
+                  Hem Width (D)
+                  <span>bottom hem</span>
+                </th>
+                <th>
+                  Sleeve (E)
+                  <span>sleeve length</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- case chart_type -%}
+                {%- when 'hoodie' -%}
+                  <tr><th>S</th><td>24</td><td>22.2</td><td>28.5</td><td>17.7</td><td>25</td></tr>
+                  <tr><th>M</th><td>24.7</td><td>24.5</td><td>28.7</td><td>19</td><td>25.3</td></tr>
+                  <tr><th>L</th><td>24.8</td><td>24.5</td><td>30.3</td><td>20</td><td>26.2</td></tr>
+                {%- when 'crewneck' -%}
+                  <tr><th>S</th><td>24.3</td><td>23.5</td><td>27.5</td><td>19</td><td>24.6</td></tr>
+                  <tr><th>M</th><td>24.3</td><td>23.8</td><td>28.4</td><td>19</td><td>25.3</td></tr>
+                  <tr><th>L</th><td>25.7</td><td>25.7</td><td>28.6</td><td>20.3</td><td>25.6</td></tr>
+                {%- when 'collector-shirt' -%}
+                  <tr><th>S</th><td>18</td><td>21</td><td>27.5</td><td>21.2</td><td>9.7</td></tr>
+                  <tr><th>M</th><td>19</td><td>22.2</td><td>27.6</td><td>22.6</td><td>10.3</td></tr>
+                  <tr><th>L</th><td>19.9</td><td>22.9</td><td>28.2</td><td>23.4</td><td>10.4</td></tr>
+                  <tr><th>XL</th><td>20.5</td><td>23.7</td><td>29.4</td><td>24.2</td><td>11</td></tr>
+                {%- else -%}
+                  <tr><th>S</th><td>19.5</td><td>21.7</td><td>27.8</td><td>21</td><td>8.8</td></tr>
+                  <tr><th>M</th><td>20</td><td>22.5</td><td>28.8</td><td>22.4</td><td>8.7</td></tr>
+                  <tr><th>L</th><td>20.5</td><td>23.5</td><td>29.9</td><td>23.3</td><td>9</td></tr>
+                  <tr><th>XL</th><td>21</td><td>24</td><td>30.2</td><td>24</td><td>9.5</td></tr>
+              {%- endcase -%}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="product-size-chart__notes">
+          <h3>Fit Notes</h3>
+          <p>All measurements are in inches.</p>
+          <p>All measurements are taken with the garment laid flat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

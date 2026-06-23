@@ -217,6 +217,7 @@
                 </s>
                 {% render 'unit-price', item: current_variant %}
               </div>
+              {% render 'product-size-chart', product: product %}
             {%- when 'sku' -%}
               <div class="product__sku product__block product__block--small animation-fade-up-reveal" data-product-sku>
                 {% if current_variant.sku != blank %}
