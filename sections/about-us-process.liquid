@@ -1,0 +1,228 @@
+{%- liquid
+  assign about_heading_font = settings.font_heading | font_modify: 'weight', 'bold'
+-%}
+
+<section
+  class="about-process"
+  data-section-id="{{ section.id }}"
+  data-section-type="about-us-process"
+>
+  <div class="about-process__inner">
+    <header class="about-process__header">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </header>
+
+    <div class="about-process__grid">
+      {%- for block in section.blocks -%}
+        <article class="about-process__item" {{ block.shopify_attributes }}>
+          <div class="about-process__media">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 900 }}"
+                srcset="
+                  {{ block.settings.image | image_url: width: 400 }} 400w,
+                  {{ block.settings.image | image_url: width: 650 }} 650w,
+                  {{ block.settings.image | image_url: width: 900 }} 900w
+                "
+                sizes="(min-width: 64em) 25vw, (min-width: 42em) 33vw, 100vw"
+                alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="about-process__placeholder">Process image</div>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.heading != blank -%}
+            <h3>{{ block.settings.heading }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.text != blank -%}
+            <div class="about-process__text rte">
+              {{ block.settings.text }}
+            </div>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  {{ about_heading_font | font_face: font_display: 'swap' }}
+
+  .about-process {
+    color: var(--color-text);
+    background: var(--color-background);
+  }
+
+  .about-process__inner {
+    display: grid;
+    grid-template-columns: minmax(170px, 0.4fr) minmax(0, 1.6fr);
+    gap: clamp(36px, 5vw, 80px);
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(56px, 6vw, 92px) var(--space-outer);
+    box-sizing: border-box;
+  }
+
+  .about-process__header h2 {
+    max-width: 230px;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(48px, 5vw, 76px);
+    font-style: normal;
+    font-weight: {{ about_heading_font.weight | default: 700 }};
+    line-height: 0.88;
+    letter-spacing: var(--font-heading-base-letter-spacing);
+    text-transform: uppercase;
+  }
+
+  .about-process__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 44px);
+  }
+
+  .about-process__item {
+    min-width: 0;
+  }
+
+  .about-process__media {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: var(--color-card-background);
+  }
+
+  .about-process__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-process__placeholder {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: var(--font-body-weight);
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  .about-process__item h3 {
+    margin: var(--spacing-large) 0 var(--spacing-medium);
+    font-family: var(--font-heading);
+    font-size: clamp(21px, 1.8vw, 28px);
+    font-style: normal;
+    font-weight: {{ about_heading_font.weight | default: 700 }};
+    line-height: 1;
+    letter-spacing: var(--font-heading-base-letter-spacing);
+    text-transform: uppercase;
+  }
+
+  .about-process__text {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: var(--font-body-weight);
+    line-height: 1.25;
+  }
+
+  .about-process__text p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 64em) {
+    .about-process__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .about-process__header h2 {
+      max-width: none;
+      font-size: 54px;
+    }
+  }
+
+  @media screen and (max-width: 48em) {
+    .about-process__grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-extra-large);
+    }
+
+    .about-process__media {
+      aspect-ratio: 16 / 8;
+    }
+
+    .about-process__header h2 {
+      font-size: 48px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Us process",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The process"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Idea"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add the process step description here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us process",
+      "blocks": [
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

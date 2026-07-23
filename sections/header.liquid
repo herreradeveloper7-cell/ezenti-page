@@ -69,27 +69,6 @@
   </{{ logo_tag }}>
 {%- endcapture -%}
 
-{%- capture search_icon -%}
-  <a
-    class="header__icon-touch header__icon-touch--search no-transition"
-    href="{{ routes.search_url }}"
-    data-search
-    aria-label="{{ 'general.accessibility.open_search' | t }}"
-  >
-    {% render 'icon-button', icon: 'search' %}
-  </a>
-{%- endcapture -%}
-
-{%- capture account_icon -%}
-  <a
-    class="header__icon-touch header__icon-touch--account"
-    href="{{ routes.account_url }}"
-    aria-label="{{ 'general.accessibility.go_account' | t }}"
-  >
-    {% render 'icon-button', icon: 'account' %}
-  </a>
-{%- endcapture -%}
-
 {%- capture cart_icon -%}
   <a
     class="header__icon-touch header__icon-touch--cart no-transition"
@@ -107,9 +86,17 @@
 {%- capture nav -%}
   <nav class="header__links" data-navigation>
     {%- if menu == blank and secondary_menu != blank -%}
-      {% render 'navigation', menu: secondary_links %}
+      {% render 'navigation',
+        menu: secondary_links,
+        additional_link_label: section.settings.about_link_label,
+        additional_link_url: section.settings.about_link_url
+      %}
     {%- else -%}
-      {% render 'navigation', menu: links %}
+      {% render 'navigation',
+        menu: links,
+        additional_link_label: section.settings.about_link_label,
+        additional_link_url: section.settings.about_link_url
+      %}
     {%- endif -%}
   </nav>
 {%- endcapture -%}
@@ -150,9 +137,6 @@
     {% if logo_transparent != blank %}
       header--has-transparent-logo
     {% endif %}
-    {% if shop.customer_accounts_enabled -%}
-      header--has-accounts
-    {%- endif %}
     {% if secondary_menu_valid -%}
       header--has-secondary-menu
     {%- endif %}
@@ -176,7 +160,6 @@
     <div class="header__left">
       {%- if logo_position == 'center' and navigation_position == 'below' and style == 'inline' -%}
         {{ burger }}
-        {{ search_icon }}
       {%- elsif logo_position == 'left' and style == 'inline' and navigation_position != 'below' -%}
         {{ header_logo }}
         {{ burger }}
@@ -205,14 +188,6 @@
       {{ header_logo }}
     </div>
     <div class="header__right">
-      {%- unless logo_position == 'center' and navigation_position == 'below' and style == 'inline' -%}
-        {{ search_icon }}
-      {%- endunless -%}
-
-      {%- if shop.customer_accounts_enabled -%}
-        {{ account_icon }}
-      {%- endif -%}
-
       {{ cart_icon }}
     </div>
     {%- if navigation_position == 'below' and style == 'inline' -%}
@@ -249,7 +224,9 @@
     menu: menu,
     secondary_menu: secondary_menu,
     enable_locale_selector: enable_locale_selector,
-    enable_country_selector: enable_country_selector
+    enable_country_selector: enable_country_selector,
+    about_link_label: section.settings.about_link_label,
+    about_link_url: section.settings.about_link_url
   %}
 </header>
 
@@ -337,6 +314,21 @@
         { "value": "header", "label": "t:sections.header.settings.mobile_search_position.options__2" }
       ],
       "default": "menu"
+    },
+    {
+      "type": "header",
+      "content": "About us link"
+    },
+    {
+      "id": "about_link_label",
+      "type": "text",
+      "label": "Link text",
+      "default": "ABOUT US"
+    },
+    {
+      "id": "about_link_url",
+      "type": "url",
+      "label": "Link URL"
     },
     {
       "type": "header",

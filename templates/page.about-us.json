@@ -1,0 +1,212 @@
+{
+  "sections": {
+    "main": {
+      "type": "about-us-hero",
+      "settings": {
+        "heading": "EZENTI was created by two people who believed clothing could communicate something deeper than appearance.",
+        "text": "<p>We never set out to create fashion for the sake of fashion.</p><p>We set out to build something that reflected intention over attention, where every garment began with an idea before it became a product.</p><p>Every decision we make; from the concepts we explore to the fabrics we choose, is guided by that same belief.</p><p>Because what we wear should never speak louder than the person wearing it.</p>"
+      }
+    },
+    "pillars": {
+      "type": "about-us-pillars",
+      "blocks": {
+        "building": {
+          "type": "pillar",
+          "settings": {
+            "heading": "What we're building",
+            "text": "<p>We are not building a brand around trends or seasons.</p><p>We are building something that grows over time through ideas, collections, and the people who choose to become part of it.</p><p>Our ambition has never been to create more clothing.</p><p>It has always been to create something worth believing in.</p>"
+          }
+        },
+        "process": {
+          "type": "pillar",
+          "settings": {
+            "heading": "How we build it",
+            "text": "<p>Every collection begins long before sketches or samples.</p><p>It begins with a question, an idea, or a human experience.</p><p>From there, every decision: from silhouette to material, graphics, and construction, is made with intention.</p><p>Nothing exists simply to decorate.</p><p>Every detail should have a reason to be there.</p>"
+          }
+        },
+        "story": {
+          "type": "pillar",
+          "settings": {
+            "heading": "How we got here",
+            "text": "<p>Like many first-time founders, we believed the hardest part would be creating the brand.</p><p>We were wrong.</p><p>After months of building our vision, we were forced to start again.</p><p>That experience became the reason EZENTI exists today.</p><p>Because we realized that names can change.</p><p>Purpose endures.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "building",
+        "process",
+        "story"
+      ],
+      "settings": {}
+    },
+    "principles": {
+      "type": "about-us-principles",
+      "blocks": {
+        "essence": {
+          "type": "principle",
+          "settings": {
+            "letter": "E",
+            "heading": "Essence",
+            "text": "<p>Everything begins beneath the surface.</p><p>Only then comes expression.</p>"
+          }
+        },
+        "zenith": {
+          "type": "principle",
+          "settings": {
+            "letter": "Z",
+            "heading": "Zenith",
+            "text": "<p>The highest point is never about status.</p><p>It is about clarity.</p>"
+          }
+        },
+        "evolution": {
+          "type": "principle",
+          "settings": {
+            "letter": "E",
+            "heading": "Evolution",
+            "text": "<p>Identity is never finished.</p><p>It continues to unfold.</p>"
+          }
+        },
+        "neutrality": {
+          "type": "principle",
+          "settings": {
+            "letter": "N",
+            "heading": "Neutrality",
+            "text": "<p>Minimalism is not emptiness.</p><p>It is intention.</p>"
+          }
+        },
+        "truth": {
+          "type": "principle",
+          "settings": {
+            "letter": "T",
+            "heading": "Truth",
+            "text": "<p>Authenticity requires nothing artificial.</p><p>Only honesty.</p>"
+          }
+        },
+        "identity": {
+          "type": "principle",
+          "settings": {
+            "letter": "I",
+            "heading": "Identity",
+            "text": "<p>Everything we create exists for one reason:</p><p>to support yours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "essence",
+        "zenith",
+        "evolution",
+        "neutrality",
+        "truth",
+        "identity"
+      ],
+      "settings": {
+        "heading": "Every brand has a name.",
+        "heading_second_line": "Ours carries the principles it was built on."
+      }
+    },
+    "founders_section": {
+      "type": "about-us-founders",
+      "blocks": {
+        "founder_one": {
+          "type": "founder",
+          "settings": {
+            "name": "",
+            "text": "<p>Approaches EZENTI through visual storytelling, graphic design, symbolism, and form.</p><p>His perspective guides the creative language of the brand and the concept behind every piece.</p>"
+          }
+        },
+        "founder_two": {
+          "type": "founder",
+          "settings": {
+            "name": "",
+            "text": "<p>Approaches EZENTI through structure, consumer experience, and business development.</p><p>Her perspective connects the creative vision with the way the brand is built, communicated, and experienced.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "founder_one",
+        "founder_two"
+      ],
+      "settings": {
+        "heading": "The founders",
+        "subheading": "Every decision, together.",
+        "text": "<p>EZENTI is built through constant collaboration.</p><p>Every collection moves back and forth between creative exploration and strategic refinement until every decision feels intentional.</p><p>That dialogue shapes everything we create.</p>"
+      }
+    },
+    "process_section": {
+      "type": "about-us-process",
+      "blocks": {
+        "idea": {
+          "type": "step",
+          "settings": {
+            "heading": "Idea",
+            "text": "<p>Every piece begins with a thought, a question, or a human experience.</p>"
+          }
+        },
+        "design": {
+          "type": "step",
+          "settings": {
+            "heading": "Design",
+            "text": "<p>That idea is translated through graphics, proportion, material, and construction.</p>"
+          }
+        },
+        "garment": {
+          "type": "step",
+          "settings": {
+            "heading": "Garment",
+            "text": "<p>The final garment carries the concept without dictating how it should be interpreted.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "idea",
+        "design",
+        "garment"
+      ],
+      "settings": {
+        "heading": "The process"
+      }
+    },
+    "collections_section": {
+      "type": "about-us-collections",
+      "blocks": {
+        "core_collections": {
+          "type": "collection",
+          "settings": {
+            "heading": "The Core Collections",
+            "subheading": "Built to evolve.",
+            "text": "<p>The Core Collection forms the foundation of EZENTI.</p><p>As new collections are introduced, selected pieces remain—creating a permanent evolution of the brand.</p>",
+            "link_label": "Explore Collections",
+            "link_url": "/collections/frontpage",
+            "text_color": "#111111",
+            "overlay_color": "#ffffff"
+          }
+        },
+        "ezenti_series": {
+          "type": "collection",
+          "settings": {
+            "heading": "EZENTI Series",
+            "subheading": "Built to tell stories.",
+            "text": "<p>EZENTI Series is home to our Collector Editions.</p><p>Each release explores a singular concept through original artwork, storytelling, and a numbered edition of 100 pieces.</p><p>Once every piece is claimed, that edition becomes part of the permanent EZENTI archive.</p>",
+            "link_label": "Explore the Series",
+            "link_url": "/collections/collector-edition",
+            "text_color": "#111111",
+            "overlay_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "core_collections",
+        "ezenti_series"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "pillars",
+    "principles",
+    "founders_section",
+    "process_section",
+    "collections_section"
+  ]
+}
