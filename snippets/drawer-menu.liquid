@@ -8,7 +8,7 @@
   endif
 
   assign drawer_about_label = about_link_label | default: 'ABOUT US'
-  assign drawer_about_url = about_link_url | default: '/pages/about-us'
+  assign drawer_about_url = about_link_url | default: '/pages/about-us?view=about-us'
 
   assign language_visible = false
   if enable_locale_selector and shop.published_locales.size > 1

@@ -2,6 +2,12 @@
 
 {%- for link in links -%}
   {%- liquid
+    assign drawer_link_url = link.url
+    assign drawer_link_title = link.title | strip | downcase
+    if drawer_link_title == 'ezenti series'
+      assign drawer_link_url = '/collections/collector-edition?view=collector-edition'
+    endif
+
     assign has_children = false
     if link.levels > 0
       assign has_children = true
@@ -38,7 +44,7 @@
     <a
       data-item="{% if has_children %}parent{% else %}link{% endif %}"
       class="drawer-menu__link {% if has_children %}no-transition{% endif %} {% if link.active or child_is_active %}active{% endif %}"
-      href="{{ link.url }}"
+      href="{{ drawer_link_url }}"
       {% if has_children %}
         data-link="primary"
         aria-haspopup="true"

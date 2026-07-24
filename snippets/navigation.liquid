@@ -1,11 +1,17 @@
 {%- liquid
   assign navigation_additional_label = additional_link_label | default: 'ABOUT US'
-  assign navigation_additional_url = additional_link_url | default: '/pages/about-us'
+  assign navigation_additional_url = additional_link_url | default: '/pages/about-us?view=about-us'
 -%}
 
 <ul class="header__links-list">
   {% for link in menu %}
     {%- liquid
+      assign navigation_link_url = link.url
+      assign navigation_link_title = link.title | strip | downcase
+      if navigation_link_title == 'ezenti series'
+        assign navigation_link_url = '/collections/collector-edition?view=collector-edition'
+      endif
+
       if link.links.size > 0
         assign has_children = true
       endif
@@ -57,7 +63,7 @@
         -%}
       {%- else -%}
         <a
-          href="{{ link.url }}"
+          href="{{ navigation_link_url }}"
           class="fs-navigation-base {% if link.active %}active{% endif %}"
           data-link
           {% if link.active %}
