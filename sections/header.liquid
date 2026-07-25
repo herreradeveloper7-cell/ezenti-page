@@ -19,6 +19,8 @@
 
   assign links = linklists[menu].links
   assign secondary_links = linklists[secondary_menu].links
+  assign about_link_label = section.settings.about_link_label | default: 'ABOUT US'
+  assign about_link_url = section.settings.about_link_url | default: '/pages/about-us?view=about-us'
 
   assign secondary_menu_valid = false
 
@@ -86,19 +88,23 @@
 {%- capture nav -%}
   <nav class="header__links" data-navigation>
     {%- if menu == blank and secondary_menu != blank -%}
-      {% render 'navigation',
-        menu: secondary_links,
-        additional_link_label: section.settings.about_link_label,
-        additional_link_url: section.settings.about_link_url
-      %}
+      {% render 'navigation', menu: secondary_links %}
     {%- else -%}
-      {% render 'navigation',
-        menu: links,
-        additional_link_label: section.settings.about_link_label,
-        additional_link_url: section.settings.about_link_url
-      %}
+      {% render 'navigation', menu: links %}
     {%- endif -%}
   </nav>
+{%- endcapture -%}
+
+{%- capture about_link -%}
+  <a
+    class="header__about-link fs-navigation-base no-transition{% if request.path == '/pages/about-us' %} active{% endif %}"
+    href="{{ about_link_url }}"
+    {% if request.path == '/pages/about-us' %}
+      aria-current="page"
+    {% endif %}
+  >
+    {{ about_link_label }}
+  </a>
 {%- endcapture -%}
 
 {%- capture burger -%}
@@ -188,6 +194,7 @@
       {{ header_logo }}
     </div>
     <div class="header__right">
+      {{ about_link }}
       {{ cart_icon }}
     </div>
     {%- if navigation_position == 'below' and style == 'inline' -%}
@@ -242,6 +249,30 @@
       margin-top: calc((var(--height-header) + var(--announcement-height)) * -1);
     }
   {% endif %}
+
+  .header__about-link {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    margin-right: var(--spacing-medium);
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.25s;
+  }
+
+  .header__about-link:hover,
+  .header__about-link:focus-visible,
+  .header__about-link.active {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 60em) {
+    .header__about-link {
+      display: none;
+    }
+  }
 </style>
 
 {% schema %}

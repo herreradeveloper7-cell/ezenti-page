@@ -1,8 +1,3 @@
-{%- liquid
-  assign navigation_additional_label = additional_link_label | default: 'ABOUT US'
-  assign navigation_additional_url = additional_link_url | default: '/pages/about-us?view=about-us'
--%}
-
 <ul class="header__links-list">
   {% for link in menu %}
     {%- liquid
@@ -76,16 +71,4 @@
     </li>
   {% endfor %}
 
-  <li>
-    <a
-      href="{{ navigation_additional_url }}"
-      class="fs-navigation-base{% if request.path == navigation_additional_url %} active{% endif %}"
-      data-link
-      {% if request.path == navigation_additional_url %}
-        aria-current="page"
-      {% endif %}
-    >
-      {{ navigation_additional_label }}
-    </a>
-  </li>
 </ul>

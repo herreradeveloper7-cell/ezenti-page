@@ -1,6 +1,12 @@
 {%- liquid
   assign collector_collection = section.settings.collection
   assign max_products = section.settings.max_products
+  assign visible_product_count = 4
+  assign collector_heading_font = settings.font_heading | font_modify: 'weight', 'bold'
+
+  if collector_collection != blank and collector_collection.products_count > 0
+    assign visible_product_count = collector_collection.products_count | at_most: max_products
+  endif
 -%}
 
 <section
@@ -12,19 +18,6 @@
     <div class="collector-page__hero-copy">
       <p class="collector-page__eyebrow">{{ section.settings.hero_eyebrow }}</p>
       <h1>{{ section.settings.hero_heading | newline_to_br }}</h1>
-
-      {%- if section.settings.hero_button_text != blank -%}
-        <a class="collector-page__hero-button" href="{{ section.settings.hero_button_url }}">
-          {{ section.settings.hero_button_text }}
-        </a>
-      {%- endif -%}
-
-      {%- if section.settings.hero_link_text != blank -%}
-        <a class="collector-page__hero-scroll" href="{{ section.settings.hero_link_url }}">
-          {{ section.settings.hero_link_text }}
-          <span aria-hidden="true"></span>
-        </a>
-      {%- endif -%}
     </div>
 
     <div class="collector-page__hero-media">
@@ -47,10 +40,12 @@
   <div class="collector-page__release" id="collector-current-release">
     <div class="collector-page__release-header">
       <h2>{{ section.settings.products_heading }}</h2>
-      <p>{{ section.settings.release_label }}</p>
     </div>
 
-    <div class="collector-page__products">
+    <div
+      class="collector-page__products"
+      style="--collector-product-columns: {{ visible_product_count }};"
+    >
         {%- if collector_collection != blank and collector_collection.products_count > 0 -%}
           {%- for product in collector_collection.products limit: max_products -%}
             <article class="collector-product-card">
@@ -73,22 +68,6 @@
                   <a href="{{ product.url | within: collector_collection }}">{{ product.title }}</a>
                 </h3>
                 <p>{{ product.price | money }}</p>
-
-                {%- assign size_option = blank -%}
-                {%- for option in product.options_with_values -%}
-                  {%- assign option_name = option.name | downcase -%}
-                  {%- if option_name contains 'size' or option_name contains 'talla' -%}
-                    {%- assign size_option = option -%}
-                  {%- endif -%}
-                {%- endfor -%}
-
-                {%- if size_option != blank -%}
-                  <ul class="collector-product-card__sizes" aria-label="Available sizes">
-                    {%- for value in size_option.values -%}
-                      <li>{{ value }}</li>
-                    {%- endfor -%}
-                  </ul>
-                {%- endif -%}
               </div>
             </article>
           {%- endfor -%}
@@ -101,7 +80,6 @@
               <div class="collector-product-card__meta">
                 <h3>Collector piece</h3>
                 <p>$00.00</p>
-                <ul class="collector-product-card__sizes"><li>S</li><li>M</li><li>L</li><li>XL</li></ul>
               </div>
             </article>
           {%- endfor -%}
@@ -112,16 +90,20 @@
   <div class="collector-page__cta">
     <p>{{ section.settings.cta_eyebrow }}</p>
     <h2>{{ section.settings.cta_heading }}</h2>
-    <span class="collector-page__down-icon" aria-hidden="true"></span>
+    <a
+      class="collector-page__cta-scroll"
+      href="#collector-story"
+      aria-label="Scroll to {{ section.settings.story_heading | escape }}"
+      data-collector-scroll
+    >
+      <span class="collector-page__down-icon" aria-hidden="true"></span>
+    </a>
   </div>
 
   <div class="collector-page__story" id="collector-story">
     <div class="collector-page__story-copy">
       <h2>{{ section.settings.story_heading | newline_to_br }}</h2>
       <div class="collector-page__rte">{{ section.settings.story_text }}</div>
-      {%- if section.settings.story_link_text != blank -%}
-        <a class="collector-page__underline-link" href="{{ section.settings.story_link_url }}">{{ section.settings.story_link_text }}</a>
-      {%- endif -%}
     </div>
 
     <div class="collector-page__story-media">
@@ -141,34 +123,6 @@
     </div>
   </div>
 
-  <div class="collector-page__process">
-    <h2>{{ section.settings.process_heading }}</h2>
-
-    <div class="collector-page__process-grid">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'process_step' -%}
-          <figure class="collector-page__process-step" {{ block.shopify_attributes }}>
-            <div class="collector-page__process-media">
-              {%- if block.settings.image != blank -%}
-                <img
-                  src="{{ block.settings.image | image_url: width: 600 }}"
-                  alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
-                  width="{{ block.settings.image.width }}"
-                  height="{{ block.settings.image.height }}"
-                  loading="lazy"
-                >
-              {%- else -%}
-                <div class="collector-page__image-placeholder">Process image</div>
-              {%- endif -%}
-            </div>
-
-            <figcaption>{{ block.settings.title }}</figcaption>
-          </figure>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-
   <div class="collector-page__info-grid">
     <div class="collector-page__rules">
       <h2>{{ section.settings.rules_heading }}</h2>
@@ -184,53 +138,12 @@
           {%- endif -%}
         {%- endfor -%}
       </ol>
-      {%- if section.settings.rules_link_text != blank -%}
-        <a class="collector-page__underline-link" href="{{ section.settings.rules_link_url }}">{{ section.settings.rules_link_text }}</a>
-      {%- endif -%}
     </div>
 
-    <div class="collector-page__info-media">
-      {%- if section.settings.info_image != blank -%}
-        <img
-          src="{{ section.settings.info_image | image_url: width: 1000 }}"
-          alt="{{ section.settings.info_image.alt | default: section.settings.rules_heading | escape }}"
-          width="{{ section.settings.info_image.width }}"
-          height="{{ section.settings.info_image.height }}"
-          loading="lazy"
-        >
-      {%- else -%}
-        <div class="collector-page__image-placeholder">Rules image</div>
-      {%- endif -%}
-    </div>
-
-    <div class="collector-page__included">
-      <h2>{{ section.settings.included_heading }}</h2>
-
-      <div class="collector-page__included-list">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'included_item' -%}
-            <article class="collector-page__included-item" {{ block.shopify_attributes }}>
-              <div class="collector-page__included-media">
-                {%- if block.settings.image != blank -%}
-                  <img
-                    src="{{ block.settings.image | image_url: width: 300 }}"
-                    alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
-                    width="{{ block.settings.image.width }}"
-                    height="{{ block.settings.image.height }}"
-                    loading="lazy"
-                  >
-                {%- else -%}
-                  <div class="collector-page__image-placeholder">Item image</div>
-                {%- endif -%}
-              </div>
-
-              <div class="collector-page__included-copy">
-                <h3>{{ block.settings.title }}</h3>
-                <p>{{ block.settings.text }}</p>
-              </div>
-            </article>
-          {%- endif -%}
-        {%- endfor -%}
+    <div class="collector-page__perspective">
+      <h2>{{ section.settings.perspective_heading }}</h2>
+      <div class="collector-page__perspective-text">
+        {{ section.settings.perspective_text }}
       </div>
     </div>
   </div>
@@ -297,11 +210,6 @@
   <div class="collector-page__final">
     <div class="collector-page__final-copy">
       <h2>{{ section.settings.final_heading | newline_to_br }}</h2>
-      {%- if section.settings.final_link_text != blank -%}
-        <a class="collector-page__text-link collector-page__text-link--light" href="{{ section.settings.final_link_url }}">
-          {{ section.settings.final_link_text }}
-        </a>
-      {%- endif -%}
     </div>
     {%- if section.settings.final_image != blank -%}
       <img
@@ -318,6 +226,8 @@
 </section>
 
 <style>
+  {{ collector_heading_font | font_face: font_display: 'swap' }}
+
   .collector-page {
     --collector-content-gutter: max(
       var(--space-outer),
@@ -340,37 +250,41 @@
   }
 
   .collector-page__hero {
-    min-height: 390px;
-    border-bottom: 1px solid var(--color-border);
+    grid-template-columns: minmax(0, 46%) minmax(0, 54%);
+    min-height: clamp(360px, 36vw, 560px);
+    color: #fff;
+    background: #000;
+    border-bottom: 0;
   }
 
   .collector-page__hero-copy {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 60px);
+    align-items: flex-start;
+    padding: clamp(48px, 7vw, 96px) clamp(24px, 4vw, 60px);
     padding-left: var(--collector-content-gutter);
   }
 
   .collector-page__story-copy,
-  .collector-page__rules {
+  .collector-page__rules,
+  .collector-page__perspective {
     padding: clamp(42px, 7vw, 86px) clamp(24px, 4vw, 60px);
+  }
+
+  .collector-page__story-copy,
+  .collector-page__rules {
     padding-left: var(--collector-content-gutter);
   }
 
-  .collector-page__included {
-    padding: clamp(42px, 7vw, 86px) clamp(24px, 4vw, 60px);
+  .collector-page__perspective {
     padding-right: var(--collector-content-gutter);
   }
 
   .collector-page__eyebrow,
-  .collector-page__release-header p,
   .collector-page__cta p,
   .collector-page__archive-card p,
-  .collector-page__archive-card span,
-  .collector-product-card__sizes,
-  .collector-page__text-link,
-  .collector-page__underline-link {
+  .collector-page__archive-card span {
     font-size: 12px;
     font-weight: 700;
     line-height: 1.2;
@@ -378,68 +292,27 @@
     letter-spacing: 0.06em;
   }
 
+  .collector-page__eyebrow {
+    margin: 0 0 10px;
+    color: inherit;
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
   .collector-page__hero h1 {
-    max-width: 480px;
-    margin: 14px 0 24px;
+    max-width: 620px;
+    margin: 0;
     font-family: var(--font-heading);
-    font-size: clamp(34px, 4vw, 56px);
-    line-height: 1;
+    font-size: clamp(36px, 4.2vw, 64px);
+    font-weight: 700;
+    line-height: 0.98;
     letter-spacing: 0;
     text-transform: uppercase;
   }
 
-  .collector-page__hero-button {
-    display: inline-flex;
-    width: max-content;
-    min-height: 44px;
-    align-items: center;
-    justify-content: center;
-    padding: 0 28px;
-    margin-bottom: 22px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    background: #000;
-    border: 1px solid #000;
-    transition: color 160ms ease, background-color 160ms ease;
-  }
-
-  .collector-page__hero-button:hover,
-  .collector-page__hero-button:focus-visible {
-    color: #000;
-    background: transparent;
-  }
-
-  .collector-page__hero-scroll {
-    display: inline-flex;
-    width: max-content;
-    align-items: center;
-    gap: 24px;
-    color: var(--color-text);
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-  }
-
-  .collector-page__hero-scroll span {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-right: 1px solid currentColor;
-    border-bottom: 1px solid currentColor;
-    transform: rotate(45deg) translateY(-2px);
-  }
-
   .collector-page__hero-media {
-    min-height: 390px;
-    aspect-ratio: 1.55 / 1;
+    min-height: clamp(360px, 36vw, 560px);
     background: #111;
     overflow: hidden;
   }
@@ -473,14 +346,6 @@
     background: linear-gradient(135deg, #1b1b1b, #3f3f3f);
   }
 
-  .collector-page__text-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 28px;
-    text-decoration: none;
-  }
-
-  .collector-page__text-link span,
   .collector-page__down-icon {
     display: inline-block;
     width: 14px;
@@ -491,31 +356,37 @@
   }
 
   .collector-page__release {
-    padding: 28px var(--collector-content-gutter) 44px;
+    padding: clamp(36px, 5vw, 64px) var(--collector-content-gutter) clamp(48px, 6vw, 80px);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
 
   .collector-page__release-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-    margin-bottom: 24px;
+    margin-bottom: clamp(22px, 3vw, 36px);
   }
 
   .collector-page h2 {
     margin: 0;
     font-family: var(--font-heading);
     font-size: clamp(24px, 2.2vw, 34px);
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
     line-height: 1;
     text-transform: uppercase;
     letter-spacing: 0;
   }
 
+  .collector-page__release-header h2 {
+    font-family: var(--font-heading);
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
+    letter-spacing: var(--font-heading-base-letter-spacing);
+  }
+
   .collector-page__products {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: var(--spacing-large);
+    grid-template-columns: repeat(var(--collector-product-columns, 4), minmax(0, 1fr));
+    column-gap: clamp(18px, 2.5vw, 36px);
     row-gap: var(--spacing-extra-large);
   }
 
@@ -538,236 +409,227 @@
   }
 
   .collector-product-card__meta {
-    padding-top: var(--spacing-medium);
-    text-align: left;
+    padding: clamp(16px, 2vw, 24px) 8px 0;
+    text-align: center;
   }
 
   .collector-product-card__meta h3,
   .collector-product-card__meta p {
-    margin: 0 0 var(--spacing-extra-small);
-    font-size: 12px;
+    margin: 0;
     line-height: 1.35;
-    text-transform: uppercase;
   }
 
   .collector-product-card__meta h3 {
     font-family: var(--font-heading);
-    font-weight: var(--font-heading-weight);
+    font-size: clamp(14px, 1.25vw, 18px);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .collector-product-card__meta h3 a {
+    text-decoration: none;
   }
 
   .collector-product-card__meta p {
-    font-weight: var(--font-body-bold-weight);
-  }
-
-  .collector-product-card__sizes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-medium);
-    padding: 0;
-    margin: var(--spacing-small) 0 0;
-    list-style: none;
+    margin-top: 2px;
+    font-family: var(--font-body);
+    font-size: clamp(13px, 1.1vw, 16px);
+    font-weight: 300;
   }
 
   .collector-page__cta {
-    padding: 28px 24px;
+    display: flex;
+    min-height: 104px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px 14px;
     color: #fff;
     text-align: center;
-    background: #111;
+    background: #000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  }
+
+  .collector-page__cta p {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
   }
 
   .collector-page__cta h2 {
-    margin-top: 8px;
-    font-size: clamp(24px, 2.6vw, 38px);
-    letter-spacing: 0.08em;
+    margin-top: 2px;
+    font-family: var(--font-heading);
+    font-size: clamp(25px, 2.35vw, 34px);
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
+    line-height: 1;
+    letter-spacing: var(--font-heading-base-letter-spacing);
   }
 
-  .collector-page__down-icon {
-    margin-top: 16px;
+  .collector-page__cta-scroll {
+    display: inline-flex;
+    width: 32px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .collector-page__cta-scroll:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .collector-page__cta .collector-page__down-icon {
+    width: 9px;
+    height: 9px;
+    margin-top: -4px;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
   }
 
   .collector-page__story {
-    grid-template-columns: 0.56fr 1fr;
-    border-bottom: 1px solid var(--color-border);
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+    scroll-margin-top: var(--header-height, 0px);
   }
 
   .collector-page__story-copy {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: clamp(420px, 38vw, 600px);
   }
 
-  .collector-page__process {
-    padding: var(--spacing-extra-large) var(--collector-content-gutter);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .collector-page__process h2 {
-    margin-bottom: var(--spacing-large);
-    font-size: 24px;
-  }
-
-  .collector-page__process-grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    column-gap: var(--spacing-medium);
-    row-gap: var(--spacing-large);
-  }
-
-  .collector-page__process-step {
-    min-width: 0;
-    margin: 0;
-  }
-
-  .collector-page__process-media {
-    aspect-ratio: 1.45 / 1;
-    background: var(--color-card-background);
-    overflow: hidden;
-  }
-
-  .collector-page__process-media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .collector-page__process-media .collector-page__image-placeholder {
-    height: 100%;
-    min-height: 0;
-  }
-
-  .collector-page__process-step figcaption {
-    margin-top: var(--spacing-small);
+  .collector-page__story-copy h2 {
+    max-width: 560px;
     font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: var(--font-heading-weight);
-    line-height: 1.3;
-    text-transform: uppercase;
+    font-size: clamp(30px, 3vw, 46px);
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
+    line-height: 1;
+    letter-spacing: var(--font-heading-base-letter-spacing);
   }
 
   .collector-page__rte {
-    max-width: 320px;
-    margin-top: 28px;
-    font-size: 14px;
-    line-height: 1.55;
+    max-width: 560px;
+    margin-top: clamp(24px, 3vw, 36px);
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.3vw, 18px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.22;
   }
 
-  .collector-page__underline-link {
-    display: inline-block;
-    width: max-content;
-    margin-top: 28px;
-    padding-bottom: 4px;
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
+  .collector-page__rte p {
+    margin: 0;
+  }
+
+  .collector-page__rte p + p {
+    margin-top: 16px;
   }
 
   .collector-page__info-grid {
-    grid-template-columns: 0.86fr 0.78fr 1fr;
-    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+  }
+
+  .collector-page__info-grid::after {
+    content: "";
+    position: absolute;
+    top: clamp(36px, 5vw, 60px);
+    bottom: clamp(36px, 5vw, 60px);
+    left: 43%;
+    width: 1px;
+    background: var(--color-border);
+    transform: translateX(-0.5px);
+  }
+
+  .collector-page__rules,
+  .collector-page__perspective {
+    min-height: clamp(330px, 28vw, 440px);
   }
 
   .collector-page__rules {
-    border-right: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  .collector-page__rules h2,
+  .collector-page__perspective h2 {
+    font-family: var(--font-heading);
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
+    letter-spacing: var(--font-heading-base-letter-spacing);
   }
 
   .collector-page__rules ol {
     padding: 0;
-    margin: 32px 0 0;
+    margin: clamp(24px, 3vw, 34px) 0 0;
     list-style: none;
   }
 
   .collector-page__rules li {
     display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 18px;
-    margin-bottom: 22px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+    margin-bottom: 16px;
   }
 
-  .collector-page__rules li span,
+  .collector-page__rules li span {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
   .collector-page__rules li p {
     margin: 0;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.15vw, 16px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.15;
     text-transform: uppercase;
   }
 
-  .collector-page__info-media {
-    min-height: 520px;
-    background: var(--color-card-background);
-    border-right: 1px solid var(--color-border);
-    overflow: hidden;
+  .collector-page__perspective-text {
+    max-width: 680px;
+    margin-top: clamp(24px, 3vw, 34px);
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.3vw, 18px);
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.12;
   }
 
-  .collector-page__info-media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .collector-page__info-media .collector-page__image-placeholder {
-    height: 100%;
-  }
-
-  .collector-page__included {
-    border-left: 0;
-  }
-
-  .collector-page__included-list {
-    display: grid;
-    gap: var(--spacing-medium);
-    margin-top: var(--spacing-large);
-  }
-
-  .collector-page__included-item {
-    display: grid;
-    grid-template-columns: minmax(70px, 92px) minmax(0, 1fr);
-    align-items: center;
-    gap: var(--spacing-medium);
-  }
-
-  .collector-page__included-media {
-    aspect-ratio: 1.45 / 1;
-    background: var(--color-card-background);
-    overflow: hidden;
-  }
-
-  .collector-page__included-media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .collector-page__included-media .collector-page__image-placeholder {
-    height: 100%;
-    min-height: 0;
-    padding: var(--spacing-extra-small);
-    font-size: 9px;
-  }
-
-  .collector-page__included-copy h3,
-  .collector-page__included-copy p {
+  .collector-page__perspective-text p {
     margin: 0;
-    line-height: 1.25;
   }
 
-  .collector-page__included-copy h3 {
-    font-family: var(--font-heading);
-    font-size: 13px;
-    font-weight: var(--font-heading-weight);
-    text-transform: uppercase;
-  }
-
-  .collector-page__included-copy p {
-    margin-top: 3px;
-    font-size: 12px;
+  .collector-page__perspective-text p + p {
+    margin-top: 18px;
   }
 
   .collector-page__archive {
     padding: 30px var(--collector-content-gutter) 42px;
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .collector-page__archive > h2 {
+    font-family: var(--font-heading);
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
+    letter-spacing: var(--font-heading-base-letter-spacing);
   }
 
   .collector-page__archive-grid {
@@ -792,10 +654,28 @@
 
   .collector-page__archive-card h3 {
     margin: 4px 0;
-    font-size: 12px;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
     line-height: 1.15;
     text-transform: uppercase;
+  }
+
+  .collector-page__archive-card p {
+    margin: 8px 0 0;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
+  .collector-page__archive-card span {
+    display: block;
+    font-family: var(--font-heading);
+    font-style: normal;
+    font-weight: {{ collector_heading_font.weight | default: 700 }};
+    letter-spacing: var(--font-heading-base-letter-spacing);
   }
 
   .collector-page__timeline {
@@ -844,9 +724,12 @@
 
   .collector-page__timeline-point span {
     display: block;
+    font-family: var(--font-body);
     font-size: 11px;
-    font-weight: var(--font-body-bold-weight);
+    font-style: normal;
+    font-weight: 300;
     line-height: 1.2;
+    letter-spacing: 0;
     text-transform: uppercase;
   }
 
@@ -928,13 +811,12 @@
     .collector-page__hero-copy,
     .collector-page__story-copy,
     .collector-page__rules,
-    .collector-page__included {
+    .collector-page__perspective {
       padding: 36px 24px;
     }
 
     .collector-page__hero h1 {
       max-width: 360px;
-      margin-bottom: 28px;
       font-size: 36px;
     }
 
@@ -944,16 +826,11 @@
 
     .collector-page__hero-media {
       min-height: 260px;
-      aspect-ratio: 1.45 / 1;
+      aspect-ratio: 1.35 / 1;
     }
 
     .collector-page__story-media {
       min-height: 320px;
-    }
-
-    .collector-page__release-header {
-      align-items: flex-start;
-      flex-direction: column;
     }
 
     .collector-page__products {
@@ -962,28 +839,31 @@
       row-gap: var(--spacing-large);
     }
 
-    .collector-page__process-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .collector-page__story {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .collector-page__story-media {
-      order: -1;
+    .collector-page__story-copy {
+      min-height: 0;
     }
 
     .collector-page__rules {
       border-right: 0;
-      border-bottom: 1px solid var(--color-border);
     }
 
-    .collector-page__info-media {
-      min-height: 420px;
-      border-right: 0;
-      border-bottom: 1px solid var(--color-border);
+    .collector-page__info-grid::after {
+      display: none;
+    }
+
+    .collector-page__rules::after {
+      content: "";
+      position: absolute;
+      right: 24px;
+      bottom: 0;
+      left: 24px;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    .collector-page__rules,
+    .collector-page__perspective {
+      min-height: 0;
     }
 
     .collector-page__archive-grid {
@@ -1001,15 +881,34 @@
       grid-template-columns: 1fr;
     }
 
-    .collector-page__process {
-      padding: var(--spacing-large) 24px;
-    }
-
-    .collector-page__process-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .collector-page__release {
+      padding-right: 24px;
+      padding-left: 24px;
     }
   }
 </style>
+
+<script>
+  (() => {
+    const section = document.querySelector(
+      '[data-section-id="{{ section.id }}"][data-section-type="collector-edition"]'
+    );
+    const trigger = section?.querySelector('[data-collector-scroll]');
+    const target = section?.querySelector('#collector-story');
+
+    if (!trigger || !target) return;
+
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -1037,35 +936,13 @@
       "type": "text",
       "id": "hero_eyebrow",
       "label": "Eyebrow",
-      "default": "Collector Edition"
+      "default": "EZENTI SERIES"
     },
     {
       "type": "textarea",
       "id": "hero_heading",
       "label": "Heading",
-      "default": "Created\nto be collected.\nNever reproduced."
-    },
-    {
-      "type": "text",
-      "id": "hero_button_text",
-      "label": "Button text",
-      "default": "Shop the current release"
-    },
-    {
-      "type": "url",
-      "id": "hero_button_url",
-      "label": "Button URL"
-    },
-    {
-      "type": "text",
-      "id": "hero_link_text",
-      "label": "Link text",
-      "default": "Read the story"
-    },
-    {
-      "type": "url",
-      "id": "hero_link_url",
-      "label": "Link URL"
+      "default": "Each piece exists once.\nWhen it's gone, it's gone."
     },
     {
       "type": "image_picker",
@@ -1080,13 +957,7 @@
       "type": "text",
       "id": "products_heading",
       "label": "Heading",
-      "default": "Current Release"
-    },
-    {
-      "type": "text",
-      "id": "release_label",
-      "label": "Release label",
-      "default": "001 - Echoes of Silence"
+      "default": "Available Editions"
     },
     {
       "type": "header",
@@ -1112,24 +983,13 @@
       "type": "textarea",
       "id": "story_heading",
       "label": "Heading",
-      "default": "Why\nCollector Edition\nExists"
+      "default": "Why EZENTI Series Exists"
     },
     {
       "type": "richtext",
       "id": "story_text",
       "label": "Text",
-      "default": "<p>Not everything deserves to exist forever. Collector Edition was created for ideas that should only happen once.</p><p>Each release becomes part of the EZENTI Archive.</p><p>When it's gone, it stays there.</p>"
-    },
-    {
-      "type": "text",
-      "id": "story_link_text",
-      "label": "Link text",
-      "default": "Read the story"
-    },
-    {
-      "type": "url",
-      "id": "story_link_url",
-      "label": "Link URL"
+      "default": "<p>Not every idea belongs in the Core Collection.</p><p>Some concepts require the freedom to exist on their own, without being defined by a season, a product category, or a collection.</p><p>EZENTI Series exists as a creative space where those ideas can take shape in whatever form they need.</p><p>Today, they take the form of Collector Editions.<br>Tomorrow, they may become something entirely different.</p>"
     },
     {
       "type": "image_picker",
@@ -1138,17 +998,7 @@
     },
     {
       "type": "header",
-      "content": "Process"
-    },
-    {
-      "type": "text",
-      "id": "process_heading",
-      "label": "Process heading",
-      "default": "The Process"
-    },
-    {
-      "type": "header",
-      "content": "Rules and included items"
+      "content": "Rules and founder perspective"
     },
     {
       "type": "text",
@@ -1157,20 +1007,16 @@
       "default": "The Rules"
     },
     {
-      "type": "url",
-      "id": "rules_link_url",
-      "label": "Rules link URL"
-    },
-    {
-      "type": "image_picker",
-      "id": "info_image",
-      "label": "Center image"
-    },
-    {
       "type": "text",
-      "id": "included_heading",
-      "label": "Included items heading",
-      "default": "What's Included"
+      "id": "perspective_heading",
+      "label": "Perspective heading",
+      "default": "Founder's Perspective"
+    },
+    {
+      "type": "richtext",
+      "id": "perspective_text",
+      "label": "Perspective text",
+      "default": "<p>Building EZENTI has involved countless conversations. Many began around the garments we wanted to create, but often ended somewhere entirely different - talking about identity, purpose, creativity, and the ideas that kept shaping the brand.</p><p>Eventually, we realized some of those ideas deserved a place of their own.</p><p>That's how EZENTI Series began.</p>"
     },
     {
       "type": "header",
@@ -1180,13 +1026,13 @@
       "type": "text",
       "id": "archive_heading",
       "label": "Archive heading",
-      "default": "EZENTI Pieces"
+      "default": "EZENTI'S Archive"
     },
     {
       "type": "text",
       "id": "timeline_year",
       "label": "Timeline year",
-      "default": "2026"
+      "default": "2025"
     },
     {
       "type": "text",
@@ -1229,41 +1075,12 @@
       "default": "Some pieces are made to be worn.\nCollector Edition was made\nto be remembered."
     },
     {
-      "type": "text",
-      "id": "final_link_text",
-      "label": "Final link text",
-      "default": "Uniqueness by choice"
-    },
-    {
-      "type": "url",
-      "id": "final_link_url",
-      "label": "Final link URL"
-    },
-    {
       "type": "image_picker",
       "id": "final_image",
       "label": "Final image"
     }
   ],
   "blocks": [
-    {
-      "type": "process_step",
-      "name": "Process step",
-      "limit": 6,
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Text",
-          "default": "Process step"
-        }
-      ]
-    },
     {
       "type": "rule",
       "name": "Rule",
@@ -1273,30 +1090,6 @@
           "id": "text",
           "label": "Text",
           "default": "Maximum 100 pieces."
-        }
-      ]
-    },
-    {
-      "type": "included_item",
-      "name": "Included item",
-      "limit": 5,
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Collector item"
-        },
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Description",
-          "default": "Designed for every release."
         }
       ]
     },
@@ -1337,7 +1130,13 @@
         {
           "type": "rule",
           "settings": {
-            "text": "Maximum 100 pieces."
+            "text": "Every edition begins with a concept."
+          }
+        },
+        {
+          "type": "rule",
+          "settings": {
+            "text": "One hundred pieces."
           }
         },
         {
@@ -1349,54 +1148,13 @@
         {
           "type": "rule",
           "settings": {
-            "text": "Every release receives its own identity."
+            "text": "Permanently archived once complete."
           }
         },
         {
           "type": "rule",
           "settings": {
-            "text": "Each piece belongs to the archive forever."
-          }
-        },
-        {
-          "type": "rule",
-          "settings": {
-            "text": "Numbered collector letter included."
-          }
-        },
-        {
-          "type": "included_item",
-          "settings": {
-            "title": "Collector Letter",
-            "text": "Numbered and signed."
-          }
-        },
-        {
-          "type": "included_item",
-          "settings": {
-            "title": "Protective Envelope",
-            "text": "Specially designed."
-          }
-        },
-        {
-          "type": "included_item",
-          "settings": {
-            "title": "Collector Packaging",
-            "text": "Premium finishing."
-          }
-        },
-        {
-          "type": "included_item",
-          "settings": {
-            "title": "Authentication Stamp",
-            "text": "Official EZENTI seal."
-          }
-        },
-        {
-          "type": "included_item",
-          "settings": {
-            "title": "Collector Box",
-            "text": "Built to protect."
+            "text": "Every Collector Edition receives its own identity."
           }
         },
         {

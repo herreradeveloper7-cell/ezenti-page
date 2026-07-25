@@ -66,7 +66,7 @@
   .about-principles__header p {
     margin: 0;
     font-family: var(--font-heading);
-    font-size: clamp(30px, 3vw, 44px);
+    font-size: clamp(28px, 2.7vw, 40px);
     font-style: normal;
     font-weight: {{ about_heading_font.weight | default: 700 }};
     line-height: 0.98;
@@ -131,6 +131,10 @@
     margin: 0;
   }
 
+  .about-principles__text p + p {
+    margin-top: 6px;
+  }
+
   @media screen and (max-width: 68em) {
     .about-principles__grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -161,7 +165,7 @@
 
     .about-principles__header h2,
     .about-principles__header p {
-      font-size: 30px;
+      font-size: 28px;
     }
 
     .about-principles__grid {
