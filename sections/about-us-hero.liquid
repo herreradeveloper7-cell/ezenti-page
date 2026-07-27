@@ -129,21 +129,51 @@
   }
 
   @media screen and (max-width: 60em) {
+    .about-us-page {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
     .about-us-page__inner {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--spacing-extra-large);
+      width: auto;
+      max-width: 100%;
+      min-width: 0;
+      margin-right: 0;
+      margin-left: 0;
       padding-top: var(--spacing-extra-large);
       padding-bottom: var(--spacing-extra-large);
     }
 
+    .about-us-page__copy,
+    .about-us-page__text,
+    .about-us-page__media {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
     .about-us-page__copy h1,
     .about-us-page__text {
-      max-width: 680px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
     }
 
     .about-us-page__media {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: auto;
       min-height: 0;
+    }
+
+    .about-us-page__media img {
+      position: static;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   }
 
@@ -156,7 +186,6 @@
       font-size: 15px;
     }
 
-    .about-us-page__media,
     .about-us-page__placeholder {
       min-height: 280px;
     }

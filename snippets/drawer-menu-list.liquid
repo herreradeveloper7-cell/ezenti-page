@@ -35,7 +35,7 @@
       {% if emphasized -%}
         drawer-menu__item--emphasized
       {%- endif %}
-      {% if emphasized and forloop.last -%}
+      {% if emphasized and forloop.last and has_following_emphasized != true -%}
         drawer-menu__item--emphasized-last
       {%- endif %}
     "

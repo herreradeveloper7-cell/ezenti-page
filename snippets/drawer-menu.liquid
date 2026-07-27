@@ -2,11 +2,6 @@
   assign links = linklists[menu].links
   assign secondary_links = linklists[secondary_menu].links
 
-  assign account_visible = false
-  if shop.customer_accounts_enabled
-    assign account_visible = true
-  endif
-
   assign drawer_about_label = about_link_label | default: 'ABOUT US'
   assign drawer_about_url = about_link_url | default: '/pages/about-us?view=about-us'
 
@@ -20,6 +15,20 @@
     assign currency_visible = true
   endif
 -%}
+
+{%- capture drawer_about_item -%}
+  <li class="drawer-menu__item drawer-menu__item--emphasized drawer-menu__item--emphasized-last" data-list-item>
+    <a
+      class="drawer-menu__link{% if request.path == '/pages/about-us' %} active{% endif %}"
+      href="{{ drawer_about_url }}"
+      {% if request.path == '/pages/about-us' %}
+        aria-current="page"
+      {% endif %}
+    >
+      <span class="ff-heading fs-heading-2-large">{{ drawer_about_label }}</span>
+    </a>
+  </li>
+{%- endcapture -%}
 
 <div
   class="drawer-menu popover"
@@ -46,95 +55,23 @@
             <ul class="drawer-menu__primary-links drawer-menu-list--0" data-primary-container="true" data-depth="0">
               <!-- if primary doesn't exist but secondary does -->
               {%- if menu == blank and secondary_menu != blank -%}
-                {% render 'drawer-menu-list', links: secondary_links, emphasized: true %}
+                {% render 'drawer-menu-list',
+                  links: secondary_links,
+                  emphasized: true,
+                  has_following_emphasized: true
+                %}
+                {{ drawer_about_item }}
 
                 <!-- If scondary menu is different show both with primary first -->
               {%- elsif secondary_menu != blank and secondary_menu != menu -%}
-                {% render 'drawer-menu-list', links: links, emphasized: true %}
+                {% render 'drawer-menu-list', links: links, emphasized: true, has_following_emphasized: true %}
+                {{ drawer_about_item }}
                 {% render 'drawer-menu-list', links: secondary_links %}
 
                 <!-- If secondary menu doesnt exist only show main menu -->
               {%- else -%}
-                {% render 'drawer-menu-list', links: links, emphasized: true %}
-              {%- endif -%}
-
-              <li class="drawer-menu__item" data-list-item>
-                <a class="drawer-menu__link fs-body-large" href="{{ drawer_about_url }}">
-                  {{ drawer_about_label }}
-                </a>
-              </li>
-
-              <li class="drawer-menu__item drawer-menu__search-parent" data-list-item>
-                <a
-                  class="drawer-menu__link fs-body-large"
-                  href="#"
-                  data-item="parent"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  {{ 'sections.drawer_menu.search_title' | t }}
-                  {% render 'icon', icon: 'arrow-stroke', class: 'menu-icon' %}
-                </a>
-                <ul class="drawer-menu__list drawer-menu__list--sub" data-search-menu aria-hidden="true">
-                  <li class="drawer-menu__item drawer-menu__item--heading">
-                    <button class="drawer-menu__link" data-item="back">
-                      <span class="ff-heading fs-heading-2-large">
-                        {{ 'sections.drawer_menu.search_title' | t }}
-                      </span>
-                      {% render 'icon', icon: 'arrow-stroke', class: 'menu-icon' %}
-                    </button>
-                  </li>
-                  <li class="drawer-menu__search">
-                    <form action="{{ routes.search_url }}" autocomplete="off">
-                      <div class="drawer-menu__header">
-                        <div class="drawer-menu__search-input-wrapper">
-                          <label for="drawer-search" class="visually-hidden">
-                            {{- 'sections.drawer_menu.search_title' | t -}}
-                          </label>
-                          <input
-                            name="q"
-                            id="drawer-search"
-                            class="drawer-menu__search-input"
-                            placeholder="{{ 'sections.drawer_menu.search_title' | t }}"
-                            data-input
-                          >
-                          <input type="hidden" name="options[prefix]" value="last">
-                          <div class="drawer-menu__actions">
-                            <button
-                              class="drawer-menu__clear"
-                              type="button"
-                              data-search-clear
-                              aria-label="{{ 'search.clear_search' | t }}"
-                            >
-                              {% render 'icon', icon: 'close-stroke' %}
-                            </button>
-                            <button
-                              class="drawer-menu__submit"
-                              type="submit"
-                              data-search-submit
-                              aria-label="{{ 'search.search' | t }}"
-                            >
-                              {% render 'icon', icon: 'arrow-stroke' %}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="drawer-menu__search-results" data-scroll-lock-ignore data-search-results></div>
-                    </form>
-                  </li>
-                </ul>
-              </li>
-
-              {%- if account_visible -%}
-                <li class="drawer-menu__item" data-list-item>
-                  <a class="drawer-menu__link fs-body-large" href="{{ routes.account_url }}">
-                    {%- if customer -%}
-                      {{ 'sections.drawer_menu.account.logged_in' | t }}
-                    {% else %}
-                      {{ 'sections.drawer_menu.account.logged_out' | t }}
-                    {%- endif -%}
-                  </a>
-                </li>
+                {% render 'drawer-menu-list', links: links, emphasized: true, has_following_emphasized: true %}
+                {{ drawer_about_item }}
               {%- endif -%}
 
               {%- if language_visible or currency_visible -%}
@@ -239,6 +176,14 @@
                 {%- endform -%}
               {%- endif -%}
             </ul>
+
+            <div hidden aria-hidden="true">
+              <input type="search" data-input tabindex="-1">
+              <button type="button" data-search-clear tabindex="-1"></button>
+              <button type="button" data-search-submit tabindex="-1"></button>
+              <div data-search-results></div>
+              <div data-search-menu></div>
+            </div>
           </div>
         </div>
       </div>
