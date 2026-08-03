@@ -1,205 +1,566 @@
 {%- liquid
-  assign paginate_by = section.settings.articles_per_row | times: 3
-  assign columns = section.settings.articles_per_row
-  assign aspect_ratio = section.settings.aspect_ratio
-
-  assign image_is_constrained = true
-
-  if aspect_ratio == 'natural'
-    assign image_is_constrained = false
-  endif
-
-  case columns
-    when 2
-      assign article_heading_type = 'fs-heading-2-large'
-    when 3
-      assign article_heading_type = 'fs-heading-2-base'
-    when 4
-      assign article_heading_type = 'fs-heading-3-base'
-  endcase
+  assign journal_heading_font = settings.font_heading | font_modify: 'weight', 'bold'
+  assign paginate_by = section.settings.articles_per_page | default: 12
+  assign journal_klaviyo_form_id = section.settings.klaviyo_form_id | strip | default: 'XRwQkb'
 -%}
 
 {% paginate blog.articles by paginate_by %}
-  <div
-    class="
-      blog
-      blog--columns-{{ columns }}
-      blog--{{ aspect_ratio }}
-      page
-      {% if settings.enable_reveal_animations and section.settings.enable_animation %}
-        animation
-      {% endif %}
-    "
+  <section
+    class="journal{% if settings.enable_reveal_animations and section.settings.enable_animation %} animation{% endif %}"
     data-section-id="{{ section.id }}"
     data-section-type="blog"
   >
-    <div class="blog__inner page__inner">
-      <div class="blog__header page__header animation-fade-up-reveal">
-        <h1 class="blog__heading ff-heading fs-heading-1-base ta-c">
-          {{ page_title }}
-          {% if current_tags %} — {{ 'general.meta.tags' | t: tags: current_tags[0] }}{% endif %}
-        </h1>
+    <div class="journal__inner">
+      <header class="journal__header animation-fade-up-reveal">
+        <h1>{{ section.settings.heading | default: blog.title }}</h1>
 
-        {%- if section.settings.show_rss -%}
-          <a
-            class="blog__rss"
-            href="{{ blog.url | append: '.atom' }}"
-            aria-label="{{ 'general.accessibility.rss' | t }}"
-          >
-            {% render 'icon-button', icon: 'rss_feed' %}
-          </a>
+        {%- if section.settings.subheading != blank -%}
+          <p class="journal__subheading">{{ section.settings.subheading }}</p>
         {%- endif -%}
-      </div>
 
-      <ul class="blog__article-list">
-        {%- for article in blog.articles -%}
-          <li class="blog__article-item animation-fade-up-reveal">
-            {%- if article.image != blank -%}
-              <a href="{{ article.url }}" class="hover">
-                {% render 'image',
-                  image: article.image,
-                  wrapper_class: 'blog__article-image',
-                  disable_style: image_is_constrained
-                %}
-              </a>
-            {%- else -%}
-              <div class="blog__article-image placeholder-image">
-                {{ 'image' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- if section.settings.intro != blank -%}
+          <div class="journal__intro rte">{{ section.settings.intro }}</div>
+        {%- endif -%}
+      </header>
+
+      {%- if blog.articles_count > 0 -%}
+        <div class="journal__grid">
+          {%- for article in blog.articles -%}
+            {%- liquid
+              assign pattern_position = forloop.index0 | modulo: 7
+              assign card_layout = 'full'
+              if pattern_position == 2 or pattern_position == 3
+                assign card_layout = 'half'
+              elsif pattern_position > 3
+                assign card_layout = 'third'
+              endif
+
+              assign article_number = paginate.current_offset | plus: forloop.index
+            -%}
+
+            <article class="journal-card journal-card--{{ card_layout }} animation-fade-up-reveal">
+              <div class="journal-card__media">
+                {%- if article.image != blank -%}
+                  <img
+                    src="{{ article.image | image_url: width: 1800 }}"
+                    srcset="
+                      {{ article.image | image_url: width: 600 }} 600w,
+                      {{ article.image | image_url: width: 1000 }} 1000w,
+                      {{ article.image | image_url: width: 1400 }} 1400w,
+                      {{ article.image | image_url: width: 1800 }} 1800w
+                    "
+                    sizes="{% if card_layout == 'third' %}(min-width: 64em) 33vw, (min-width: 48em) 50vw, 100vw{% elsif card_layout == 'half' %}(min-width: 48em) 50vw, 100vw{% else %}100vw{% endif %}"
+                    alt="{{ article.image.alt | default: article.title | escape }}"
+                    width="{{ article.image.width }}"
+                    height="{{ article.image.height }}"
+                    loading="{% if forloop.index <= 2 %}eager{% else %}lazy{% endif %}"
+                  >
+                {%- else -%}
+                  <div class="journal-card__placeholder">
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {%- endif -%}
               </div>
-            {%- endif -%}
 
-            <div class="blog__meta {% if article.image == blank %}blog__meta--no-image{% endif %}">
-              {%- for block in section.blocks -%}
-                {%- case block.type -%}
-                  {%- when 'title' -%}
-                    <h3
-                      class="blog__article-title ff-heading {{ article_heading_type }} ta-c"
-                      {{ block.shopify_attributes }}
-                    >
-                      <a href="{{ article.url }}">{{ article.title }}</a>
-                    </h3>
+              <div class="journal-card__overlay" aria-hidden="true"></div>
 
-                    {%- if block.settings.show_date -%}
-                      <p class="blog__date fs-body-base ta-c">
-                        {{ article.published_at | time_tag: format: 'date' }}
-                      </p>
-                    {%- endif -%}
-                  {%- when 'summary' -%}
-                    <p class="blog__article-excerpt ff-body fs-body-base ta-c">
-                      {{ article.excerpt_or_content | strip_html | truncate: 120 }}
-                      {%- if block.settings.show_link -%}
-                        <a href="{{ article.url }}" class="btn btn--text-link">{{ 'sections.blog_posts.more' | t }}</a>
-                      {%- endif -%}
-                    </p>
-                {%- endcase -%}
-              {%- endfor -%}
-            </div>
-          </li>
-        {%- endfor -%}
-      </ul>
+              <div class="journal-card__content">
+                <p class="journal-card__eyebrow">
+                  {{ section.settings.article_label }}
+                  {% if article_number < 10 %}00{% elsif article_number < 100 %}0{% endif %}{{ article_number }}
+                </p>
 
-      <div class="blog__pagination animation-fade-up-reveal">
-        {% if paginate.pages > 1 %}
+                <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+
+                {%- if section.settings.show_excerpt -%}
+                  <p class="journal-card__excerpt">
+                    {{ article.excerpt_or_content | strip_html | truncatewords: 24 }}
+                  </p>
+                {%- endif -%}
+
+                <a class="journal-card__link" href="{{ article.url }}">
+                  {{ section.settings.link_label }}
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="journal__empty">No journal entries have been published yet.</p>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        <div class="journal__pagination animation-fade-up-reveal">
           {% render 'pagination', paginate: paginate, type: 'general.pagination.blog_posts' %}
-        {% else %}
-          {% render 'pagination',
-            paginate: paginate,
-            type: 'general.pagination.blog_posts',
-            display_paginate_item_count_only: true
-          %}
-        {% endif %}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="journal-signup animation-fade-up-reveal">
+      <div class="journal-signup__inner">
+        {%- if section.settings.signup_heading != blank -%}
+          <h2>{{ section.settings.signup_heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.signup_text != blank -%}
+          <div class="journal-signup__text rte">{{ section.settings.signup_text }}</div>
+        {%- endif -%}
+
+        <div class="journal-signup__form">
+          <div class="klaviyo-form-{{ journal_klaviyo_form_id }}"></div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 {% endpaginate %}
+
+<style>
+  {{ journal_heading_font | font_face: font_display: 'swap' }}
+
+  .journal {
+    color: var(--color-text);
+    background: var(--color-background);
+  }
+
+  .journal__inner {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(48px, 6vw, 88px) var(--space-outer);
+    box-sizing: border-box;
+  }
+
+  .journal__header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto clamp(36px, 5vw, 64px);
+    text-align: center;
+  }
+
+  .journal__header h1 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 3.1vw, 48px);
+    font-style: normal;
+    font-weight: {{ journal_heading_font.weight | default: 700 }};
+    line-height: 1;
+    letter-spacing: var(--font-heading-base-letter-spacing);
+    text-transform: uppercase;
+  }
+
+  .journal__subheading {
+    margin: var(--spacing-medium) 0 0;
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-style: italic;
+    font-weight: var(--font-body-weight);
+    line-height: 1.25;
+  }
+
+  .journal__intro {
+    max-width: 440px;
+    margin-top: var(--spacing-medium);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  .journal__intro p {
+    margin: 0;
+  }
+
+  .journal__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(8px, 1vw, 16px);
+  }
+
+  .journal-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    color: #ffffff;
+    background: #181818;
+    isolation: isolate;
+  }
+
+  .journal-card--full {
+    grid-column: 1 / -1;
+    min-height: clamp(300px, 34vw, 460px);
+  }
+
+  .journal-card--half {
+    min-height: clamp(300px, 30vw, 410px);
+  }
+
+  .journal-card--third {
+    min-height: clamp(280px, 24vw, 340px);
+  }
+
+  .journal-card__media,
+  .journal-card__overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .journal-card__media img,
+  .journal-card__placeholder,
+  .journal-card__placeholder svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .journal-card__media img {
+    object-fit: cover;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .journal-card__placeholder svg {
+    background: #262626;
+    fill: #555555;
+  }
+
+  .journal-card__overlay {
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.5) 38%, rgba(0, 0, 0, 0.05) 78%);
+  }
+
+  .journal-card__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: min(430px, 72%);
+    min-height: inherit;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(28px, 5vw, 72px);
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  .journal-card__eyebrow {
+    margin: 0 0 var(--spacing-medium);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .journal-card h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(30px, 4vw, 58px);
+    font-style: normal;
+    font-weight: {{ journal_heading_font.weight | default: 700 }};
+    line-height: 0.95;
+    letter-spacing: var(--font-heading-base-letter-spacing);
+    text-transform: uppercase;
+  }
+
+  .journal-card--half h2 {
+    font-size: clamp(28px, 3.2vw, 44px);
+  }
+
+  .journal-card--third .journal-card__content {
+    width: 100%;
+    padding: clamp(24px, 3vw, 40px);
+  }
+
+  .journal-card--third h2 {
+    font-size: clamp(24px, 2.3vw, 34px);
+  }
+
+  .journal-card--third .journal-card__overlay {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.84) 0%, rgba(0, 0, 0, 0.48) 60%, rgba(0, 0, 0, 0.12) 100%);
+  }
+
+  .journal-card h2 a,
+  .journal-card__link {
+    color: currentColor;
+    text-decoration: none;
+  }
+
+  .journal-card__excerpt {
+    max-width: 350px;
+    margin: var(--spacing-large) 0 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  .journal-card__link {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    gap: 10px;
+    margin-top: var(--spacing-large);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .journal-card__link::after {
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 250ms ease;
+  }
+
+  .journal-card:hover .journal-card__media img {
+    transform: scale(1.025);
+  }
+
+  .journal-card__link:hover::after,
+  .journal-card__link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .journal__empty {
+    padding: var(--spacing-extra-extra-large) 0;
+    font-family: var(--font-body);
+    text-align: center;
+  }
+
+  .journal__pagination {
+    margin-top: var(--spacing-extra-extra-large);
+  }
+
+  .journal-signup {
+    width: 100%;
+    padding: clamp(48px, 6vw, 80px) var(--space-outer);
+    color: var(--color-text);
+    background: var(--color-background);
+    box-sizing: border-box;
+  }
+
+  .journal-signup__inner {
+    display: flex;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .journal-signup h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 3.1vw, 48px);
+    font-style: normal;
+    font-weight: {{ journal_heading_font.weight | default: 700 }};
+    line-height: 1;
+    letter-spacing: var(--font-heading-base-letter-spacing);
+    text-transform: uppercase;
+  }
+
+  .journal-signup__text {
+    max-width: 520px;
+    margin-top: var(--spacing-medium);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--font-body-weight);
+    line-height: 1.35;
+  }
+
+  .journal-signup__text p {
+    margin: 0;
+  }
+
+  .journal-signup__form,
+  .journal-signup__form .klaviyo-form-{{ journal_klaviyo_form_id }} {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .journal-signup__form {
+    min-height: 52px;
+    margin-top: var(--spacing-medium);
+  }
+
+  .journal-signup__form .klaviyo-form-{{ journal_klaviyo_form_id }},
+  .journal-signup__form .klaviyo-form-{{ journal_klaviyo_form_id }} form {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .journal-signup__form .klaviyo-form-{{ journal_klaviyo_form_id }} > div,
+  .journal-signup__form .klaviyo-form-{{ journal_klaviyo_form_id }} [data-testid="form-row"],
+  .journal-signup__form .klaviyo-form-{{ journal_klaviyo_form_id }} [data-testid="form-component"] {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background: transparent !important;
+  }
+
+  @media screen and (min-width: 64em) {
+    .journal__grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .journal-card--full {
+      grid-column: 1 / -1;
+    }
+
+    .journal-card--half {
+      grid-column: span 3;
+    }
+
+    .journal-card--third {
+      grid-column: span 2;
+    }
+  }
+
+  @media screen and (max-width: 48em) {
+    .journal__inner {
+      padding-top: var(--spacing-extra-large);
+      padding-bottom: var(--spacing-extra-large);
+    }
+
+    .journal__header h1 {
+      font-size: 32px;
+    }
+
+    .journal__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .journal-card--full,
+    .journal-card--half,
+    .journal-card--third {
+      grid-column: 1;
+      min-height: 340px;
+    }
+
+    .journal-card__content {
+      width: min(360px, 88%);
+      padding: var(--spacing-extra-large) var(--spacing-large);
+    }
+
+    .journal-card h2,
+    .journal-card--half h2,
+    .journal-card--third h2 {
+      font-size: clamp(30px, 10vw, 42px);
+    }
+
+    .journal-card__overlay {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.48) 58%, rgba(0, 0, 0, 0.1) 100%);
+    }
+
+    .journal-signup {
+      padding-top: var(--spacing-extra-extra-large);
+      padding-bottom: var(--spacing-extra-extra-large);
+    }
+
+    .journal-signup h2 {
+      font-size: 32px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .journal-card__media img,
+    .journal-card__link::after {
+      transition: none;
+    }
+  }
+</style>
 
 {% schema %}
 {
-  "name": "t:sections.main_blog.name",
+  "name": "Journal",
   "tag": "section",
-  "class": "spaced-section",
+  "class": "journal-section",
   "settings": [
     {
-      "id": "show_rss",
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Journal"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Building EZENTI, one decision at a time."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Every piece has a story.<br>So does the brand creating it.</p>"
+    },
+    {
+      "type": "text",
+      "id": "article_label",
+      "label": "Article label",
+      "default": "Chapter"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Article link label",
+      "default": "Read chapter"
+    },
+    {
       "type": "checkbox",
-      "label": "t:sections.main_blog.settings.show_rss.label",
+      "id": "show_excerpt",
+      "label": "Show article excerpt",
       "default": true
     },
     {
       "type": "range",
-      "id": "articles_per_row",
-      "label": "t:sections.main_blog.settings.articles_per_row.label",
-      "min": 2,
-      "max": 4,
-      "step": 1,
-      "default": 2
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 7,
+      "max": 28,
+      "step": 7,
+      "default": 14
     },
     {
       "type": "header",
-      "content": "t:sections.main_blog.settings.header.content"
+      "content": "Journal signup"
     },
     {
-      "type": "select",
-      "id": "aspect_ratio",
-      "options": [
-        {
-          "value": "natural",
-          "label": "t:sections.main_blog.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.main_blog.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "landscape",
-          "label": "t:sections.main_blog.settings.image_ratio.options__3.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.main_blog.settings.image_ratio.options__4.label"
-        }
-      ],
-      "default": "square",
-      "label": "t:sections.main_blog.settings.image_ratio.label"
+      "type": "text",
+      "id": "signup_heading",
+      "label": "Signup heading",
+      "default": "Stay close."
     },
     {
-      "type": "header",
-      "content": "t:shared.settings.section_style.header_style.content"
+      "type": "richtext",
+      "id": "signup_text",
+      "label": "Signup text",
+      "default": "<p>Some stories never make it to social media.<br>Receive new chapters, future releases and behind-the-scenes moments.</p>"
     },
     {
-      "id": "enable_animation",
+      "type": "text",
+      "id": "klaviyo_form_id",
+      "label": "Klaviyo embedded form ID",
+      "info": "Enter only the ID. Example: XRwQkb",
+      "default": "XRwQkb"
+    },
+    {
       "type": "checkbox",
-      "label": "t:shared.settings.section_style.enable_animation.label",
-      "info": "t:shared.settings.section_style.enable_animation.info",
+      "id": "enable_animation",
+      "label": "Enable animations",
       "default": true
-    }
-  ],
-  "blocks": [
-    {
-      "type": "title",
-      "name": "t:sections.main_blog.blocks.title.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_date",
-          "default": true,
-          "label": "t:sections.main_blog.blocks.title.settings.show_date.label"
-        }
-      ]
-    },
-    {
-      "type": "summary",
-      "name": "t:sections.main_blog.blocks.summary.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_link",
-          "default": true,
-          "label": "t:sections.main_blog.blocks.summary.settings.show_link.label"
-        }
-      ]
     }
   ]
 }

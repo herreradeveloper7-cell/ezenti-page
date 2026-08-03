@@ -25,7 +25,7 @@
               {{ block.settings.image | image_url: width: 1000 }} 1000w,
               {{ block.settings.image | image_url: width: 1500 }} 1500w
             "
-            sizes="(min-width: 48em) 50vw, 100vw"
+            sizes="100vw"
             alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"
             width="{{ block.settings.image.width }}"
             height="{{ block.settings.image.height }}"
@@ -73,7 +73,7 @@
 
   .about-collections__inner {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     width: 100%;
     box-sizing: border-box;
   }
@@ -81,7 +81,7 @@
   .about-collections__card {
     position: relative;
     min-width: 0;
-    min-height: clamp(420px, 42vw, 620px);
+    min-height: clamp(340px, 32vw, 460px);
     overflow: hidden;
     color: var(--card-text-color);
     background: var(--color-card-background);
@@ -139,19 +139,37 @@
   }
 
   .about-collections__card:first-child .about-collections__content {
-    padding-right: var(--space-outer);
-    padding-left: max(
-      var(--space-outer),
-      calc((100vw - var(--max-width)) / 2 + var(--space-outer))
-    );
-  }
-
-  .about-collections__card:last-child .about-collections__content {
     padding-right: max(
       var(--space-outer),
       calc((100vw - var(--max-width)) / 2 + var(--space-outer))
     );
     padding-left: var(--space-outer);
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .about-collections__card:last-child .about-collections__content {
+    padding-right: var(--space-outer);
+    padding-left: max(
+      var(--space-outer),
+      calc((100vw - var(--max-width)) / 2 + var(--space-outer))
+    );
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .about-collections__card:first-child .about-collections__shade {
+    background: linear-gradient(
+      270deg,
+      var(--card-overlay-color) 0%,
+      var(--card-overlay-color) 28%,
+      transparent 78%
+    );
+  }
+
+  .about-collections__card:first-child .about-collections__text,
+  .about-collections__card:first-child .about-collections__link {
+    text-align: right;
   }
 
   .about-collections__content h2 {
@@ -231,7 +249,7 @@
 
   @media screen and (max-width: 64em) {
     .about-collections__card {
-      min-height: 500px;
+      min-height: 420px;
     }
 
     .about-collections__content {
@@ -241,17 +259,22 @@
   }
 
   @media screen and (max-width: 48em) {
-    .about-collections__inner {
-      grid-template-columns: 1fr;
-    }
-
     .about-collections__card {
-      min-height: 460px;
+      min-height: 380px;
     }
 
     .about-collections__shade {
       background: linear-gradient(
         90deg,
+        var(--card-overlay-color) 0%,
+        var(--card-overlay-color) 35%,
+        transparent 90%
+      );
+    }
+
+    .about-collections__card:first-child .about-collections__shade {
+      background: linear-gradient(
+        270deg,
         var(--card-overlay-color) 0%,
         var(--card-overlay-color) 35%,
         transparent 90%
