@@ -2,6 +2,8 @@
   assign links = linklists[menu].links
   assign secondary_links = linklists[secondary_menu].links
 
+  assign drawer_journal_label = journal_link_label | default: 'THE JOURNAL'
+  assign drawer_journal_url = journal_link_url | default: '/blogs/news'
   assign drawer_about_label = about_link_label | default: 'ABOUT US'
   assign drawer_about_url = about_link_url | default: '/pages/about-us?view=about-us'
 
@@ -15,6 +17,20 @@
     assign currency_visible = true
   endif
 -%}
+
+{%- capture drawer_journal_item -%}
+  <li class="drawer-menu__item drawer-menu__item--emphasized" data-list-item>
+    <a
+      class="drawer-menu__link{% if request.path == '/blogs/news' %} active{% endif %}"
+      href="{{ drawer_journal_url }}"
+      {% if request.path == '/blogs/news' %}
+        aria-current="page"
+      {% endif %}
+    >
+      <span class="ff-heading fs-heading-2-large">{{ drawer_journal_label }}</span>
+    </a>
+  </li>
+{%- endcapture -%}
 
 {%- capture drawer_about_item -%}
   <li class="drawer-menu__item drawer-menu__item--emphasized drawer-menu__item--emphasized-last" data-list-item>
@@ -60,17 +76,20 @@
                   emphasized: true,
                   has_following_emphasized: true
                 %}
+                {{ drawer_journal_item }}
                 {{ drawer_about_item }}
 
                 <!-- If scondary menu is different show both with primary first -->
               {%- elsif secondary_menu != blank and secondary_menu != menu -%}
                 {% render 'drawer-menu-list', links: links, emphasized: true, has_following_emphasized: true %}
+                {{ drawer_journal_item }}
                 {{ drawer_about_item }}
                 {% render 'drawer-menu-list', links: secondary_links %}
 
                 <!-- If secondary menu doesnt exist only show main menu -->
               {%- else -%}
                 {% render 'drawer-menu-list', links: links, emphasized: true, has_following_emphasized: true %}
+                {{ drawer_journal_item }}
                 {{ drawer_about_item }}
               {%- endif -%}
 

@@ -19,6 +19,8 @@
 
   assign links = linklists[menu].links
   assign secondary_links = linklists[secondary_menu].links
+  assign journal_link_label = section.settings.journal_link_label | default: 'THE JOURNAL'
+  assign journal_link_url = section.settings.journal_link_url | default: '/blogs/news'
   assign about_link_label = section.settings.about_link_label | default: 'ABOUT US'
   assign about_link_url = section.settings.about_link_url | default: '/pages/about-us?view=about-us'
 
@@ -104,6 +106,18 @@
     {% endif %}
   >
     {{ about_link_label }}
+  </a>
+{%- endcapture -%}
+
+{%- capture journal_link -%}
+  <a
+    class="header__about-link fs-navigation-base no-transition{% if request.path == '/blogs/news' %} active{% endif %}"
+    href="{{ journal_link_url }}"
+    {% if request.path == '/blogs/news' %}
+      aria-current="page"
+    {% endif %}
+  >
+    {{ journal_link_label }}
   </a>
 {%- endcapture -%}
 
@@ -194,6 +208,7 @@
       {{ header_logo }}
     </div>
     <div class="header__right">
+      {{ journal_link }}
       {{ about_link }}
       {{ cart_icon }}
     </div>
@@ -232,6 +247,8 @@
     secondary_menu: secondary_menu,
     enable_locale_selector: enable_locale_selector,
     enable_country_selector: enable_country_selector,
+    journal_link_label: section.settings.journal_link_label,
+    journal_link_url: section.settings.journal_link_url,
     about_link_label: section.settings.about_link_label,
     about_link_url: section.settings.about_link_url
   %}
@@ -345,6 +362,21 @@
         { "value": "header", "label": "t:sections.header.settings.mobile_search_position.options__2" }
       ],
       "default": "menu"
+    },
+    {
+      "type": "header",
+      "content": "Journal link"
+    },
+    {
+      "id": "journal_link_label",
+      "type": "text",
+      "label": "Link text",
+      "default": "THE JOURNAL"
+    },
+    {
+      "id": "journal_link_url",
+      "type": "url",
+      "label": "Link URL"
     },
     {
       "type": "header",
