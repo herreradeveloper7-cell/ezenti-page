@@ -3,7 +3,6 @@
   const form = gate?.querySelector('[data-news-access-form]');
   const input = gate?.querySelector('[data-news-access-input]');
   const error = gate?.querySelector('[data-news-access-error]');
-  const storageKey = 'ezenti-news-access';
 
   if (!gate || !form || !input || !error) return;
 
@@ -13,14 +12,9 @@
     document.querySelector('#main')?.focus({ preventScroll: true });
   };
 
-  try {
-    if (window.sessionStorage.getItem(storageKey) === 'granted') {
-      unlock();
-      return;
-    }
-  } catch (error) {
-    // Access still works when browser storage is unavailable.
-  }
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) window.location.reload();
+  });
 
   input.focus({ preventScroll: true });
 
@@ -46,12 +40,6 @@
       form.classList.add('is-invalid');
       input.select();
       return;
-    }
-
-    try {
-      window.sessionStorage.setItem(storageKey, 'granted');
-    } catch (error) {
-      // Unlock the current page even when storage is unavailable.
     }
 
     unlock();
