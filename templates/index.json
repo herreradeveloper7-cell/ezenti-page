@@ -23,8 +23,8 @@
         "button": {
           "type": "button",
           "settings": {
-            "link_text": "ENTER THE DROP",
-            "link": "shopify://collections/collector-edition"
+            "link_text": "ENTER COLLECTION",
+            "link": "shopify://collections/frontpage"
           }
         }
       },
@@ -37,7 +37,7 @@
         "desktop_height": 100,
         "mobile_height": 80,
         "video_url": "",
-        "image": "shopify://shop_images/1._1er_Banner_Header_Home.png",
+        "image": "shopify://shop_images/IMG_8306_1.jpg",
         "alignment": "center_center",
         "overlay_shadow": 10,
         "color_text": "#ffffff",
@@ -45,7 +45,7 @@
         "color_text_button": "#ffffff",
         "color_overlay": "#000000",
         "color_overlay_gradient": "",
-        "overlay_opacity": 16,
+        "overlay_opacity": 10,
         "enable_animation": true
       }
     },
@@ -57,9 +57,9 @@
         "max_products": 5,
         "columns": 3,
         "title": "COLLECTOR EDITION",
-        "subheading": "<p>Each piece exists once. When it's gone, it's gone.</p>",
+        "subheading": "<p>Created once. Never repeated. Each piece exists only once. When it's gone, it's gone.</p>",
         "link_text": "",
-        "text_max_width": 24,
+        "text_max_width": 30,
         "aspect_ratio": "portrait",
         "enable_animation": true,
         "section_contrast": false,
@@ -97,7 +97,7 @@
         "heading_Y7fNyV": {
           "type": "heading",
           "settings": {
-            "title": "DEFINED BY ESSENZ",
+            "title": "EZENTI",
             "heading_text_size": 64,
             "text_max_width": 40
           }
@@ -119,10 +119,10 @@
         "video_aspect": "custom",
         "desktop_height": 80,
         "mobile_height": 55,
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/19cdd3b4b9364ef2b7ccb8ac156f5644.mp4",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/8408696fb3ae47d6bf330c38338e41fe.mp4",
         "image": "shopify://shop_images/24._Banner_Header_Seccion_VIEW_THE_LOOK_BOOK.jpg",
         "alignment": "left_center",
-        "overlay_shadow": 20,
+        "overlay_shadow": 0,
         "color_text": "#ffffff",
         "color_background_button": "#ffffff",
         "color_text_button": "#181818",
@@ -156,25 +156,25 @@
         "hotspot_fGLdjD": {
           "type": "hotspot",
           "settings": {
-            "product_item": "essence-rising-oversized-crewneck-black",
-            "horizontal_position": 35,
-            "vertical_position": 77
+            "product_item": "ezenti-oversized-crewneck-signature",
+            "horizontal_position": 65,
+            "vertical_position": 65
           }
         },
         "hotspot_eWwjrx": {
           "type": "hotspot",
           "settings": {
-            "product_item": "defined-by-essenz-oversized-t-shirt-white",
-            "horizontal_position": 49,
-            "vertical_position": 57
+            "product_item": "ezenti-oversized-crewneck-core",
+            "horizontal_position": 40,
+            "vertical_position": 70
           }
         },
         "hotspot_zeKP7R": {
           "type": "hotspot",
           "settings": {
-            "product_item": "defined-by-essenz-oversized-hoodie-black",
-            "horizontal_position": 29,
-            "vertical_position": 36
+            "product_item": "ezenti-oversized-t-shirt-defined",
+            "horizontal_position": 42,
+            "vertical_position": 34
           }
         }
       },
@@ -184,7 +184,7 @@
         "hotspot_zeKP7R"
       ],
       "settings": {
-        "image": "shopify://shop_images/3._Portada_SHOP_THE_COLLECTION_Home.jpg",
+        "image": "shopify://shop_images/Photo_Shoppable_Feature.jpg",
         "image_position": "right",
         "image_width": "two-thirds",
         "aspect_ratio": "portrait",
@@ -249,7 +249,7 @@
         "medium_square": {
           "type": "medium_square",
           "settings": {
-            "image": "shopify://shop_images/4._Portada_Cuadrada_OUR_STORY_Home.jpg",
+            "image": "shopify://shop_images/01.24.26.72.jpg",
             "video_url": "",
             "media_fit": "cover",
             "focal_point": "left_top",
@@ -272,7 +272,7 @@
         "medium_vertical_rect": {
           "type": "medium_vertical_rect",
           "settings": {
-            "image": "shopify://shop_images/5._Portada_LOOK_BOOK_Home.png",
+            "image": "shopify://shop_images/IMG_8149_8caa9cf3-b045-498c-ac7d-cea405717067.jpg",
             "video_url": "",
             "media_fit": "cover",
             "focal_point": "center_center",

@@ -1,10 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "about-us-hero",
       "settings": {
         "heading": "EZENTI was created by two people who believed clothing could communicate something deeper than appearance.",
-        "text": "<p>We never set out to create fashion for the sake of fashion.</p><p>We set out to build something that reflected intention over attention, where every garment began with an idea before it became a product.</p><p>Every decision we make; from the concepts we explore to the fabrics we choose, is guided by that same belief.</p><p>Because what we wear should never speak louder than the person wearing it.</p>"
+        "text": "<p>We never set out to create fashion for the sake of fashion.</p><p>We set out to build something that reflected intention over attention, where every garment began with an idea before it became a product.</p><p>Every decision we make; from the concepts we explore to the fabrics we choose, is guided by that same belief.</p><p>Because what we wear should never speak louder than the person wearing it.</p>",
+        "image": "shopify://shop_images/ABOUT_US_1.jpg"
       }
     },
     "pillars": {
@@ -37,7 +47,9 @@
         "process",
         "story"
       ],
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/IMG_8031.jpg"
+      }
     },
     "principles": {
       "type": "about-us-principles",
@@ -110,6 +122,7 @@
         "founder_one": {
           "type": "founder",
           "settings": {
+            "image": "shopify://shop_images/ABOUT_US_3.jpg",
             "name": "",
             "text": "<p>Approaches EZENTI through visual storytelling, graphic design, symbolism, and form.</p><p>His perspective guides the creative language of the brand and the concept behind every piece.</p>"
           }
@@ -117,6 +130,7 @@
         "founder_two": {
           "type": "founder",
           "settings": {
+            "image": "shopify://shop_images/ABOUT_US_4.jpg",
             "name": "",
             "text": "<p>Approaches EZENTI through structure, consumer experience, and business development.</p><p>Her perspective connects the creative vision with the way the brand is built, communicated, and experienced.</p>"
           }
@@ -138,6 +152,7 @@
         "idea": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/IMG_8513_43fbdbd4-ef36-41d4-92db-2a51b9986990.jpg",
             "heading": "Idea",
             "text": "<p>Every piece begins with a thought, a question, or a human experience.</p>"
           }
@@ -145,6 +160,7 @@
         "design": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-07-27_024810.jpg",
             "heading": "Design",
             "text": "<p>That idea is translated through graphics, proportion, material, and construction.</p>"
           }
@@ -152,6 +168,7 @@
         "garment": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/01.24.26.139.jpg",
             "heading": "Garment",
             "text": "<p>The final garment carries the concept without dictating how it should be interpreted.</p>"
           }
@@ -172,25 +189,27 @@
         "core_collections": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/ABOUT_US_7.jpg",
             "heading": "The Core Collections",
             "subheading": "Built to evolve.",
             "text": "<p>The Core Collection forms the foundation of EZENTI.</p><p>As new collections are introduced, selected pieces remain—creating a permanent evolution of the brand.</p>",
             "link_label": "Explore Collections",
-            "link_url": "/collections/frontpage",
-            "text_color": "#111111",
-            "overlay_color": "#ffffff"
+            "link_url": "shopify://collections/frontpage",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000"
           }
         },
         "ezenti_series": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/ABOUT_US_8.jpg",
             "heading": "EZENTI Series",
             "subheading": "Built to tell stories.",
             "text": "<p>EZENTI Series is home to our Collector Editions.</p><p>Each release explores a singular concept through original artwork, storytelling, and a numbered edition of 100 pieces.</p><p>Once every piece is claimed, that edition becomes part of the permanent EZENTI archive.</p>",
             "link_label": "Explore the Series",
-            "link_url": "/collections/collector-edition",
-            "text_color": "#111111",
-            "overlay_color": "#ffffff"
+            "link_url": "/collections/collector-edition?view=collector-edition",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000"
           }
         }
       },

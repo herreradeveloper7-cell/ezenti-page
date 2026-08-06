@@ -1,7 +1,13 @@
 <nav>
   <ul>
     {% for link in linklists[menu].links %}
-      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- liquid
+        assign no_js_link_url = link.url
+        if link.url contains '/collections/collector-edition'
+          assign no_js_link_url = '/collections/collector-edition?view=collector-edition'
+        endif
+      -%}
+      <li><a href="{{ no_js_link_url }}">{{ link.title }}</a></li>
       {% for sub_link in link.links %}
         <li><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></li>
         {% for sub_sub_link in sub_link.links %}
@@ -16,7 +22,13 @@
     {%- if secondary_menu != blank-%}
       
       {% for link in linklists[secondary_menu].links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {%- liquid
+          assign no_js_link_url = link.url
+          if link.url contains '/collections/collector-edition'
+            assign no_js_link_url = '/collections/collector-edition?view=collector-edition'
+          endif
+        -%}
+        <li><a href="{{ no_js_link_url }}">{{ link.title }}</a></li>
         {% for sub_link in link.links %}
           <li><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></li>
           {% for sub_sub_link in sub_link.links %}
