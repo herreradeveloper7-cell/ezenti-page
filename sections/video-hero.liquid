@@ -8,6 +8,11 @@
   assign enable_text_overlay = true
   assign video_aspect = section.settings.video_aspect
   assign disable_style = true
+  assign eager_image = false
+
+  if section.index == 1
+    assign eager_image = true
+  endif
 
   if video_aspect == 'original' and video_url == blank
     assign disable_style = false
@@ -64,11 +69,32 @@
             image: image_overlay,
             focal_point: 'image_presentation',
             disable_style: disable_style,
-            wrapper_class: 'video-hero__image'
+            wrapper_class: 'video-hero__image',
+            eager: eager_image
           %}
         {%- endif -%}
 
-        <video class="video-hero__video" autoplay playsinline loop muted src="{{ video_url }}"></video>
+        {%- if eager_image -%}
+          <video
+            class="video-hero__video"
+            autoplay
+            playsinline
+            loop
+            muted
+            preload="metadata"
+            src="{{ video_url }}"
+          ></video>
+        {%- else -%}
+          <video
+            class="video-hero__video"
+            playsinline
+            loop
+            muted
+            preload="none"
+            data-lazy-video
+            data-src="{{ video_url }}"
+          ></video>
+        {%- endif -%}
         {% render 'video-pause' %}
       {%- else -%}
         {%- if image_overlay != blank -%}
@@ -76,7 +102,8 @@
             image: image_overlay,
             focal_point: 'image_presentation',
             disable_style: disable_style,
-            wrapper_class: 'video-hero__image'
+            wrapper_class: 'video-hero__image',
+            eager: eager_image
           %}
         {%- else -%}
           <div class="placeholder-image">
@@ -192,7 +219,6 @@
     {
       "type": "url",
       "id": "video_url",
-      "label": "Video link",
       "label": "t:sections.video_hero.settings.video_url.label",
       "info": "t:sections.video_hero.settings.video_url.info"
     },

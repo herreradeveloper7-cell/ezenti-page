@@ -3,9 +3,9 @@
   assign secondary_links = linklists[secondary_menu].links
 
   assign drawer_journal_label = journal_link_label | default: 'THE JOURNAL'
-  assign drawer_journal_url = journal_link_url | default: '/blogs/news'
+  assign drawer_journal_url = journal_link_url | default: '/blogs/the-journal'
   assign drawer_about_label = about_link_label | default: 'ABOUT US'
-  assign drawer_about_url = about_link_url | default: '/pages/about-us?view=about-us'
+  assign drawer_about_url = about_link_url | default: '/pages/about-us'
 
   assign language_visible = false
   if enable_locale_selector and shop.published_locales.size > 1
@@ -21,9 +21,9 @@
 {%- capture drawer_journal_item -%}
   <li class="drawer-menu__item drawer-menu__item--emphasized" data-list-item>
     <a
-      class="drawer-menu__link{% if request.path == '/blogs/news' %} active{% endif %}"
+      class="drawer-menu__link{% if request.path == '/blogs/the-journal' %} active{% endif %}"
       href="{{ drawer_journal_url }}"
-      {% if request.path == '/blogs/news' %}
+      {% if request.path == '/blogs/the-journal' %}
         aria-current="page"
       {% endif %}
     >

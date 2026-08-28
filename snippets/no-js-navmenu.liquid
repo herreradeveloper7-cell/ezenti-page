@@ -4,7 +4,7 @@
       {%- liquid
         assign no_js_link_url = link.url
         if link.url contains '/collections/collector-edition'
-          assign no_js_link_url = '/collections/collector-edition?view=collector-edition'
+          assign no_js_link_url = '/collections/ezenti-series'
         endif
       -%}
       <li><a href="{{ no_js_link_url }}">{{ link.title }}</a></li>
@@ -25,7 +25,7 @@
         {%- liquid
           assign no_js_link_url = link.url
           if link.url contains '/collections/collector-edition'
-            assign no_js_link_url = '/collections/collector-edition?view=collector-edition'
+            assign no_js_link_url = '/collections/ezenti-series'
           endif
         -%}
         <li><a href="{{ no_js_link_url }}">{{ link.title }}</a></li>

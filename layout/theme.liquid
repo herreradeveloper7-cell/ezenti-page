@@ -23,7 +23,7 @@
 
 {%- liquid
   assign news_access_required = false
-  if request.page_type == 'blog' and blog.handle == 'news'
+  if request.page_type == 'blog' and blog.handle == 'the-journal'
     assign news_access_required = true
   endif
 -%}
@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
     {%- if settings.favicon != blank -%}
-      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png">
     {%- endif -%}
 
     {%- capture seo_title -%}
@@ -124,8 +124,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% render 'quick-add-modal' %}
       {% endif %}
     </div>
-
-    {{ '//www.youtube.com/iframe_api' | script_tag }}
-    {{ '//cdn.shopify.com/shopifycloud/shopify-plyr/v1.0/shopify-plyr.css' | stylesheet_tag }}
   </body>
 </html>

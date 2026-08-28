@@ -194,7 +194,7 @@
             "subheading": "Built to evolve.",
             "text": "<p>The Core Collection forms the foundation of EZENTI.</p><p>As new collections are introduced, selected pieces remain—creating a permanent evolution of the brand.</p>",
             "link_label": "Explore Collections",
-            "link_url": "shopify://collections/frontpage",
+            "link_url": "shopify://collections/core-collection",
             "text_color": "#ffffff",
             "overlay_color": "#000000"
           }
@@ -207,7 +207,7 @@
             "subheading": "Built to tell stories.",
             "text": "<p>EZENTI Series is home to our Collector Editions.</p><p>Each release explores a singular concept through original artwork, storytelling, and a numbered edition of 100 pieces.</p><p>Once every piece is claimed, that edition becomes part of the permanent EZENTI archive.</p>",
             "link_label": "Explore the Series",
-            "link_url": "/collections/collector-edition?view=collector-edition",
+            "link_url": "shopify://collections/ezenti-series",
             "text_color": "#ffffff",
             "overlay_color": "#000000"
           }

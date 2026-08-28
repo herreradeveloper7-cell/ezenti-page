@@ -87,7 +87,15 @@
   {%- endif -%}
 
   {%- if settings.video_url != blank -%}
-    <video class="mosaic-grid__item-video image" autoplay playsinline loop muted src="{{ settings.video_url }}"></video>
+    <video
+      class="mosaic-grid__item-video image"
+      playsinline
+      loop
+      muted
+      preload="none"
+      data-lazy-video
+      data-src="{{ settings.video_url }}"
+    ></video>
     {%- render 'video-pause' -%}
   {% endif %}
 
@@ -98,11 +106,6 @@
       </div>
     {%- endif -%}
   {%- endif -%}
-
-  {%- if settings.text != blank -%}
-    <video class="mosaic-grid__item-video image" autoplay playsinline loop muted src="{{ settings.video_url }}"></video>
-    {%- render 'video-pause' -%}
-  {% endif %}
 
   <div
     class="mosaic-grid__item-fill"

@@ -82,6 +82,46 @@
     });
   }
 
+  function initLazyVideos() {
+    var videos = document.querySelectorAll('video[data-lazy-video]');
+    if (!videos.length) return;
+
+    function loadVideo(video) {
+      if (video.dataset.loaded === 'true') return;
+
+      var source = video.dataset.src;
+      if (!source) return;
+
+      video.dataset.loaded = 'true';
+      video.src = source;
+      video.removeAttribute('data-src');
+      video.load();
+
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(function () {});
+      }
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      videos.forEach(loadVideo);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+
+        loadVideo(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '300px 0px' });
+
+    videos.forEach(function (video) {
+      observer.observe(video);
+    });
+  }
+
   function formatCartMoney(amount) {
     var currency = window.Shopify && window.Shopify.currency
       ? window.Shopify.currency.active
@@ -183,8 +223,12 @@
   });
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHoverNavigation);
+    document.addEventListener('DOMContentLoaded', function () {
+      initHoverNavigation();
+      initLazyVideos();
+    });
   } else {
     initHoverNavigation();
+    initLazyVideos();
   }
 })();

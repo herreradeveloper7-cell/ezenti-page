@@ -20,9 +20,9 @@
   assign links = linklists[menu].links
   assign secondary_links = linklists[secondary_menu].links
   assign journal_link_label = section.settings.journal_link_label | default: 'THE JOURNAL'
-  assign journal_link_url = section.settings.journal_link_url | default: '/blogs/news'
+  assign journal_link_url = section.settings.journal_link_url | default: '/blogs/the-journal'
   assign about_link_label = section.settings.about_link_label | default: 'ABOUT US'
-  assign about_link_url = section.settings.about_link_url | default: '/pages/about-us?view=about-us'
+  assign about_link_url = section.settings.about_link_url | default: '/pages/about-us'
 
   assign secondary_menu_valid = false
 
@@ -111,9 +111,9 @@
 
 {%- capture journal_link -%}
   <a
-    class="header__about-link fs-navigation-base no-transition{% if request.path == '/blogs/news' %} active{% endif %}"
+    class="header__about-link fs-navigation-base no-transition{% if request.path == '/blogs/the-journal' %} active{% endif %}"
     href="{{ journal_link_url }}"
-    {% if request.path == '/blogs/news' %}
+    {% if request.path == '/blogs/the-journal' %}
       aria-current="page"
     {% endif %}
   >

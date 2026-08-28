@@ -120,8 +120,22 @@
                 <div class="footer__links fs-body-base">
                   <ul class="footer__links-list">
                     {%- for link in link_list -%}
+                      {%- liquid
+                        assign footer_link_url = link.url
+                        if footer_link_url contains '/collections/collector-edition'
+                          assign footer_link_url = '/collections/ezenti-series'
+                        elsif footer_link_url contains '/collections/frontpage'
+                          assign footer_link_url = '/collections/core-collection'
+                        elsif footer_link_url contains '/pages/lookbook'
+                          assign footer_link_url = '/pages/photobook'
+                        elsif footer_link_url contains '/pages/about-us?view=about-us'
+                          assign footer_link_url = '/pages/about-us'
+                        elsif footer_link_url contains '/blogs/news'
+                          assign footer_link_url = '/blogs/the-journal'
+                        endif
+                      -%}
                       <li class="footer__links-item">
-                        <a href="{{ link.url }}">{{ link.title }}</a>
+                        <a href="{{ footer_link_url }}">{{ link.title }}</a>
                       </li>
                     {%- endfor -%}
                   </ul>

@@ -4,7 +4,7 @@
       assign navigation_link_url = link.url
       assign navigation_link_title = link.title | strip | downcase
       if navigation_link_title == 'ezenti series'
-        assign navigation_link_url = '/collections/collector-edition?view=collector-edition'
+        assign navigation_link_url = '/collections/ezenti-series'
       endif
 
       if link.links.size > 0

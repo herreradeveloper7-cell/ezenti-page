@@ -24,7 +24,7 @@
           "type": "button",
           "settings": {
             "link_text": "ENTER COLLECTION",
-            "link": "shopify://collections/frontpage"
+            "link": "shopify://collections/core-collection"
           }
         }
       },
@@ -53,7 +53,7 @@
       "type": "featured-collection",
       "name": "t:sections.featured_collection.presets.name",
       "settings": {
-        "collection": "collector-edition",
+        "collection": "ezenti-series",
         "max_products": 5,
         "columns": 3,
         "title": "COLLECTOR EDITION",
@@ -136,7 +136,7 @@
       "type": "featured-collection",
       "name": "t:sections.featured_collection.presets.name",
       "settings": {
-        "collection": "frontpage",
+        "collection": "core-collection",
         "max_products": 12,
         "columns": 3,
         "title": "",
@@ -257,7 +257,7 @@
             "subheading": "<p>Your favorite piece is the garment<br/>closest to becoming fashion history.</p>",
             "text_max_width": 21,
             "link_text": "Read our story →",
-            "link": "shopify://pages/about",
+            "link": "shopify://pages/about-us",
             "text_position": "left_bottom",
             "background_color": "rgba(0,0,0,0)",
             "color_text": "#000000",
@@ -280,7 +280,7 @@
             "subheading": "<p>The silence between fashion and identity. Look without noise.</p>",
             "text_max_width": 21,
             "link_text": "View Photobook",
-            "link": "shopify://pages/lookbook",
+            "link": "shopify://pages/photobook",
             "text_position": "left_bottom",
             "background_color": "#c7b193",
             "color_text": "#000000",

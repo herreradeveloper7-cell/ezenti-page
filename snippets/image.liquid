@@ -36,15 +36,41 @@
   {%- if has_reveal or has_reveal_container -%}
     <div class="image__reveal-container">
   {%- endif -%}
-      <img
-        class="image__img lazyload{% if preload %} lazypreload{% endif %} {{ image_class }}"
-        src="{{ image | img_url: '300x300' }}"
-        data-src="{{ img_url }}"
-        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-        data-aspectratio="{{ aspect_ratio }}"
-        data-sizes="auto"
-        alt="{{ image.alt | escape }}"
-      >
+      {%- if eager -%}
+        <img
+          class="image__img {{ image_class }}"
+          src="{{ image | img_url: '1296x' }}"
+          srcset="
+            {{ image | img_url: '360x' }} 360w,
+            {{ image | img_url: '540x' }} 540w,
+            {{ image | img_url: '720x' }} 720w,
+            {{ image | img_url: '900x' }} 900w,
+            {{ image | img_url: '1080x' }} 1080w,
+            {{ image | img_url: '1296x' }} 1296w,
+            {{ image | img_url: '1512x' }} 1512w,
+            {{ image | img_url: '1728x' }} 1728w,
+            {{ image | img_url: '2048x' }} 2048w
+          "
+          sizes="100vw"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+          loading="eager"
+          fetchpriority="high"
+          alt="{{ image.alt | escape }}"
+        >
+      {%- else -%}
+        <img
+          class="image__img lazyload{% if preload %} lazypreload{% endif %} {{ image_class }}"
+          src="{{ image | img_url: '300x300' }}"
+          data-src="{{ img_url }}"
+          data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-aspectratio="{{ aspect_ratio }}"
+          data-sizes="auto"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+          alt="{{ image.alt | escape }}"
+        >
+      {%- endif -%}
   {%- if has_reveal or has_reveal_container -%}
     </div>
   {%- endif -%}
@@ -60,6 +86,12 @@
 
 <noscript>
   <div class="image image--{{ id }} {{ wrapper_class }}">
-    <img class="image__img" src="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt | escape }}">
+    <img
+      class="image__img"
+      src="{{ image | img_url: '2048x2048' }}"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
+      alt="{{ image.alt | escape }}"
+    >
   </div>
 </noscript>
